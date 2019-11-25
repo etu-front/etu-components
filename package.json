@@ -1,7 +1,7 @@
 {
   "name": "@etu/components",
-  "version": "1.0.0",
-  "license": "private",
+  "version": "1.0.1",
+  "license": "ISC",
   "description": "components of etu",
   "main": "./dist/index.js",
   "files": [
