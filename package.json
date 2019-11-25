@@ -1,0 +1,48 @@
+{
+  "name": "@etu/components",
+  "version": "1.0.0",
+  "license": "private",
+  "description": "components of etu",
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "es"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:etu-front/etu-components.git"
+  },
+  "scripts": {
+    "dev": "npm run build -- -w",
+    "build": "npm run clean && tsc --build tsconfig.json",
+    "clean": "rm -rf ./dist && rm -rf ./es",
+    "build:commonjs": "tsc -m commonjs --outDir ./dist --skipLibCheck true",
+    "build:es": "tsc -m es6 --outDir ./es  --skipLibCheck true",
+    "pub": "npm run build && node ./scripts/publish.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "handy",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "nprogress": "^0.2.0",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.148",
+    "@types/node": "^12.12.11",
+    "@types/nprogress": "^0.2.0",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
+    "@types/styled-components": "^4.4.0",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
+    "eslint": "^6.6.0",
+    "eslint-plugin-react": "^7.16.0",
+    "jest": "^24.9.0",
+    "prettier": "^1.17.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "typescript": "^3.7.2",
+    "typescript-eslint": "0.0.1-alpha.0"
+  }
+}
