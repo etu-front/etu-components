@@ -24,19 +24,30 @@ module.exports = {
     'react/jsx-indent': [0, 2],
     'react/jsx-no-bind': [0],
     'react/react-in-jsx-scope': 0,
+    'react/jsx-uses-vars': 1,
     'react/jsx-uses-react': 2, // 显性 import React 不报 unused React 警告
     // 'react/jsx-uses-vars': 2,
     'jsx-quotes': [1, 'prefer-double'],
     'jsx-a11y/media-has-caption': 0,
+    "@typescript-eslint/no-unused-vars": 1,
     '@typescript-eslint/interface-name-prefix': 0, // 允许 interface 命名加前缀
     '@typescript-eslint/no-non-null-assertion': 0, // 允许后边增加 ！断言
-    '@typescript-eslint/member-delimiter-style': [0], // 行位无需分号
+    '@typescript-eslint/member-delimiter-style': [1, {
+      "multiline": {
+        "delimiter": "none",
+        "requireLast": false
+      },
+      "singleline": {
+        "delimiter": "comma",
+        "requireLast": false
+      }
+    }], // 行尾无需分号
     '@typescript-eslint/indent': [1, 2], // 缩进 2 空格
     '@typescript-eslint/explicit-function-return-type': [0], // 函数无需强制明确返回类型
     '@typescript-eslint/semi': [1, 'never'],
     '@typescript-eslint/no-use-before-define': [1], // 使用时还未定义
     '@typescript-eslint/no-explicit-any': [0], // 允许 any
     '@typescript-eslint/camelcase': [0], // 允许非驼峰 后端字段独有
-    '@typescript-eslint/array-type': [1] // 允许 Array<T> 此类写法
+    '@typescript-eslint/array-type': [1] // 警告 Array<T> 此类写法
   }
 }
