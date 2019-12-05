@@ -79,9 +79,12 @@ const Container = styled_components_1.default(exports.FilterDiv) `
     animation-delay: -${props => props.duration / 2}s;
   }
 `;
-const Loading = ({ size = 20, duration = 1, radius = 8, colors = ['#3f3dd0', '#55a388'] }) => (react_1.default.createElement(Container, { size: size, duration: duration, radius: radius, colors: colors },
-    react_1.default.createElement("div", null),
-    react_1.default.createElement("div", null),
-    react_1.default.createElement("div", null)));
+const Loading = props => {
+    const { size = 20, duration = 1, radius = 8, colors } = props;
+    return (react_1.default.createElement(Container, { size: size, duration: duration, radius: radius, colors: colors || ['#3f3dd0', '#55a388'] },
+        react_1.default.createElement("div", null),
+        react_1.default.createElement("div", null),
+        react_1.default.createElement("div", null)));
+};
 exports.default = Loading;
 //# sourceMappingURL=Loading.js.map

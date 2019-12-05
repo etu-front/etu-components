@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
-type Colors = [string, string]
+export type Colors = [string, string] | undefined
 
 interface LoadingStyles {
   /** 方块尺寸 */
@@ -60,29 +60,32 @@ const Container = styled(FilterDiv)`
     left: 0;
   }
   &> div:nth-child(1) {
-    background: ${props => props.colors[0]};
+    background: ${props => props.colors![0]};
   animation: magnet-loading ${props => props.duration}s linear infinite;
     animation-delay: -${props => props.duration / 2}s;
   }
   &> div:nth-child(2) {
-    background: ${props => props.colors[1]};
+    background: ${props => props.colors![1]};
     animation: magnet-loading ${props => props.duration}s linear infinite;
     animation-delay: 0s;
   }
   &> div:nth-child(3) {
-    background: ${props => props.colors[0]};
+    background: ${props => props.colors![0]};
     animation: magnet-loading-opacity ${props => props.duration}s linear infinite;
     animation-delay: -${props => props.duration / 2}s;
   }
 `
 
-const Loading: FC<Partial<LoadingStyles>> = ({
-  size = 20, duration = 1, radius = 8, colors = ['#3f3dd0', '#55a388']
-}) => (
-  <Container size={size} duration={duration} radius={radius} colors={colors}>
-    <div />
-    <div />
-    <div />
-  </Container>
-)
+const Loading: FC<Partial<LoadingStyles>> = props => {
+  const {
+    size = 20, duration = 1, radius = 8, colors
+  } = props
+  return (
+    <Container size={size} duration={duration} radius={radius} colors={colors || ['#3f3dd0', '#55a388']}>
+      <div />
+      <div />
+      <div />
+    </Container>
+  )
+}
 export default Loading
