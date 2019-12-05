@@ -95,5 +95,6 @@ exports.useNProgress = (url, loading, primaryColor = '', options = {}) => {
     return react_1.default.createElement(GlobalStyle, { primaryColor: primaryColor });
 };
 const NProgress = ({ url, loading, primaryColor, options = { showSpinner: false, speed: 200 } }) => exports.useNProgress(url, loading, primaryColor, options);
+NProgress.displayName = 'NProgress';
 exports.default = NProgress;
 //# sourceMappingURL=NProgress.js.map

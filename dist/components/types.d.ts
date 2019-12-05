@@ -1,4 +1,10 @@
-import { CSSProperties, MouseEvent } from 'react';
+import { MouseEvent, CSSProperties } from 'react';
+export declare type MouseHandler = (e?: MouseEvent<HTMLElement | undefined>) => any;
+export interface BaseProps {
+    className?: string;
+    style?: CSSProperties;
+    onClick?: MouseHandler;
+}
 export interface BaseProps {
     className?: string;
     style?: CSSProperties;

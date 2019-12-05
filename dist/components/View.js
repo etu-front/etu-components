@@ -67,10 +67,10 @@ const View = props => {
     return (react_1.default.createElement(Container, Object.assign({ className: className, style: Object.keys(customStyle).length ? customStyle : undefined }, rest), children));
 };
 View.displayName = 'View';
-View.Center = styled_components_1.default(View) `
-  align-items: center !important;
-  justify-content: center !important;
-`;
+View.Center = (_a) => {
+    var { children } = _a, rest = __rest(_a, ["children"]);
+    return react_1.default.createElement(View, Object.assign({}, rest, { align: "center", justify: "center" }), children);
+};
 View.Center.displayName = 'View.Center';
 exports.default = View;
 //# sourceMappingURL=View.js.map

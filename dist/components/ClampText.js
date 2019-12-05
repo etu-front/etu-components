@@ -30,5 +30,6 @@ const ClampText = props => {
     const clamp = Math.max(1, max || 1);
     return (react_1.default.createElement(Container, Object.assign({ max: clamp, title: title || text, className: className, style: style }, rest), children || title || text));
 };
+ClampText.displayName = 'ClampText';
 exports.default = ClampText;
 //# sourceMappingURL=ClampText.js.map
