@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View test View 基本 1`] = `
+.c0 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  className="c0"
+  style={
+    Object {
+      "flexDirection": "column",
+    }
+  }
+>
+  hello
+</div>
+`;
+
+exports[`View test View 复杂样式 1`] = `
+.c0 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  className="c0"
+  style={
+    Object {
+      "alignItems": "flex-end",
+      "background": "red",
+      "borderRadius": 5,
+      "color": "white",
+      "flex": 1,
+      "flexDirection": "row",
+      "flexWrap": "wrap",
+      "height": 100,
+      "justifyContent": "stretch",
+      "lineHeight": "24px",
+      "width": 200,
+    }
+  }
+>
+  good
+</div>
+`;
+
+exports[`View test View 样式 1`] = `
+.c0 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  className="c0"
+  style={
+    Object {
+      "alignItems": "flex-start",
+      "flexDirection": "row",
+      "flexWrap": "wrap",
+      "margin": "0 -10px",
+    }
+  }
+>
+  <div
+    className="c0"
+    style={
+      Object {
+        "background": "red",
+        "flex": 1,
+        "height": 100,
+      }
+    }
+  />
+  <div
+    className="c0"
+    style={
+      Object {
+        "background": "green",
+        "flex": 1,
+        "height": 100,
+      }
+    }
+  />
+  <div
+    className="c0"
+    style={
+      Object {
+        "background": "blue",
+        "flex": 1,
+        "height": 100,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`View test View.Center 居中 1`] = `
+.c0 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  className="c0"
+  style={
+    Object {
+      "alignItems": "center",
+      "height": 200,
+      "justifyContent": "center",
+    }
+  }
+>
+  Hello
+</div>
+`;

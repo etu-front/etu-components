@@ -106,12 +106,9 @@ const View: ViewComponent & { Center: ViewComponent } = props => {
     </Container>
   )
 }
-
 View.displayName = 'View'
-View.Center = styled(View)`
-  align-items: center !important;
-  justify-content: center !important;
-`
+
+View.Center = ({ children, ...rest }) => <View {...rest} align="center" justify="center">{children}</View>
 View.Center.displayName = 'View.Center'
 
 export default View

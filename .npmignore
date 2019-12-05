@@ -5,6 +5,7 @@ coverage
 jest.config.js
 tsconfig.json
 __test__
+__snapshots__
 node_modules
 scripts
 src
@@ -18,3 +19,4 @@ src
 .eslintignore
 stats.json
 webpack.config.js
+tests

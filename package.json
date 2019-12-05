@@ -19,29 +19,41 @@
     "build:commonjs": "tsc -m commonjs --outDir ./dist --skipLibCheck true",
     "build:es": "tsc -m es6 --outDir ./es  --skipLibCheck true",
     "pub": "npm run build && node ./scripts/publish.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --collect-coverage --verbose",
+    "test-all": "npm run test -- -u"
   },
   "author": "handy",
   "dependencies": {
+    "@types/jest": "^24.0.23",
     "lodash": "^4.17.15",
     "nprogress": "^0.2.0",
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/lodash": "^4.14.148",
     "@types/node": "^12.12.11",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
+    "@types/react-test-renderer": "^16.9.1",
     "@types/styled-components": "^4.4.0",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.7.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.6.0",
     "eslint-plugin-react": "^7.16.0",
     "jest": "^24.9.0",
+    "jest-runner": "^24.9.0",
+    "jest-styled-components": "^6.3.4",
     "prettier": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-test-renderer": "^16.12.0",
+    "source-map-support": "^0.5.16",
+    "ts-jest": "^24.2.0",
     "typescript": "^3.7.2",
     "typescript-eslint": "0.0.1-alpha.0"
   }

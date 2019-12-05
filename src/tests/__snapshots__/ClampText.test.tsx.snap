@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClampText 基本 1`] = `
+.c0 {
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  white-space: pre-wrap;
+  overflow: hidden;
+}
+
+<div
+  className="c0"
+  max={1}
+>
+  hello
+</div>
+`;
+
+exports[`ClampText 复杂 1`] = `
+.c0 {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  white-space: pre-wrap;
+  overflow: hidden;
+}
+
+<div
+  className="c0 cls"
+  max={2}
+  style={
+    Object {
+      "lineHeight": 2,
+    }
+  }
+  title="title"
+>
+  hello
+</div>
+`;
+
+exports[`ClampText 标题 1`] = `
+.c0 {
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  white-space: pre-wrap;
+  overflow: hidden;
+}
+
+<div
+  className="c0"
+  max={3}
+  title="title and children text"
+>
+  title and children text
+</div>
+`;

@@ -69,7 +69,7 @@ const GlobalStyle = createGlobalStyle<{ primaryColor?: string }>`
 `
 
 export const useNProgress = (
-  url: string, loading: boolean, primaryColor: string = '', options: Partial<NProgressOptions> = {}
+  url: string, loading: boolean, primaryColor = '', options: Partial<NProgressOptions> = {}
 ) => {
   const [last, setHref] = useState(url)
   useEffect(() => {
@@ -100,5 +100,7 @@ const NProgress: React.FC<NProgressProps> = ({
   primaryColor,
   options = { showSpinner: false, speed: 200 }
 }) => useNProgress(url, loading, primaryColor, options)
+
+NProgress.displayName = 'NProgress'
 
 export default NProgress

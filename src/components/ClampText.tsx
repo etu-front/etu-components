@@ -30,5 +30,6 @@ const ClampText: FC<IProps & BaseProps> = props => {
     </Container>
   )
 }
+ClampText.displayName = 'ClampText'
 
 export default ClampText
