@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const classnames_1 = __importDefault(require("classnames"));
 const styled_components_1 = require("styled-components");
+const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_f5xbump9uze.js';
 const GloablStyle = styled_components_1.createGlobalStyle `
   .icon {
     display: inline-block;
@@ -44,7 +45,7 @@ const GloablStyle = styled_components_1.createGlobalStyle `
     100% { transform: rotate(356.4deg);}
   }
 `;
-const Icon = (_a) => {
+const IconComponent = (_a) => {
     var { className, type, prefix = 'icon', src, size, color, spin, children } = _a, rest = __rest(_a, ["className", "type", "prefix", "src", "size", "color", "spin", "children"]);
     let main = null;
     if (children) {
@@ -83,14 +84,11 @@ function createFromIconfont(options) {
         customCache.add(scriptUrl);
         document.body.appendChild(script);
     }
-    const IconFont = props => react_1.default.createElement(Icon, Object.assign({ prefix: prefix }, props));
+    const IconFont = props => react_1.default.createElement(IconComponent, Object.assign({ prefix: prefix }, props));
     IconFont.displayName = 'Iconfont';
     return IconFont;
 }
 exports.createFromIconfont = createFromIconfont;
-// const V = createFromIconfont<{ type: IconType }>({ scriptUrl: '22', prefix: 'icon' })
-const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_f5xbump9uze.js';
-// export const TestIcon = () => <V type="" />
-console.log('ICON_FONT_URL', ICON_FONT_URL);
-exports.default = createFromIconfont({ scriptUrl: ICON_FONT_URL, prefix: 'icon' });
+const Icon = createFromIconfont({ scriptUrl: ICON_FONT_URL, prefix: 'icon' });
+exports.default = Icon;
 //# sourceMappingURL=Icon.js.map

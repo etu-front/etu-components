@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const classnames_1 = __importDefault(require("classnames"));
 const styled_components_1 = __importDefault(require("styled-components"));
-const _1 = require(".");
+const Icon_1 = __importDefault(require("./Icon"));
 const color_1 = require("../../utils/color");
 const Container = styled_components_1.default.button `
   border-radius: 4px;
@@ -146,11 +146,13 @@ const Button = props => {
     });
     const getIcon = () => {
         if (loading)
-            return react_1.default.createElement(_1.Icon, { type: "loading", spin: true, className: "t-muted" });
+            return react_1.default.createElement(Icon_1.default, { type: "loading", spin: true, className: "t-muted" });
         if (!icon)
             return null;
         if (typeof icon === 'string') {
-            return react_1.default.createElement(_1.Icon, { type: icon });
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore
+            return react_1.default.createElement(Icon_1.default, { type: icon });
         }
         return react_1.default.createElement("i", { className: "icon" }, icon);
     };
@@ -159,7 +161,4 @@ const Button = props => {
         react_1.default.createElement("span", null, loading ? (loadingText || children) : children)));
 };
 exports.default = Button;
-// type IconType = "a" | "b"
-// const B = Button as FC<ButtonProps & { icon?: IconType }>
-// const T = () => <Button icon="bccc" />
 //# sourceMappingURL=Button.js.map

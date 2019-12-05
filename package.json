@@ -24,7 +24,10 @@
   },
   "author": "handy",
   "dependencies": {
+    "@etu/hooks": "^1.2.2",
+    "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.23",
+    "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "nprogress": "^0.2.0",
     "styled-components": "^4.4.1"
@@ -32,6 +35,7 @@
   "devDependencies": {
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/history": "^4.7.3",
     "@types/lodash": "^4.14.148",
     "@types/node": "^12.12.11",
     "@types/nprogress": "^0.2.0",
