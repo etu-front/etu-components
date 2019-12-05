@@ -94,11 +94,11 @@ const ModalFooter = styled.div`
     border-radius: 0;
   }
   .ok {
-    color: #00a5ff;
+    color: ${THEME.primaryColor};
     background-color: #fff;
     &:hover, &:active {
       background-color: #f3f3f3;
-      color: #44a9ff;
+      color: ${THEME.primaryColor};
     }
   }
   .cancel {
