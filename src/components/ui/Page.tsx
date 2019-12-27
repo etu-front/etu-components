@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import styled from 'styled-components'
-import { DocumentTitle } from '@etu/hooks'
+import { DocumentTitle } from '../../utils/useTitle'
 import { BaseProps } from '../types'
 
 const Container = styled.div`
@@ -24,7 +24,7 @@ const Page: FC<PageProps> = ({
   })
   return (
     <Container style={{ ...style, backgroundColor, paddingBottom }} className={className}>
-      <DocumentTitle title={title || ''} />
+      {typeof title !== 'undefined' && <DocumentTitle title={title} />}
       {children}
     </Container>
   )

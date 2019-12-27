@@ -24,19 +24,18 @@
   },
   "author": "handy",
   "dependencies": {
-    "@etu/hooks": "^1.2.2",
-    "@types/classnames": "^2.2.9",
-    "@types/jest": "^24.0.23",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "nprogress": "^0.2.0",
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.9",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/history": "^4.7.3",
-    "@types/lodash": "^4.14.148",
+    "@types/jest": "^24.0.23",
+    "@types/lodash": "^4.14.149",
     "@types/node": "^12.12.11",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^16.9.13",
@@ -47,8 +46,8 @@
     "@typescript-eslint/parser": "^2.7.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
-    "eslint": "^6.6.0",
-    "eslint-plugin-react": "^7.16.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.17.0",
     "jest": "^24.9.0",
     "jest-runner": "^24.9.0",
     "jest-styled-components": "^6.3.4",
@@ -58,7 +57,7 @@
     "react-test-renderer": "^16.12.0",
     "source-map-support": "^0.5.16",
     "ts-jest": "^24.2.0",
-    "typescript": "^3.7.2",
+    "typescript": "^3.7.4",
     "typescript-eslint": "0.0.1-alpha.0"
   }
 }
