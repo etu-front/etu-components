@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const styled_components_1 = __importDefault(require("styled-components"));
-const hooks_1 = require("@etu/hooks");
+const useTitle_1 = require("../../utils/useTitle");
 const Container = styled_components_1.default.div `
   min-height: 100vh;
   min-height: calc(100vh - constant(safe-area-inset-bottom));
@@ -26,7 +26,7 @@ const Page = ({ backgroundColor = 'white', paddingBottom, resetScroll, style, cl
         window.scrollTo(0, 0);
     });
     return (react_1.default.createElement(Container, { style: Object.assign(Object.assign({}, style), { backgroundColor, paddingBottom }), className: className },
-        react_1.default.createElement(hooks_1.DocumentTitle, { title: title || '' }),
+        typeof title !== 'undefined' && react_1.default.createElement(useTitle_1.DocumentTitle, { title: title }),
         children));
 };
 exports.default = Page;

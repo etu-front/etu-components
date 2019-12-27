@@ -13,5 +13,8 @@ var PageLoading_1 = require("./components/PageLoading");
 exports.PageLoading = PageLoading_1.default;
 var Result_1 = require("./components/Result");
 exports.Result = Result_1.default;
+var useTitle_1 = require("./utils/useTitle");
+exports.useTitle = useTitle_1.default;
+exports.DocumentTitle = useTitle_1.DocumentTitle;
 __export(require("./components/ui"));
 //# sourceMappingURL=index.js.map
