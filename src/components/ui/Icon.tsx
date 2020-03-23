@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { createGlobalStyle, CSSProperties } from 'styled-components'
 import { BaseProps } from '../types'
 
-const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_f5xbump9uze.js'
+const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_h7ko9ep4tde.js'
 
 export type BaseIconType =
   "ellipsis" | "info" | "exclaimination" | "doubleright" | "doubleleft" | "down" | "up" | "left" | "right" |
