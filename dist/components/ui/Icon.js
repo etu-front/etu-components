@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const classnames_1 = __importDefault(require("classnames"));
 const styled_components_1 = require("styled-components");
-const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_f5xbump9uze.js';
+const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_h7ko9ep4tde.js';
 const GloablStyle = styled_components_1.createGlobalStyle `
   .icon {
     display: inline-block;
