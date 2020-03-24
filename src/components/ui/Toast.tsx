@@ -40,7 +40,7 @@ const Container = styled.div`
 `
 type Position = 'top' | 'center' | 'bottom' | number
 
-type ToastIcon = 'warning' | 'info' | 'check' | 'close'
+type ToastIcon = 'warning' | 'info' | 'check' | 'close' | 'loading'
 
 interface ToastProps extends BaseProps {
   /** 字符串 或 ReactNode */
@@ -50,23 +50,32 @@ interface ToastProps extends BaseProps {
   /** 位置 */
   position?: Position
 }
-const Toast: FC<ToastProps> = ({ icon, position, children }) => (
-  <Container className={typeof position === 'string' ? `toast-${position}` : ''}
-    style={typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position } : undefined}
-  >
-    {icon && (typeof icon === 'string' ?
-      <Icon type={`${icon}-circle-fill` as BaseIconType} size={36} className="toastIcon" /> :
-      icon)
+
+const Toast: FC<ToastProps> = ({ icon, position, children }) => {
+  let iconElement
+  if (icon) {
+    if (icon === 'loading') {
+      iconElement = <Icon type="loading" spin size={36} className="toastIcon" />
+    } else if (typeof icon === 'string') {
+      iconElement = <Icon type={`${icon}-circle-fill` as BaseIconType} size={36} className="toastIcon" />
     }
-    {children}
-  </Container>
-)
+  }
+  return (
+    <Container className={typeof position === 'string' ? `toast-${position}` : ''}
+      style={typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position } : undefined}
+    >
+      {iconElement || icon}
+      {children}
+    </Container>
+  )
+}
 /** showToast 选项 */
 interface Options extends ToastProps {
   /** 显示毫秒数，默认 3000 毫秒，当为 0 或 负数时， 持久存在 */
   duration?: number
 }
 
+const DESTROY_POOL = {}
 /**
  * 显示 Toast
  * @param options Options
@@ -78,12 +87,16 @@ export const showToast = (options: Options) => {
   const domContainer = document.createElement('div')
   document.body.appendChild(domContainer)
 
+  const key = Date.now() + '_' + Math.floor(Math.random() * 100000)
+
   const destroy = () => {
+    delete DESTROY_POOL[key]
     ReactDOM.unmountComponentAtNode(domContainer)
     if (domContainer.parentNode) {
       domContainer.parentNode.removeChild(domContainer)
     }
   }
+  DESTROY_POOL[key] = destroy
 
   ReactDOM.render(
     <Toast {...rest}>{title}</Toast>,
@@ -95,4 +108,13 @@ export const showToast = (options: Options) => {
   }
   return destroy
 }
+
+export const hideToast = () => {
+  for(const k in DESTROY_POOL) {
+    if (typeof DESTROY_POOL[k] === 'function') {
+      DESTROY_POOL[k]()
+    }
+  }
+}
+
 export default Toast
