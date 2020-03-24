@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 import View from '../View'
-import Icon from './Icon'
+import Icon, { BaseIconType } from './Icon'
 import { BaseProps } from '../types'
 
 const Container = styled(View.Center) <{ size: number, color: string }>`
@@ -17,7 +17,7 @@ interface IconProps extends BaseProps {
   iconClassName?: string
   /** 图片地址 */
   src?: string
-  type?: string
+  type?: BaseIconType
   /** 尺寸 */
   size?: number
   /** 内部图标尺寸 */
