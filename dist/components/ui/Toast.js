@@ -18,6 +18,16 @@ const react_1 = __importDefault(require("react"));
 const react_dom_1 = __importDefault(require("react-dom"));
 const styled_components_1 = __importDefault(require("styled-components"));
 const _1 = require(".");
+const Background = styled_components_1.default.div `
+  &.mask {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    top: 0;
+    left: 0;
+  }
+`;
 const Container = styled_components_1.default.div `
   position: fixed;
   left: 50%;
@@ -51,7 +61,7 @@ const Container = styled_components_1.default.div `
     bottom: 72px;
   }
 `;
-const Toast = ({ icon, position, children }) => {
+const Toast = ({ icon, position, mask = true, children }) => {
     let iconElement;
     if (icon) {
         if (icon === 'loading') {
@@ -61,9 +71,10 @@ const Toast = ({ icon, position, children }) => {
             iconElement = react_1.default.createElement(_1.Icon, { type: `${icon}-circle-fill`, size: 36, className: "toastIcon" });
         }
     }
-    return (react_1.default.createElement(Container, { className: typeof position === 'string' ? `toast-${position}` : '', style: typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position } : undefined },
-        iconElement || icon,
-        children));
+    return (react_1.default.createElement(Background, { className: mask ? 'mask' : '' },
+        react_1.default.createElement(Container, { className: typeof position === 'string' ? `toast-${position}` : '', style: typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position } : undefined },
+            iconElement || icon,
+            children)));
 };
 const DESTROY_POOL = {};
 /**

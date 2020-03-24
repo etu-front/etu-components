@@ -5,3 +5,4 @@ export { default as Modal } from './Modal';
 export { default as Toast, showToast } from './Toast';
 export { default as Page } from './Page';
 export { default as Loading } from './Loading';
+export { default as Spin } from './Spin';

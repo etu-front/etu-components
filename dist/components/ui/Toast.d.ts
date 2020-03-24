@@ -9,6 +9,8 @@ interface ToastProps extends BaseProps {
     icon?: ToastIcon;
     /** 位置 */
     position?: Position;
+    /** 遮罩 默认为true */
+    mask?: boolean;
 }
 declare const Toast: FC<ToastProps>;
 /** showToast 选项 */

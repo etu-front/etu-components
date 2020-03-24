@@ -16,4 +16,6 @@ var Page_1 = require("./Page");
 exports.Page = Page_1.default;
 var Loading_1 = require("./Loading");
 exports.Loading = Loading_1.default;
+var Spin_1 = require("./Spin");
+exports.Spin = Spin_1.default;
 //# sourceMappingURL=index.js.map
