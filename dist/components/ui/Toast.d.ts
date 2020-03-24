@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { BaseProps } from '../types';
 declare type Position = 'top' | 'center' | 'bottom' | number;
-declare type ToastIcon = 'warning' | 'info' | 'check' | 'close';
+declare type ToastIcon = 'warning' | 'info' | 'check' | 'close' | 'loading';
 interface ToastProps extends BaseProps {
     /** 字符串 或 ReactNode */
     title?: string | ReactNode;
@@ -22,4 +22,5 @@ interface Options extends ToastProps {
  * @returns toast destroy 函数
  */
 export declare const showToast: (options: Options) => () => void;
+export declare const hideToast: () => void;
 export default Toast;

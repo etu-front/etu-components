@@ -21,7 +21,6 @@ const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_h7ko9ep4tde.js';
 const GloablStyle = styled_components_1.createGlobalStyle `
   .icon {
     display: inline-block;
-    font-size: inherit;
     color: inherit;
     font-style: normal;
     line-height: 0;

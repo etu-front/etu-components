@@ -51,11 +51,21 @@ const Container = styled_components_1.default.div `
     bottom: 72px;
   }
 `;
-const Toast = ({ icon, position, children }) => (react_1.default.createElement(Container, { className: typeof position === 'string' ? `toast-${position}` : '', style: typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position } : undefined },
-    icon && (typeof icon === 'string' ?
-        react_1.default.createElement(_1.Icon, { type: `${icon}-circle-fill`, size: 36, className: "toastIcon" }) :
-        icon),
-    children));
+const Toast = ({ icon, position, children }) => {
+    let iconElement;
+    if (icon) {
+        if (icon === 'loading') {
+            iconElement = react_1.default.createElement(_1.Icon, { type: "loading", spin: true, size: 36, className: "toastIcon" });
+        }
+        else if (typeof icon === 'string') {
+            iconElement = react_1.default.createElement(_1.Icon, { type: `${icon}-circle-fill`, size: 36, className: "toastIcon" });
+        }
+    }
+    return (react_1.default.createElement(Container, { className: typeof position === 'string' ? `toast-${position}` : '', style: typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position } : undefined },
+        iconElement || icon,
+        children));
+};
+const DESTROY_POOL = {};
 /**
  * 显示 Toast
  * @param options Options
@@ -65,17 +75,27 @@ exports.showToast = (options) => {
     const { title, duration = 3000 } = options, rest = __rest(options, ["title", "duration"]);
     const domContainer = document.createElement('div');
     document.body.appendChild(domContainer);
+    const key = Date.now() + '_' + Math.floor(Math.random() * 100000);
     const destroy = () => {
+        delete DESTROY_POOL[key];
         react_dom_1.default.unmountComponentAtNode(domContainer);
         if (domContainer.parentNode) {
             domContainer.parentNode.removeChild(domContainer);
         }
     };
+    DESTROY_POOL[key] = destroy;
     react_dom_1.default.render(react_1.default.createElement(Toast, Object.assign({}, rest), title), domContainer);
     if (duration > 0) {
         setTimeout(destroy, Math.max(500, duration));
     }
     return destroy;
+};
+exports.hideToast = () => {
+    for (const k in DESTROY_POOL) {
+        if (typeof DESTROY_POOL[k] === 'function') {
+            DESTROY_POOL[k]();
+        }
+    }
 };
 exports.default = Toast;
 //# sourceMappingURL=Toast.js.map

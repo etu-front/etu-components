@@ -1,10 +1,11 @@
 import { FC } from 'react';
+import { BaseIconType } from './Icon';
 import { BaseProps } from '../types';
 interface IconProps extends BaseProps {
     iconClassName?: string;
     /** 图片地址 */
     src?: string;
-    type?: string;
+    type?: BaseIconType;
     /** 尺寸 */
     size?: number;
     /** 内部图标尺寸 */
