@@ -5,6 +5,17 @@ import { Icon } from '.'
 import { BaseProps } from '../types'
 import { BaseIconType } from './Icon'
 
+const Background = styled.div`
+  &.mask {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    top: 0;
+    left: 0;
+  }
+`
+
 const Container = styled.div`
   position: fixed;
   left: 50%;
@@ -38,6 +49,7 @@ const Container = styled.div`
     bottom: 72px;
   }
 `
+
 type Position = 'top' | 'center' | 'bottom' | number
 
 type ToastIcon = 'warning' | 'info' | 'check' | 'close' | 'loading'
@@ -49,9 +61,11 @@ interface ToastProps extends BaseProps {
   icon?: ToastIcon
   /** 位置 */
   position?: Position
+  /** 遮罩 默认为true */
+  mask?: boolean
 }
 
-const Toast: FC<ToastProps> = ({ icon, position, children }) => {
+const Toast: FC<ToastProps> = ({ icon, position, mask = true, children }) => {
   let iconElement
   if (icon) {
     if (icon === 'loading') {
@@ -61,12 +75,14 @@ const Toast: FC<ToastProps> = ({ icon, position, children }) => {
     }
   }
   return (
-    <Container className={typeof position === 'string' ? `toast-${position}` : ''}
-      style={typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position } : undefined}
-    >
-      {iconElement || icon}
-      {children}
-    </Container>
+    <Background className={mask ? 'mask' : ''}>
+      <Container className={typeof position === 'string' ? `toast-${position}` : ''}
+        style={typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position } : undefined}
+      >
+        {iconElement || icon}
+        {children}
+      </Container>
+    </Background>
   )
 }
 /** showToast 选项 */
