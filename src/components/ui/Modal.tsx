@@ -117,6 +117,7 @@ interface ModalProps {
   visible?: boolean
   mask?: boolean
   maskClosable?: boolean
+  zIndex?: number
   closable?: boolean
   className?: BaseProps['className']
   style?: BaseProps['style']
@@ -214,7 +215,7 @@ const Modal: ModalComponent = props => {
     return '20px'
   }
   return (
-    <Wrap className={props.className}>
+    <Wrap className={props.className} style={{ zIndex: props.zIndex }}>
       {mask && <div className="mask" onClick={() => maskClosable && handleCancel()} />}
       <ModalContainer width={props.width} style={props.style}>
         {closable && <span className="close" onClick={handleCancel}>&times;</span>}
