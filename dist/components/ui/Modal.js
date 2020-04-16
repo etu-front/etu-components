@@ -179,7 +179,7 @@ const Modal = props => {
             return '10px 20px 20px 20px';
         return '20px';
     };
-    return (react_1.default.createElement(Wrap, { className: props.className },
+    return (react_1.default.createElement(Wrap, { className: props.className, style: { zIndex: props.zIndex } },
         mask && react_1.default.createElement("div", { className: "mask", onClick: () => maskClosable && handleCancel() }),
         react_1.default.createElement(ModalContainer, { width: props.width, style: props.style },
             closable && react_1.default.createElement("span", { className: "close", onClick: handleCancel }, "\u00D7"),

@@ -6,6 +6,7 @@ interface ModalProps {
     visible?: boolean;
     mask?: boolean;
     maskClosable?: boolean;
+    zIndex?: number;
     closable?: boolean;
     className?: BaseProps['className'];
     style?: BaseProps['style'];
