@@ -5,7 +5,7 @@ interface IconProps extends BaseProps {
     prefix?: string;
     /** 图片地址 */
     src?: string;
-    type?: BaseIconType;
+    type?: BaseIconType | string;
     /** 尺寸 */
     size?: number;
     /** 颜色 */
