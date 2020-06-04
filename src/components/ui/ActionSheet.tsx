@@ -39,6 +39,8 @@ const Body = styled(View)`
     padding: 12px;
     text-align: center;
     font-size: 16px;
+    min-height: 48px;
+    line-height: 48px;
     font-weight: 500;
     &:active {
       background: #eee;
