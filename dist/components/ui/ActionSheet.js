@@ -48,6 +48,8 @@ const Body = styled_components_1.default(View_1.default) `
     padding: 12px;
     text-align: center;
     font-size: 16px;
+    min-height: 48px;
+    line-height: 48px;
     font-weight: 500;
     &:active {
       background: #eee;
@@ -79,7 +81,7 @@ const ActionSheet = props => {
     return (react_1.default.createElement(Container, null,
         react_1.default.createElement(Mask, { onClick: maskClosable ? handleClose : () => false }),
         react_1.default.createElement(Body, { className: up ? 'up' : '' },
-            actions.map(act => react_1.default.createElement("div", { className: "item", key: act.text, onClick: () => act.onClick() }, act.text)),
+            actions.map(act => (react_1.default.createElement("div", { className: `item ${props.itemClassName || ''}`, key: act.text, onClick: () => act.onClick() }, act.text))),
             cancelText && react_1.default.createElement("div", { className: "item m-t-5", onClick: handleClose }, cancelText))));
 };
 const history = history_1.createBrowserHistory();
