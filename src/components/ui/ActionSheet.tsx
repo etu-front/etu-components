@@ -61,6 +61,7 @@ interface IProps {
   maskClosable?: boolean
   actions: IAction[]
   onCancel?: MouseHandler
+  itemClassName?: string
   cancelText?: string
 }
 const ActionSheet: FC<IProps> = props => {
@@ -84,7 +85,11 @@ const ActionSheet: FC<IProps> = props => {
     <Container>
       <Mask onClick={maskClosable ? handleClose : () => false} />
       <Body className={up ? 'up' : ''}>
-        {actions.map(act => <div className="item" key={act.text} onClick={() => act.onClick()}>{act.text}</div>)}
+        {actions.map(act => (
+          <div className={`item ${props.itemClassName || ''}`} key={act.text} onClick={() => act.onClick()}>
+            {act.text}
+          </div>
+        ))}
         {cancelText && <div className="item m-t-5" onClick={handleClose}>{cancelText}</div>}
       </Body>
     </Container>
