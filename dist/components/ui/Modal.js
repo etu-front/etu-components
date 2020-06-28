@@ -32,6 +32,7 @@ const Wrap = styled_components_1.default.div `
   bottom: 0;
   overflow: hidden;
   color: #444444;
+  z-index: 999;
   .mask {
     width: 100%;
     height: 100%;
