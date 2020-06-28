@@ -126,7 +126,7 @@ export const showToast = (options: Options) => {
 }
 
 export const hideToast = () => {
-  for(const k in DESTROY_POOL) {
+  for (const k in DESTROY_POOL) {
     if (typeof DESTROY_POOL[k] === 'function') {
       DESTROY_POOL[k]()
     }
