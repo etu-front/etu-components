@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { BaseProps } from '../types';
-export declare type BaseIconType = "ellipsis" | "info" | "exclaimination" | "doubleright" | "doubleleft" | "down" | "up" | "left" | "right" | "up-circle" | "right-circle" | "play-circle" | "plus-circle" | "minus-circle" | "down-circle" | "left-circle" | "loading" | "warning-circle-fill" | "question-circle-fill" | "info-circle-fill" | "close-circle-fill" | "check-circle-fill" | "check" | "reload" | "sync" | "warning-circle" | "question-circle" | "info-circle" | "close-circle" | "check-circle" | "close";
+export declare type BaseIconType = "appstore" | "rocket" | "heart" | "star" | "unorderedlist" | "pause" | "heart-fill" | "lock-fill" | "star-fill" | "caret-down" | "backward" | "caret-up" | "caret-right" | "caret-left" | "forward" | "step-backward" | "step-forward" | "plus" | "setting" | "user" | "team" | "setting-fill" | "appstoreadd" | "search" | "close" | "wechat" | "alipay" | "left-circle" | "down-circle" | "minus-circle" | "plus-circle" | "play-circle" | "right-circle" | "up-circle" | "right" | "left" | "up" | "down" | "doubleleft" | "doubleright" | "exclaimination" | "info" | "ellipsis" | "check-circle" | "close-circle" | "info-circle" | "question-circle" | "warning-circle" | "sync" | "reload" | "check" | "check-circle-fill" | "close-circle-fill" | "info-circle-fill" | "question-circle-fill" | "warning-circle-fill" | "loading";
 interface IconProps extends BaseProps {
     prefix?: string;
     /** 图片地址 */

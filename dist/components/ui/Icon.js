@@ -18,7 +18,16 @@ const react_1 = __importDefault(require("react"));
 const classnames_1 = __importDefault(require("classnames"));
 const styled_components_1 = require("styled-components");
 // iconfont project url: https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=1546788
-const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_os7r6ybmx1l.js';
+/**
+parse icon code from the page
+剪贴下边代码到 iconfont 页面 控制台， 可复制出 BaseIconType 类型定义
+
+var icons = []
+document.querySelectorAll('.block-icon-list .icon-code-show').forEach(v => icons.push(v))
+copy(icons.map(v => JSON.stringify(v.innerText.slice(5))).join(" | "))
+
+*/
+const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_m5cma3v1qh.js';
 const GloablStyle = styled_components_1.createGlobalStyle `
   .icon {
     display: inline-block;
