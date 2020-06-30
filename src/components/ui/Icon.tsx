@@ -4,14 +4,26 @@ import { createGlobalStyle, CSSProperties } from 'styled-components'
 import { BaseProps } from '../types'
 
 // iconfont project url: https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=1546788
-const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_os7r6ybmx1l.js'
+/**
+parse icon code from the page
+剪贴下边代码到 iconfont 页面 控制台， 可复制出 BaseIconType 类型定义
+
+var icons = []
+document.querySelectorAll('.block-icon-list .icon-code-show').forEach(v => icons.push(v))
+copy(icons.map(v => JSON.stringify(v.innerText.slice(5))).join(" | "))
+
+*/
+const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_m5cma3v1qh.js'
 
 export type BaseIconType =
-  "ellipsis" | "info" | "exclaimination" | "doubleright" | "doubleleft" | "down" | "up" | "left" | "right" |
-  "up-circle" | "right-circle" | "play-circle" | "plus-circle" | "minus-circle" | "down-circle" | "left-circle" |
-  "loading" | "warning-circle-fill" | "question-circle-fill" | "info-circle-fill" | "close-circle-fill" |
-  "check-circle-fill" | "check" | "reload" | "sync" | "warning-circle" | "question-circle" | "info-circle" |
-  "close-circle" | "check-circle" | "close"
+  "appstore" | "rocket" | "heart" | "star" | "unorderedlist" | "pause" | "heart-fill" | "lock-fill" | "star-fill" |
+  "caret-down" | "backward" | "caret-up" | "caret-right" | "caret-left" | "forward" | "step-backward" | "step-forward" |
+  "plus" | "setting" | "user" | "team" | "setting-fill" | "appstoreadd" | "search" | "close" | "wechat" | "alipay" |
+  "left-circle" | "down-circle" | "minus-circle" | "plus-circle" | "play-circle" | "right-circle" | "up-circle" |
+  "right" | "left" | "up" | "down" | "doubleleft" | "doubleright" | "exclaimination" | "info" | "ellipsis" |
+  "check-circle" | "close-circle" | "info-circle" | "question-circle" | "warning-circle" | "sync" | "reload" |
+  "check" | "check-circle-fill" | "close-circle-fill" | "info-circle-fill" | "question-circle-fill" |
+  "warning-circle-fill" | "loading"
 
 const GloablStyle = createGlobalStyle`
   .icon {
