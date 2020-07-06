@@ -13,7 +13,7 @@ document.querySelectorAll('.block-icon-list .icon-code-show').forEach(v => icons
 copy(icons.map(v => JSON.stringify(v.innerText.slice(5))).join(" | "))
 
 */
-const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_m5cma3v1qh.js'
+const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_0psjc1s6sk2s.js'
 
 export type BaseIconType =
   "appstore" | "rocket" | "heart" | "star" | "unorderedlist" | "pause" | "heart-fill" | "lock-fill" | "star-fill" |
@@ -23,7 +23,7 @@ export type BaseIconType =
   "right" | "left" | "up" | "down" | "doubleleft" | "doubleright" | "exclaimination" | "info" | "ellipsis" |
   "check-circle" | "close-circle" | "info-circle" | "question-circle" | "warning-circle" | "sync" | "reload" |
   "check" | "check-circle-fill" | "close-circle-fill" | "info-circle-fill" | "question-circle-fill" |
-  "warning-circle-fill" | "loading"
+  "warning-circle-fill" | "loading" | "swap"
 
 const GloablStyle = createGlobalStyle`
   .icon {
