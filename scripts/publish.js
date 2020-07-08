@@ -4,6 +4,9 @@ const exec = require('child_process').exec
 // 读取package.json文件
 const packagePath = require('path').resolve(__dirname, '../') + '/package.json'
 const packageJSON = require(packagePath)
+// 读取package-lock.json文件
+const packageLockPath = require('path').resolve(__dirname, '../') + '/package-lock.json'
+const packageLockJSON = require(packageLockPath)
 
 const readline = require('readline')
 
@@ -23,6 +26,8 @@ const getVersion = () => {
       } else {
         const newPackageJSON = { ...packageJSON, version }
         fs.writeFileSync(packagePath, JSON.stringify(newPackageJSON, null, 2))
+        const newPackageLockJSON = { ...packageLockJSON, version }
+        fs.writeFileSync(packageLockPath, JSON.stringify(newPackageLockJSON, null, 2))
         console.log('写入新的版本号: ' + version)
         return pushCommit(version)
       }
