@@ -1,17 +1,24 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { MouseHandler } from '../types';
-export interface IAction {
+interface IAction {
     onClick: Function;
-    text: string;
+}
+interface ITextAction extends IAction {
+    text?: string;
+}
+interface IChildAction extends IAction {
+    child?: React.ReactNode;
 }
 interface IProps {
+    title?: React.ReactNode;
     visible?: boolean;
+    mask?: boolean;
     maskClosable?: boolean;
-    actions: IAction[];
+    actions: (ITextAction | IChildAction)[];
     onCancel?: MouseHandler;
     itemClassName?: string;
     cancelText?: string;
 }
 declare const ActionSheet: FC<IProps>;
-export declare const showActionSheet: (options: Pick<IProps, "onCancel" | "maskClosable" | "actions" | "itemClassName" | "cancelText">) => () => void;
+export declare const showActionSheet: (options: Pick<IProps, "title" | "mask" | "onCancel" | "maskClosable" | "actions" | "itemClassName" | "cancelText">) => () => void;
 export default ActionSheet;

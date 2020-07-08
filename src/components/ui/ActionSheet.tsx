@@ -51,21 +51,28 @@ const Body = styled(View)`
   }
 `
 
-export interface IAction {
+interface IAction {
   onClick: Function
-  text: string
+}
+interface ITextAction extends IAction {
+  text?: string
+}
+interface IChildAction extends IAction {
+  child?: React.ReactNode
 }
 
 interface IProps {
+  title?: React.ReactNode
   visible?: boolean
+  mask?: boolean
   maskClosable?: boolean
-  actions: IAction[]
+  actions: (ITextAction | IChildAction)[]
   onCancel?: MouseHandler
   itemClassName?: string
   cancelText?: string
 }
 const ActionSheet: FC<IProps> = props => {
-  const { actions, visible, onCancel, cancelText = '取消', maskClosable = true } = props
+  const { title, actions, visible, onCancel, cancelText = '取消', mask = true, maskClosable = true } = props
   const [up, setUp] = useState(false)
   const handleClose = () => {
     setUp(false)
@@ -83,11 +90,12 @@ const ActionSheet: FC<IProps> = props => {
   if (!visible) return null
   return (
     <Container>
-      <Mask onClick={maskClosable ? handleClose : () => false} />
+      {mask && <Mask onClick={maskClosable ? handleClose : () => false} />}
       <Body className={up ? 'up' : ''}>
-        {actions.map(act => (
-          <div className={`item ${props.itemClassName || ''}`} key={act.text} onClick={() => act.onClick()}>
-            {act.text}
+        {title}
+        {actions.map((act, index) => (
+          <div key={'action-' + index} className={`item ${props.itemClassName || ''}`} onClick={() => act.onClick()}>
+            {(act as IChildAction).child || (act as ITextAction).text}
           </div>
         ))}
         {cancelText && <div className="item m-t-5" onClick={handleClose}>{cancelText}</div>}
