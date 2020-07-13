@@ -45,7 +45,7 @@ const pushCommit = version => {
   })
   r.question(`是否推送分支 Y/N: `, push => {
     if (push && push.toLowerCase() === 'y') {
-      exec('git add ./dist ' + packagePath, () => {
+      exec('git add ./dist ' + packagePath + ' ' + packageLockPath, () => {
         exec(`git commit -m "📦 bump version ${version}"`, () => {
           exec('git push', (err, stdout) => {
             if (err) return console.log(err)
