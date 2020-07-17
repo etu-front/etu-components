@@ -15,9 +15,7 @@ const styled_components_1 = __importDefault(require("styled-components"));
 const useTitle_1 = require("../../utils/useTitle");
 const Container = styled_components_1.default.div `
   min-height: 100vh;
-  min-height: calc(100vh - constant(safe-area-inset-bottom));
-  min-height: calc(100vh - env(safe-area-inset-bottom));
-  padding-bottom: 60px;
+  padding-bottom: env(safe-area-inset-bottom);
 `;
 const Page = ({ backgroundColor = 'white', paddingBottom, resetScroll, style, className, children, title }) => {
     react_1.useEffect(() => {
