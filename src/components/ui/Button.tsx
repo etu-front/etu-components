@@ -1,5 +1,4 @@
 import React, { FC, ReactNode } from 'react'
-import classnames from 'classnames'
 import styled from 'styled-components'
 import Icon, { BaseIconType } from './Icon'
 import { lighten } from '../../utils/color'
@@ -151,13 +150,15 @@ const Button: FC<ButtonProps> = props => {
     ...rest
   } = props
 
-  const getClassName = classnames(className, {
-    [`btn-${type}`]: type !== 'default',
-    [`btn-${size}`]: size !== 'default',
-    'btn-block': block,
-    'round-circle': shape === 'circle',
-    'round-0': shape === 'square'
-  })
+  const classNames = [
+    className,
+    type !== 'default' ? `btn-${type}` : '',
+    size !== 'default' ? `btn-${size}` : '',
+    block ? 'btn-block' : '',
+    shape === 'circle' ? 'round-circle' : '',
+    shape === 'square' ? 'round-0' : ''
+  ].filter(Boolean).join(' ')
+
   const getIcon = () => {
     if (loading) return <Icon type="loading" spin className="t-muted" />
     if (!icon) return null
@@ -169,7 +170,7 @@ const Button: FC<ButtonProps> = props => {
     return <i className="icon">{icon}</i>
   }
   return (
-    <Container className={getClassName} type={htmlType} disabled={loading} {...rest}>
+    <Container className={classNames} type={htmlType} disabled={loading} {...rest}>
       {getIcon()}<span>{loading ? (loadingText || children) : children}</span>
     </Container>
   )

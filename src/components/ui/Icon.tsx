@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import classnames from 'classnames'
 import { createGlobalStyle, CSSProperties } from 'styled-components'
 import { BaseProps } from '../types'
 
@@ -89,10 +88,12 @@ const IconComponent: FC<IconProps> = ({
   if (size && size > 48) {
     style.fontSize = size
   }
+  const classNames = ['icon', className, spin ? 'spin' : '', size && size <= 48 ? `f${size}` : 0]
+    .filter(Boolean).join(' ')
   return (
     <React.Fragment>
       <GloablStyle />
-      <i className={classnames('icon', className, { spin }, size && size <= 48 ? `f${size}` : 0)}
+      <i className={classNames}
         {...rest} style={style}>
         {main}
       </i>
