@@ -26,6 +26,7 @@ interface IProps extends BaseProps {
   background?: string
   color?: string
   width?: number | string
+  ref?: ((instance: HTMLDivElement | null) => void) | React.RefObject<HTMLDivElement> | null | undefined
 }
 
 type ViewComponent = FC<IProps>
@@ -111,4 +112,4 @@ View.displayName = 'View'
 View.Center = ({ children, ...rest }) => <View {...rest} align="center" justify="center">{children}</View>
 View.Center.displayName = 'View.Center'
 
-export default View
+export default React.forwardRef(View)
