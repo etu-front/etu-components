@@ -15,7 +15,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
-const classnames_1 = __importDefault(require("classnames"));
 const styled_components_1 = require("styled-components");
 // iconfont project url: https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=1546788
 /**
@@ -74,9 +73,11 @@ const IconComponent = (_a) => {
     if (size && size > 48) {
         style.fontSize = size;
     }
+    const classNames = ['icon', className, spin ? 'spin' : '', size && size <= 48 ? `f${size}` : 0]
+        .filter(Boolean).join(' ');
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(GloablStyle, null),
-        react_1.default.createElement("i", Object.assign({ className: classnames_1.default('icon', className, { spin }, size && size <= 48 ? `f${size}` : 0) }, rest, { style: style }), main)));
+        react_1.default.createElement("i", Object.assign({ className: classNames }, rest, { style: style }), main)));
 };
 const customCache = new Set();
 function createFromIconfont(options) {

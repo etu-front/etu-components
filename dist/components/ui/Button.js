@@ -15,7 +15,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
-const classnames_1 = __importDefault(require("classnames"));
 const styled_components_1 = __importDefault(require("styled-components"));
 const Icon_1 = __importDefault(require("./Icon"));
 const color_1 = require("../../utils/color");
@@ -137,13 +136,14 @@ const Container = styled_components_1.default.button `
 `;
 const Button = props => {
     const { children, block, className = '', htmlType = 'button', type = 'default', size = 'default', icon, loading, loadingText, shape } = props, rest = __rest(props, ["children", "block", "className", "htmlType", "type", "size", "icon", "loading", "loadingText", "shape"]);
-    const getClassName = classnames_1.default(className, {
-        [`btn-${type}`]: type !== 'default',
-        [`btn-${size}`]: size !== 'default',
-        'btn-block': block,
-        'round-circle': shape === 'circle',
-        'round-0': shape === 'square'
-    });
+    const classNames = [
+        className,
+        type !== 'default' ? `btn-${type}` : '',
+        size !== 'default' ? `btn-${size}` : '',
+        block ? 'btn-block' : '',
+        shape === 'circle' ? 'round-circle' : '',
+        shape === 'square' ? 'round-0' : ''
+    ].filter(Boolean).join(' ');
     const getIcon = () => {
         if (loading)
             return react_1.default.createElement(Icon_1.default, { type: "loading", spin: true, className: "t-muted" });
@@ -156,7 +156,7 @@ const Button = props => {
         }
         return react_1.default.createElement("i", { className: "icon" }, icon);
     };
-    return (react_1.default.createElement(Container, Object.assign({ className: getClassName, type: htmlType, disabled: loading }, rest),
+    return (react_1.default.createElement(Container, Object.assign({ className: classNames, type: htmlType, disabled: loading }, rest),
         getIcon(),
         react_1.default.createElement("span", null, loading ? (loadingText || children) : children)));
 };
