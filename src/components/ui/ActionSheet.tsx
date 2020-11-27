@@ -71,6 +71,7 @@ interface IProps {
   itemClassName?: string
   cancelText?: string
 }
+const DESTROY_POOL = {}
 const ActionSheet: FC<IProps> = props => {
   const { title, actions, visible, onCancel, cancelText = '取消', mask = true, maskClosable = true } = props
   const [up, setUp] = useState(false)
@@ -111,6 +112,7 @@ export const showActionSheet = (options: Omit<IProps, 'visible'>) => {
   document.body.appendChild(dom)
   // eslint-disable-next-line prefer-const
   let unListen: Function
+  const key = Date.now() + '_' + Math.floor(Math.random() * 100000)
   const destroy = () => {
     if (typeof unListen === 'function') unListen()
     if (options.onCancel) {
@@ -120,8 +122,18 @@ export const showActionSheet = (options: Omit<IProps, 'visible'>) => {
     ReactDOM.unmountComponentAtNode(dom)
     dom.remove()
   }
+  DESTROY_POOL[key] = destroy
   unListen = history.listen(destroy)
   ReactDOM.render(<ActionSheet visible onCancel={destroy} {...options} />, dom)
   return destroy
 }
+
+export const hideActionSheet = () => {
+  for (const k in DESTROY_POOL) {
+    if (typeof DESTROY_POOL[k] === 'function') {
+      DESTROY_POOL[k]()
+    }
+  }
+}
+
 export default ActionSheet
