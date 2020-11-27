@@ -16,6 +16,7 @@ exports.hideToast = Toast_1.hideToast;
 var ActionSheet_1 = require("./ActionSheet");
 exports.ActionSheet = ActionSheet_1.default;
 exports.showActionSheet = ActionSheet_1.showActionSheet;
+exports.hideActionSheet = ActionSheet_1.hideActionSheet;
 var Page_1 = require("./Page");
 exports.Page = Page_1.default;
 var Loading_1 = require("./Loading");

@@ -3,7 +3,7 @@ export { default as Icon, createFromIconfont } from './Icon';
 export { default as CircleIcon } from './CircleIcon';
 export { default as Modal } from './Modal';
 export { default as Toast, showToast, hideToast } from './Toast';
-export { default as ActionSheet, showActionSheet } from './ActionSheet';
+export { default as ActionSheet, showActionSheet, hideActionSheet } from './ActionSheet';
 export { default as Page } from './Page';
 export { default as Loading } from './Loading';
 export { default as Spin } from './Spin';
