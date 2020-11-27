@@ -5,8 +5,3 @@ export interface BaseProps {
     style?: CSSProperties;
     onClick?: MouseHandler;
 }
-export interface BaseProps {
-    className?: string;
-    style?: CSSProperties;
-    onClick?: (e?: MouseEvent<HTMLElement>) => any;
-}

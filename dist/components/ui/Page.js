@@ -22,7 +22,7 @@ const Page = ({ backgroundColor = 'white', paddingBottom, resetScroll, style, cl
         if (!resetScroll)
             return;
         window.scrollTo(0, 0);
-    });
+    }, [resetScroll]);
     return (react_1.default.createElement(Container, { style: Object.assign(Object.assign({}, style), { backgroundColor, paddingBottom }), className: className },
         typeof title !== 'undefined' && react_1.default.createElement(useTitle_1.DocumentTitle, { title: title }),
         children));

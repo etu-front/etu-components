@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { BaseProps } from '../types';
-interface PageProps extends BaseProps {
+export interface PageProps {
     title?: string;
     backgroundColor?: string;
     paddingBottom?: number;
     resetScroll?: boolean;
 }
-declare const Page: FC<PageProps>;
+declare const Page: FC<PageProps & BaseProps>;
 export default Page;

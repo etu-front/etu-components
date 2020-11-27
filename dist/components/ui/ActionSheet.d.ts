@@ -21,4 +21,5 @@ interface IProps {
 }
 declare const ActionSheet: FC<IProps>;
 export declare const showActionSheet: (options: Pick<IProps, "title" | "mask" | "onCancel" | "maskClosable" | "actions" | "itemClassName" | "cancelText">) => () => void;
+export declare const hideActionSheet: () => void;
 export default ActionSheet;

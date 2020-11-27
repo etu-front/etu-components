@@ -59,6 +59,7 @@ const Body = styled_components_1.default(View_1.default) `
     }
   }
 `;
+const DESTROY_POOL = {};
 const ActionSheet = props => {
     const { title, actions, visible, onCancel, cancelText = '取消', mask = true, maskClosable = true } = props;
     const [up, setUp] = react_1.useState(false);
@@ -91,6 +92,7 @@ exports.showActionSheet = (options) => {
     document.body.appendChild(dom);
     // eslint-disable-next-line prefer-const
     let unListen;
+    const key = Date.now() + '_' + Math.floor(Math.random() * 100000);
     const destroy = () => {
         if (typeof unListen === 'function')
             unListen();
@@ -102,9 +104,17 @@ exports.showActionSheet = (options) => {
         react_dom_1.default.unmountComponentAtNode(dom);
         dom.remove();
     };
+    DESTROY_POOL[key] = destroy;
     unListen = history.listen(destroy);
     react_dom_1.default.render(react_1.default.createElement(ActionSheet, Object.assign({ visible: true, onCancel: destroy }, options)), dom);
     return destroy;
+};
+exports.hideActionSheet = () => {
+    for (const k in DESTROY_POOL) {
+        if (typeof DESTROY_POOL[k] === 'function') {
+            DESTROY_POOL[k]();
+        }
+    }
 };
 exports.default = ActionSheet;
 //# sourceMappingURL=ActionSheet.js.map
