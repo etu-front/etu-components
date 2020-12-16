@@ -104,8 +104,6 @@ const ActionSheet: FC<IProps> = props => {
     </Container>
   )
 }
-const history = createBrowserHistory()
-
 
 export const showActionSheet = (options: Omit<IProps, 'visible'>) => {
   const dom = document.createElement('div')
@@ -113,6 +111,7 @@ export const showActionSheet = (options: Omit<IProps, 'visible'>) => {
   // eslint-disable-next-line prefer-const
   let unListen: Function
   const key = Date.now() + '_' + Math.floor(Math.random() * 100000)
+  const history = createBrowserHistory()
   const destroy = () => {
     if (typeof unListen === 'function') unListen()
     if (options.onCancel) {

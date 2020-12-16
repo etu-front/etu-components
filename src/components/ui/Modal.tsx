@@ -232,7 +232,6 @@ const Modal: ModalComponent = props => {
   )
 }
 
-const history = createBrowserHistory()
 
 interface ModalOptions extends ModalProps {
   message?: string | ReactElement
@@ -243,6 +242,7 @@ const showModal = (node: ReactElement) => {
   document.body.appendChild(dom)
   // eslint-disable-next-line prefer-const
   let unListen: Function
+  const history = createBrowserHistory()
   const destroy = () => {
     if (typeof unListen === 'function') unListen()
     if (!dom) return
