@@ -24,7 +24,7 @@
   },
   "author": "handy",
   "dependencies": {
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "nprogress": "^0.2.0",
     "styled-components": "^4.4.1"
   },
