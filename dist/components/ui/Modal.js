@@ -188,12 +188,12 @@ const Modal = props => {
             react_1.default.createElement(ModalBody, { className: props.bodyClassName, style: { padding: getPadding() } }, props.children),
             react_1.default.createElement(ModalFooter, null, renderFooter()))));
 };
-const history = history_1.createBrowserHistory();
 const showModal = (node) => {
     const dom = document.createElement('div');
     document.body.appendChild(dom);
     // eslint-disable-next-line prefer-const
     let unListen;
+    const history = history_1.createBrowserHistory();
     const destroy = () => {
         if (typeof unListen === 'function')
             unListen();

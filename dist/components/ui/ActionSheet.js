@@ -86,13 +86,13 @@ const ActionSheet = props => {
             actions.map((act, index) => (react_1.default.createElement("div", { key: 'action-' + index, className: `item ${props.itemClassName || ''}`, onClick: () => act.onClick() }, act.child || act.text))),
             cancelText && react_1.default.createElement("div", { className: "item m-t-5", onClick: handleClose }, cancelText))));
 };
-const history = history_1.createBrowserHistory();
 exports.showActionSheet = (options) => {
     const dom = document.createElement('div');
     document.body.appendChild(dom);
     // eslint-disable-next-line prefer-const
     let unListen;
     const key = Date.now() + '_' + Math.floor(Math.random() * 100000);
+    const history = history_1.createBrowserHistory();
     const destroy = () => {
         if (typeof unListen === 'function')
             unListen();
