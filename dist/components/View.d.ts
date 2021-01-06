@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React from 'react';
 import { BaseProps } from './types';
 declare type Align = 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'space-between' | 'space-around';
 interface IProps extends BaseProps {
@@ -14,8 +14,7 @@ interface IProps extends BaseProps {
     color?: string;
     width?: number | string;
 }
-declare type ViewComponent = FC<IProps>;
-declare const View: ViewComponent & {
-    Center: ViewComponent;
+declare const View: React.FC<IProps> & {
+    Center: React.FC<IProps>;
 };
 export default View;
