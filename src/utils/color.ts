@@ -12,6 +12,7 @@ function getNumberByColor(color: string) {
 }
 
 function lightenDarkenColor(color: string, factor?: number) {
+  if (typeof color === 'undefined') return undefined
   if (typeof factor === 'undefined') return color
   const usePound = color[0] === '#'
   const num = getNumberByColor(color)
