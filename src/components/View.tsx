@@ -30,7 +30,7 @@ interface IProps extends BaseProps {
 
 type ViewComponent = FC<IProps>
 
-const View: ViewComponent & { Center: ViewComponent } = props => {
+const View = React.memo<IProps>(props => {
   const {
     className = '',
     children,
@@ -105,7 +105,8 @@ const View: ViewComponent & { Center: ViewComponent } = props => {
       {children}
     </Container>
   )
-}
+}) as unknown as ViewComponent & { Center: ViewComponent }
+
 View.displayName = 'View'
 
 View.Center = ({ children, ...rest }) => <View {...rest} align="center" justify="center">{children}</View>

@@ -53,8 +53,8 @@ const GloablStyle = styled_components_1.createGlobalStyle `
     100% { transform: rotate(356.4deg);}
   }
 `;
-const IconComponent = (_a) => {
-    var { className, type, prefix = 'icon', src, size, color, spin, children } = _a, rest = __rest(_a, ["className", "type", "prefix", "src", "size", "color", "spin", "children"]);
+const IconComponent = props => {
+    const { className, type, prefix = 'icon', src, size, color, spin, children } = props, rest = __rest(props, ["className", "type", "prefix", "src", "size", "color", "spin", "children"]);
     let main = null;
     if (children) {
         main = children;
@@ -63,7 +63,7 @@ const IconComponent = (_a) => {
         main = react_1.default.createElement("img", { src: src, alt: "\u56FE\u6807" });
     }
     else {
-        main = (react_1.default.createElement("svg", { className: "icon", "aria-hidden": "true" },
+        main = (react_1.default.createElement("svg", { "aria-hidden": "true" },
             react_1.default.createElement("use", { xlinkHref: `#${prefix}-${type}` })));
     }
     const style = Object.assign({}, rest.style);
@@ -99,6 +99,6 @@ function createFromIconfont(options) {
     return IconFont;
 }
 exports.createFromIconfont = createFromIconfont;
-const Icon = createFromIconfont({ scriptUrl: ICON_FONT_URL, prefix: 'icon' });
+const Icon = react_1.default.memo(createFromIconfont({ scriptUrl: ICON_FONT_URL, prefix: 'icon' }));
 exports.default = Icon;
 //# sourceMappingURL=Icon.js.map

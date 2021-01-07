@@ -11,7 +11,7 @@ const Container = styled_components_1.default.div `
   min-height: 200px;
 `;
 const Inner = styled_components_1.default.div `
-  color: ${THEME.primaryColor};
+  color: ${props => props.theme.primaryColor};
   font-size: 16px;
   position: absolute;
   left: 0;
@@ -32,7 +32,7 @@ const Spin = props => {
     return (react_1.default.createElement(Container, { style: style, className: className },
         children,
         react_1.default.createElement(Inner, null,
-            react_1.default.createElement(Loading_1.default, { size: 10, colors: colors || [THEME.primaryColor, THEME.dangerColor] }),
+            react_1.default.createElement(Loading_1.default, { size: 10, colors: colors }),
             tip)));
 };
 exports.default = Spin;

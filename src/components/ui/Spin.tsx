@@ -8,7 +8,7 @@ const Container = styled.div`
 `
 
 const Inner = styled.div`
-  color: ${THEME.primaryColor};
+  color: ${props => props.theme.primaryColor};
   font-size: 16px;
   position: absolute;
   left: 0;
@@ -38,7 +38,7 @@ const Spin: FC<ISpin> = props => {
     <Container style={style} className={className}>
       {children}
       <Inner>
-        <Loading size={10} colors={colors || [THEME.primaryColor, THEME.dangerColor]}/>
+        <Loading size={10} colors={colors} />
         {tip}
       </Inner>
     </Container>

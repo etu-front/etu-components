@@ -17,7 +17,7 @@ const Container = styled.button`
   user-select: none;
   display: inline-block;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
-  color: ${THEME.primaryColor};
+  color: ${props => props.theme.primaryColor};
   &.btn-block {
     display: block;
     width: 100%;
@@ -42,9 +42,9 @@ const Container = styled.button`
     font-size: 18px;
   }
   &.btn-outline, &:focus, &:hover {
-    color: ${THEME.primaryColor};
+    color: ${props => props.theme.primaryColor};
     background-color: #fff;
-    border-color: ${THEME.primaryColor};
+    border-color: ${props => props.theme.primaryColor};
   }
 
   &:disabled {
@@ -61,55 +61,55 @@ const Container = styled.button`
 
   &.btn-primary {
     color: #fff;
-    background-color: ${THEME.primaryColor};
-    border-color: ${THEME.primaryColor};
+    background-color: ${props => props.theme.primaryColor};
+    border-color: ${props => props.theme.primaryColor};
     &:hover {
-      background-color: ${lighten(THEME.primaryColor, 0.1)};
-      border-color: ${lighten(THEME.primaryColor, 0.1)};
+      background-color: ${props => lighten(props.theme.primaryColor, 0.1)};
+      border-color: ${props => lighten(props.theme.primaryColor, 0.1)};
     }
     &:disabled {
-      background-color: ${lighten(THEME.primaryColor, 0.2)} !important;
-      border-color: ${lighten(THEME.primaryColor, 0.2)} !important;
+      background-color: ${props => lighten(props.theme.primaryColor, 0.2)} !important;
+      border-color: ${props => lighten(props.theme.primaryColor, 0.2)} !important;
     }
   }
   &.btn-danger {
     color: #fff;
-    background-color: ${THEME.dangerColor};
-    border-color: ${THEME.dangerColor};
+    background-color: ${props => props.theme.dangerColor};
+    border-color: ${props => props.theme.dangerColor};
     &:hover {
-      background-color: ${lighten(THEME.dangerColor, 0.1)};
-      border-color: ${lighten(THEME.dangerColor, 0.1)};
+      background-color: ${props => lighten(props.theme.dangerColor, 0.1)};
+      border-color: ${props => lighten(props.theme.dangerColor, 0.1)};
     }
     &:disabled {
       color: #fff;
-      background-color: ${lighten(THEME.dangerColor, 0.2)} !important;
-      border-color: ${lighten(THEME.dangerColor, 0.2)} !important;
+      background-color: ${props => lighten(props.theme.dangerColor, 0.2)} !important;
+      border-color: ${props => lighten(props.theme.dangerColor, 0.2)} !important;
     }
   }
   &.btn-success {
-    color: #fff;
-    background-color: ${THEME.successColor};
-    border-color: ${THEME.successColor};
+    color: #ff0;
+    background-color: ${props => props.theme.successColor};
+    border-color: ${props => props.theme.successColor};
     &:hover {
-      background-color: ${lighten(THEME.successColor, 0.1)};
-      border-color: ${lighten(THEME.successColor, 0.1)};
+      background-color: ${props => lighten(props.theme.successColor, 0.1)};
+      border-color: ${props => lighten(props.theme.successColor, 0.1)};
     }
   }
   &.btn-info {
     color: #fff;
-    background-color: ${THEME.infoColor};
-    border-color: ${THEME.infoColor};
+    background-color: ${props => props.theme.infoColor};
+    border-color: ${props => props.theme.infoColor};
     &:hover {
-      background-color: ${lighten(THEME.infoColor, 0.1)};
-      border-color: ${lighten(THEME.infoColor, 0.1)};
+      background-color: ${props => lighten(props.theme.infoColor, 0.1)};
+      border-color: ${props => lighten(props.theme.infoColor, 0.1)};
     }
   }
   &.btn-link {
-    color: ${THEME.primaryColor};
+    color: ${props => props.theme.primaryColor};
     background-color: transparent;
     border-color: transparent;
     &:hover {
-      color: ${lighten(THEME.primaryColor, 0.1)};
+      color: ${props => lighten(props.theme.primaryColor, 0.1)};
     }
   }
   > i.icon {

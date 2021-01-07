@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { createGlobalStyle, CSSProperties } from 'styled-components'
+import React, { FC, CSSProperties } from 'react'
+import { createGlobalStyle } from 'styled-components'
 import { BaseProps } from '../types'
 
 // iconfont project url: https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=1546788
@@ -63,10 +63,11 @@ interface IconProps extends BaseProps {
   spin?: boolean
 }
 
-const IconComponent: FC<IconProps> = ({
-  className, type, prefix = 'icon', src,
-  size, color, spin, children, ...rest
-}) => {
+const IconComponent: FC<IconProps> = props => {
+  const {
+    className, type, prefix = 'icon', src,
+    size, color, spin, children, ...rest
+  } = props
   let main = null
   if (children) {
     main = children
@@ -74,7 +75,7 @@ const IconComponent: FC<IconProps> = ({
     main = <img src={src} alt="图标" />
   } else {
     main = (
-      <svg className="icon" aria-hidden="true">
+      <svg aria-hidden="true">
         <use xlinkHref={`#${prefix}-${type}`} />
       </svg>
     )
@@ -131,5 +132,5 @@ export function createFromIconfont<T = { type?: BaseIconType }>(options: CustomI
 }
 
 const Icon: FC<IconProps & { type?: BaseIconType }> =
-  createFromIconfont({ scriptUrl: ICON_FONT_URL, prefix: 'icon' })
+  React.memo(createFromIconfont({ scriptUrl: ICON_FONT_URL, prefix: 'icon' }))
 export default Icon
