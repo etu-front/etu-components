@@ -26,7 +26,7 @@
   "dependencies": {
     "lodash": "^4.17.20",
     "nprogress": "^0.2.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.3",
@@ -39,7 +39,7 @@
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
     "@types/react-test-renderer": "^16.9.1",
-    "@types/styled-components": "^4.4.0",
+    "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.7.0",
     "enzyme": "^3.10.0",
