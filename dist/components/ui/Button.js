@@ -101,7 +101,7 @@ const Container = styled_components_1.default.button `
     }
   }
   &.btn-success {
-    color: #ff0;
+    color: #fff;
     background-color: ${props => props.theme.successColor};
     border-color: ${props => props.theme.successColor};
     &:hover {

@@ -1,5 +1,5 @@
-export declare const lighten: (color: string, factor: number) => string;
-export declare const darken: (color: string, factor: number) => string;
+export declare const lighten: (color: string, factor: number) => string | undefined;
+export declare const darken: (color: string, factor: number) => string | undefined;
 /**
  * 反色
  * @param color #FFFFFF | rgb(255,255,255)

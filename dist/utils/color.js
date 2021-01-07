@@ -13,6 +13,8 @@ function getNumberByColor(color) {
     return parseInt(`${Number(match[1]).toString(16)}${Number(match[2]).toString(16)}${Number(match[3]).toString(16)}`, 16);
 }
 function lightenDarkenColor(color, factor) {
+    if (typeof color === 'undefined')
+        return undefined;
     if (typeof factor === 'undefined')
         return color;
     const usePound = color[0] === '#';
