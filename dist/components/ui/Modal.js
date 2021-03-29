@@ -36,7 +36,7 @@ const Wrap = styled_components_1.default.div `
   .mask {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2);
+    background: #000;
   }
 `;
 const ModalContainer = styled_components_1.default.div `
@@ -128,7 +128,7 @@ const ModalFooter = styled_components_1.default.div `
   }
 `;
 const Modal = props => {
-    const { title = '', visible = false, onOk, onCancel, onDestroy, closable = true, mask = true, maskClosable = true, showCancelBtn, showOkBtn, header, footer } = props;
+    const { title = '', visible = false, onOk, onCancel, onDestroy, closable = true, mask = true, maskClosable = true, maskOpacity = 0.2, showCancelBtn, showOkBtn, header, footer } = props;
     const [loading, setLoading] = react_1.useState(false);
     if (!visible)
         return null;
@@ -181,7 +181,7 @@ const Modal = props => {
         return '20px';
     };
     return (react_1.default.createElement(Wrap, { className: props.className, style: { zIndex: props.zIndex } },
-        mask && react_1.default.createElement("div", { className: "mask", onClick: () => maskClosable && handleCancel() }),
+        mask && react_1.default.createElement("div", { className: "mask", style: { opacity: maskOpacity }, onClick: () => maskClosable && handleCancel() }),
         react_1.default.createElement(ModalContainer, { width: props.width, style: props.style },
             closable && react_1.default.createElement("span", { className: "close", onClick: handleCancel }, "\u00D7"),
             renderTitle(),
