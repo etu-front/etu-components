@@ -17,7 +17,7 @@ const Wrap = styled.div`
   .mask {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2);
+    background: #000;
   }
 `
 
@@ -118,6 +118,7 @@ interface ModalProps {
   visible?: boolean
   mask?: boolean
   maskClosable?: boolean
+  maskOpacity?: number
   zIndex?: number
   closable?: boolean
   className?: BaseProps['className']
@@ -156,6 +157,7 @@ const Modal: ModalComponent = props => {
     closable = true,
     mask = true,
     maskClosable = true,
+    maskOpacity = 0.2,
     showCancelBtn,
     showOkBtn,
     header,
@@ -217,7 +219,7 @@ const Modal: ModalComponent = props => {
   }
   return (
     <Wrap className={props.className} style={{ zIndex: props.zIndex }}>
-      {mask && <div className="mask" onClick={() => maskClosable && handleCancel()} />}
+      {mask && <div className="mask" style={{ opacity: maskOpacity }} onClick={() => maskClosable && handleCancel()} />}
       <ModalContainer width={props.width} style={props.style}>
         {closable && <span className="close" onClick={handleCancel}>&times;</span>}
         {renderTitle()}
