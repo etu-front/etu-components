@@ -64,8 +64,6 @@ const Container = styled_components_1.default.button `
   &:disabled {
     cursor: not-allowed;
     color: #ffffffcc !important;
-    background-color: #f9f9f9 !important;
-    border-color: #f9f9f9 !important;
     &.btn-link {
       color: #bbbbbb !important;
       background-color: transparent !important;
@@ -95,7 +93,6 @@ const Container = styled_components_1.default.button `
       border-color: ${props => color_1.lighten(props.theme.dangerColor, 0.1)};
     }
     &:disabled {
-      color: #fff;
       background-color: ${props => color_1.lighten(props.theme.dangerColor, 0.2)} !important;
       border-color: ${props => color_1.lighten(props.theme.dangerColor, 0.2)} !important;
     }
@@ -108,6 +105,10 @@ const Container = styled_components_1.default.button `
       background-color: ${props => color_1.lighten(props.theme.successColor, 0.1)};
       border-color: ${props => color_1.lighten(props.theme.successColor, 0.1)};
     }
+    &:disabled {
+      background-color: ${props => color_1.lighten(props.theme.successColor, 0.2)} !important;
+      border-color: ${props => color_1.lighten(props.theme.successColor, 0.2)} !important;
+    }
   }
   &.btn-info {
     color: #fff;
@@ -117,6 +118,10 @@ const Container = styled_components_1.default.button `
       background-color: ${props => color_1.lighten(props.theme.infoColor, 0.1)};
       border-color: ${props => color_1.lighten(props.theme.infoColor, 0.1)};
     }
+    &:disabled {
+      background-color: ${props => color_1.lighten(props.theme.infoColor, 0.2)} !important;
+      border-color: ${props => color_1.lighten(props.theme.infoColor, 0.2)} !important;
+    }
   }
   &.btn-link {
     color: ${props => props.theme.primaryColor};
@@ -124,6 +129,10 @@ const Container = styled_components_1.default.button `
     border-color: transparent;
     &:hover {
       color: ${props => color_1.lighten(props.theme.primaryColor, 0.1)};
+    }
+    &:disabled {
+      background-color: transparent;
+      border-color: transparent;
     }
   }
   > i.icon {
