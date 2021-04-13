@@ -65,7 +65,7 @@ interface ToastProps extends BaseProps {
   mask?: boolean
 }
 
-const Toast: FC<ToastProps> = ({ icon, position, mask = true, children }) => {
+const Toast: FC<ToastProps> = ({ icon, position, mask = true, style, children }) => {
   let iconElement
   if (icon) {
     if (icon === 'loading') {
@@ -77,7 +77,7 @@ const Toast: FC<ToastProps> = ({ icon, position, mask = true, children }) => {
   return (
     <Background className={mask ? 'mask' : ''}>
       <Container className={typeof position === 'string' ? `toast-${position}` : ''}
-        style={typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position } : undefined}
+        style={typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position, ...style } : style}
       >
         {iconElement || icon}
         {children}
