@@ -77,7 +77,7 @@ const Toast: FC<ToastProps> = ({ icon, position, mask = true, style, children })
   return (
     <Background className={mask ? 'mask' : ''}>
       <Container className={typeof position === 'string' ? `toast-${position}` : ''}
-        style={typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position, ...style } : style}
+        style={typeof position === 'number' ? { transform: 'translate(-50%, 0)', top: position, ...style } : style}
       >
         {iconElement || icon}
         {children}
