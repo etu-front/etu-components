@@ -50,8 +50,6 @@ const Container = styled.button`
   &:disabled {
     cursor: not-allowed;
     color: #ffffffcc !important;
-    background-color: #f9f9f9 !important;
-    border-color: #f9f9f9 !important;
     &.btn-link {
       color: #bbbbbb !important;
       background-color: transparent !important;
@@ -81,7 +79,6 @@ const Container = styled.button`
       border-color: ${props => lighten(props.theme.dangerColor, 0.1)};
     }
     &:disabled {
-      color: #fff;
       background-color: ${props => lighten(props.theme.dangerColor, 0.2)} !important;
       border-color: ${props => lighten(props.theme.dangerColor, 0.2)} !important;
     }
@@ -94,6 +91,10 @@ const Container = styled.button`
       background-color: ${props => lighten(props.theme.successColor, 0.1)};
       border-color: ${props => lighten(props.theme.successColor, 0.1)};
     }
+    &:disabled {
+      background-color: ${props => lighten(props.theme.successColor, 0.2)} !important;
+      border-color: ${props => lighten(props.theme.successColor, 0.2)} !important;
+    }
   }
   &.btn-info {
     color: #fff;
@@ -103,6 +104,10 @@ const Container = styled.button`
       background-color: ${props => lighten(props.theme.infoColor, 0.1)};
       border-color: ${props => lighten(props.theme.infoColor, 0.1)};
     }
+    &:disabled {
+      background-color: ${props => lighten(props.theme.infoColor, 0.2)} !important;
+      border-color: ${props => lighten(props.theme.infoColor, 0.2)} !important;
+    }
   }
   &.btn-link {
     color: ${props => props.theme.primaryColor};
@@ -110,6 +115,10 @@ const Container = styled.button`
     border-color: transparent;
     &:hover {
       color: ${props => lighten(props.theme.primaryColor, 0.1)};
+    }
+    &:disabled {
+      background-color: transparent;
+      border-color: transparent;
     }
   }
   > i.icon {
