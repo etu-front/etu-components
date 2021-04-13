@@ -61,7 +61,7 @@ const Container = styled_components_1.default.div `
     bottom: 72px;
   }
 `;
-const Toast = ({ icon, position, mask = true, children }) => {
+const Toast = ({ icon, position, mask = true, style, children }) => {
     let iconElement;
     if (icon) {
         if (icon === 'loading') {
@@ -72,7 +72,7 @@ const Toast = ({ icon, position, mask = true, children }) => {
         }
     }
     return (react_1.default.createElement(Background, { className: mask ? 'mask' : '' },
-        react_1.default.createElement(Container, { className: typeof position === 'string' ? `toast-${position}` : '', style: typeof position === 'number' ? { transform: 'translate(-50%, 0', top: position } : undefined },
+        react_1.default.createElement(Container, { className: typeof position === 'string' ? `toast-${position}` : '', style: typeof position === 'number' ? Object.assign({ transform: 'translate(-50%, 0', top: position }, style) : style },
             iconElement || icon,
             children)));
 };
