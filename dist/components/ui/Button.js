@@ -32,10 +32,15 @@ const Container = styled_components_1.default.button `
   display: inline-block;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
   color: ${props => props.theme.primaryColor};
+  &.btn-circle { border-radius: 50%; }
+  &.btn-square { border-radius: 0; }
+  &.btn-pill { border-radius: 500px; }
+
   &.btn-block {
     display: block;
     width: 100%;
   }
+
   &.btn-xsmall {
     height: 21px;
     padding: 0 5px;
@@ -63,11 +68,22 @@ const Container = styled_components_1.default.button `
 
   &:disabled {
     cursor: not-allowed;
-    color: #ffffffcc !important;
+    color: #bbb;
     &.btn-link {
       color: #bbbbbb !important;
       background-color: transparent !important;
       border-color: transparent !important;
+    }
+  }
+  &.btn-outline {
+    &:hover {
+        color: ${props => color_1.lighten(props.theme.primaryColor, 0.1)};
+        background-color: #fff;
+        border-color: ${props => color_1.lighten(props.theme.primaryColor, 0.1)};
+      }
+    &:disabled {
+      color: #bbb;
+      border-color: #bbb;
     }
   }
 
@@ -142,24 +158,18 @@ const Container = styled_components_1.default.button `
   > i.icon + span {
     margin-left: 6px;
   }
+  &.btn-no-border { border-color: transparent !important; }
 `;
 const Button = props => {
-    const { children, block, className = '', htmlType = 'button', type = 'default', size = 'default', icon, loading, loadingText, shape = 'round', style = {} } = props, rest = __rest(props, ["children", "block", "className", "htmlType", "type", "size", "icon", "loading", "loadingText", "shape", "style"]);
+    const { children, block, border = true, className = '', htmlType = 'button', type = 'default', size = 'default', icon, loading, loadingText, shape = 'round' } = props, rest = __rest(props, ["children", "block", "border", "className", "htmlType", "type", "size", "icon", "loading", "loadingText", "shape"]);
     const classNames = [
         className,
         type !== 'default' ? `btn-${type}` : '',
         size !== 'default' ? `btn-${size}` : '',
-        block ? 'btn-block' : ''
+        shape !== 'round' ? `btn-${shape}` : '',
+        block ? 'btn-block' : '',
+        !border ? 'btn-no-border' : ''
     ].filter(Boolean).join(' ');
-    if (shape === 'circle') {
-        style.borderRadius = '50%';
-    }
-    else if (shape === 'square') {
-        style.borderRadius = 0;
-    }
-    else if (shape === 'pill') {
-        style.borderRadius = 500;
-    }
     const getIcon = () => {
         if (loading)
             return react_1.default.createElement(Icon_1.default, { type: "loading", spin: true, className: "t-muted" });
@@ -172,7 +182,7 @@ const Button = props => {
         }
         return react_1.default.createElement("i", { className: "icon" }, icon);
     };
-    return (react_1.default.createElement(Container, Object.assign({ className: classNames, type: htmlType, disabled: loading, style: style }, rest),
+    return (react_1.default.createElement(Container, Object.assign({ className: classNames, type: htmlType, disabled: loading }, rest),
         getIcon(),
         react_1.default.createElement("span", null, loading ? (loadingText || children) : children)));
 };

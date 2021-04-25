@@ -1,15 +1,17 @@
 import { FC, ReactElement, ReactNode } from 'react';
+import { ButtonProps } from './Button';
 import { BaseProps } from '../types';
-interface ModalProps {
+export interface ModalProps {
     title?: string;
     width?: number | string;
     visible?: boolean;
+    shadow?: boolean;
+    animation?: boolean;
     mask?: boolean;
     maskClosable?: boolean;
     maskOpacity?: number;
     zIndex?: number;
     closable?: boolean;
-    className?: BaseProps['className'];
     style?: BaseProps['style'];
     /** modal body 内边距 */
     padding?: number | string;
@@ -22,19 +24,22 @@ interface ModalProps {
     okText?: ReactNode;
     loadingText?: ReactNode;
     showOkBtn?: boolean;
-    okBtnProps?: any;
+    okBtnProps?: ButtonProps;
     cancelText?: ReactNode;
     showCancelBtn?: boolean;
-    cancelBtnProps?: any;
+    cancelBtnProps?: ButtonProps;
+    className?: BaseProps['className'];
+    modalClassName?: string;
     bodyClassName?: string;
 }
 declare type ModalComponent = FC<ModalProps> & {
     show: (options: ModalOptions) => Function;
     confirm: (options: ModalOptions) => Function;
     info: (options: ModalOptions) => Function;
+    error: (options: ModalOptions) => Function;
 };
 declare const Modal: ModalComponent;
-interface ModalOptions extends ModalProps {
+export interface ModalOptions extends ModalProps {
     message?: string | ReactElement;
 }
 export default Modal;

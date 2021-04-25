@@ -45,7 +45,7 @@ const ModalContainer = styled_components_1.default.div `
   flex-direction: column;
   align-items: stretch;
   width: ${props => props.width || '300px'};
-  min-height: 150px;
+  min-height: 60px;
   background: white;
   border-radius: 5px;
   overflow: hidden;
@@ -53,6 +53,16 @@ const ModalContainer = styled_components_1.default.div `
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
+  transition: all 200ms;
+  margin-top: 60px;
+  opacity: 0;
+  &.show {
+    margin-top: 0;
+    opacity: 1;
+  }
+  &.shadow {
+    box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+  }
   .close {
     color: #aaa;
     position: absolute;
@@ -96,6 +106,9 @@ const ModalFooter = styled_components_1.default.div `
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  button {
+    background-color: #fff;
+  }
   button:not(:first-child) {
     border-left: 1px solid #f0f0f0;
   }
@@ -110,26 +123,26 @@ const ModalFooter = styled_components_1.default.div `
     outline: none;
     border-radius: 0;
   }
-  .ok {
-    color: ${props => props.theme.primaryColor};
-    background-color: #fff;
-    &:hover, &:active {
-      background-color: #f3f3f3;
-      color: ${props => props.theme.primaryColor};
-    }
-  }
   .cancel {
-    background-color: #fff;
-    color: #aaaaaa;
-    &:hover, &:active {
-      background-color: #f3f3f3;
-      color: #999;
-    }
+    color: #aaa;
   }
 `;
 const Modal = props => {
-    const { title = '', visible = false, onOk, onCancel, onDestroy, closable = true, mask = true, maskClosable = true, maskOpacity = 0.2, showCancelBtn, showOkBtn, header, footer } = props;
+    const { title = '', visible = false, onOk, onCancel, onDestroy, closable = true, mask = true, maskClosable = true, maskOpacity = 0.2, animation, showCancelBtn = !!props.cancelBtnProps, showOkBtn = !!props.okBtnProps, header, footer } = props;
     const [loading, setLoading] = react_1.useState(false);
+    const [up, setUp] = react_1.useState(!animation);
+    react_1.useEffect(() => {
+        if (!animation)
+            return;
+        if (visible) {
+            if (!up)
+                setTimeout(() => setUp(true), 100);
+        }
+        else {
+            if (up)
+                setTimeout(() => setUp(false), 100);
+        }
+    }, [visible, animation]);
     if (!visible)
         return null;
     const handleOk = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -166,10 +179,10 @@ const Modal = props => {
             return footer;
         const buttons = [];
         if (showCancelBtn) {
-            buttons.push(react_1.default.createElement(Button_1.default, Object.assign({ key: "cancel", className: "cancel", onClick: handleCancel }, (props.cancelBtnProps || {})), props.cancelText || '取消'));
+            buttons.push(react_1.default.createElement(Button_1.default, Object.assign({ key: "cancel", className: "cancel", type: "default", onClick: handleCancel }, (props.cancelBtnProps || {})), props.cancelText || '取消'));
         }
         if (showOkBtn) {
-            buttons.push(react_1.default.createElement(Button_1.default, Object.assign({ key: "ok", className: "ok", onClick: handleOk }, (props.okBtnProps || {}), { loading: loading, loadingText: props.loadingText }), props.okText || '确定'));
+            buttons.push(react_1.default.createElement(Button_1.default, Object.assign({ key: "ok", className: "ok", type: "primary", onClick: handleOk }, (props.okBtnProps || {}), { loading: loading, loadingText: props.loadingText }), props.okText || '确定'));
         }
         return buttons;
     };
@@ -180,12 +193,18 @@ const Modal = props => {
             return '10px 20px 20px 20px';
         return '20px';
     };
+    const classnames = [
+        props.modalClassName,
+        up ? 'show' : '',
+        props.shadow ? 'shadow' : ''
+    ].filter(Boolean).join(' ');
     return (react_1.default.createElement(Wrap, { className: props.className, style: { zIndex: props.zIndex } },
         mask && react_1.default.createElement("div", { className: "mask", style: { opacity: maskOpacity }, onClick: () => maskClosable && handleCancel() }),
-        react_1.default.createElement(ModalContainer, { width: props.width, style: props.style },
+        react_1.default.createElement(ModalContainer, { width: props.width, style: props.style, className: classnames },
             closable && react_1.default.createElement("span", { className: "close", onClick: handleCancel }, "\u00D7"),
             renderTitle(),
-            react_1.default.createElement(ModalBody, { className: props.bodyClassName, style: { padding: getPadding() } }, props.children),
+            props.children &&
+                react_1.default.createElement(ModalBody, { className: props.bodyClassName, style: { padding: getPadding() } }, props.children),
             react_1.default.createElement(ModalFooter, null, renderFooter()))));
 };
 const showModal = (node) => {
@@ -209,8 +228,10 @@ const showModal = (node) => {
 const show = (options) => showModal(react_1.default.createElement(Modal, Object.assign({}, options, { visible: true }), options.message));
 const confirm = (options) => showModal(react_1.default.createElement(Modal, Object.assign({ showOkBtn: true, showCancelBtn: true, closable: false, maskClosable: false }, options, { visible: true }), options.message));
 const info = (options) => showModal(react_1.default.createElement(Modal, Object.assign({ showOkBtn: true, okText: "\u77E5\u9053\u4E86", maskClosable: false, closable: false }, options, { visible: true }), options.message));
+const error = (options) => showModal(react_1.default.createElement(Modal, Object.assign({ showOkBtn: true, maskClosable: false, closable: false, okBtnProps: { type: 'danger' } }, options, { visible: true }), options.message));
 Modal.show = show;
 Modal.confirm = confirm;
 Modal.info = info;
+Modal.error = error;
 exports.default = Modal;
 //# sourceMappingURL=Modal.js.map
