@@ -144,15 +144,22 @@ const Container = styled_components_1.default.button `
   }
 `;
 const Button = props => {
-    const { children, block, className = '', htmlType = 'button', type = 'default', size = 'default', icon, loading, loadingText, shape } = props, rest = __rest(props, ["children", "block", "className", "htmlType", "type", "size", "icon", "loading", "loadingText", "shape"]);
+    const { children, block, className = '', htmlType = 'button', type = 'default', size = 'default', icon, loading, loadingText, shape = 'round', style = {} } = props, rest = __rest(props, ["children", "block", "className", "htmlType", "type", "size", "icon", "loading", "loadingText", "shape", "style"]);
     const classNames = [
         className,
         type !== 'default' ? `btn-${type}` : '',
         size !== 'default' ? `btn-${size}` : '',
-        block ? 'btn-block' : '',
-        shape === 'circle' ? 'round-circle' : '',
-        shape === 'square' ? 'round-0' : ''
+        block ? 'btn-block' : ''
     ].filter(Boolean).join(' ');
+    if (shape === 'circle') {
+        style.borderRadius = '50%';
+    }
+    else if (shape === 'square') {
+        style.borderRadius = 0;
+    }
+    else if (shape === 'pill') {
+        style.borderRadius = 500;
+    }
     const getIcon = () => {
         if (loading)
             return react_1.default.createElement(Icon_1.default, { type: "loading", spin: true, className: "t-muted" });
@@ -165,7 +172,7 @@ const Button = props => {
         }
         return react_1.default.createElement("i", { className: "icon" }, icon);
     };
-    return (react_1.default.createElement(Container, Object.assign({ className: classNames, type: htmlType, disabled: loading }, rest),
+    return (react_1.default.createElement(Container, Object.assign({ className: classNames, type: htmlType, disabled: loading, style: style }, rest),
         getIcon(),
         react_1.default.createElement("span", null, loading ? (loadingText || children) : children)));
 };

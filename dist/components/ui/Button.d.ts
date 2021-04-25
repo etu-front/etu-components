@@ -10,9 +10,10 @@ export interface ButtonProps extends BaseProps {
     disabled?: boolean;
     block?: boolean;
     icon?: string | BaseIconType | ReactNode;
+    /** 加载状态 */
     loading?: boolean;
     loadingText?: ReactNode;
-    shape?: 'round' | 'square' | 'circle';
+    shape?: 'round' | 'square' | 'circle' | 'pill';
 }
 declare const Button: FC<ButtonProps>;
 export default Button;
