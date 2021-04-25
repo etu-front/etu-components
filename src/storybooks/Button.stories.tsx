@@ -1,5 +1,5 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
+// import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 
 import Button, { ButtonProps } from '../components/ui/Button'
@@ -25,11 +25,11 @@ Default.args = {
   onClick: actions.onClick
 }
 
-storiesOf('Button', module)
-  .add('default', () => <Button type="default" {...actions}>Button</Button>)
-  .add('primary large', () => <Button type="primary" size="large" {...actions}>Button</Button>)
-  .add('success', () => <Button type="success" loading {...actions}>Button</Button>)
-  .add('danger small', () => <Button type="danger" size="small" {...actions}>Button</Button>)
-  .add('info disabled', () => <Button type="info" loading disabled {...actions}>Button</Button>)
-  .add('link', () => <Button type="link" loading {...actions}>Button</Button>)
-  .add('warning', () => <Button type="info" {...actions}>Button</Button>)
+// storiesOf('Button', module)
+//   .add('default', () => <Button type="default" {...actions}>Button</Button>)
+//   .add('primary large', () => <Button type="primary" size="large" {...actions}>Button</Button>)
+//   .add('success', () => <Button type="success" loading {...actions}>Button</Button>)
+//   .add('danger small', () => <Button type="danger" size="small" {...actions}>Button</Button>)
+//   .add('info disabled', () => <Button type="info" loading disabled {...actions}>Button</Button>)
+//   .add('link', () => <Button type="link" loading {...actions}>Button</Button>)
+//   .add('warning', () => <Button type="info" {...actions}>Button</Button>)

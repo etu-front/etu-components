@@ -18,10 +18,15 @@ const Container = styled.button`
   display: inline-block;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
   color: ${props => props.theme.primaryColor};
+  &.btn-circle { border-radius: 50%; }
+  &.btn-square { border-radius: 0; }
+  &.btn-pill { border-radius: 500px; }
+
   &.btn-block {
     display: block;
     width: 100%;
   }
+
   &.btn-xsmall {
     height: 21px;
     padding: 0 5px;
@@ -49,11 +54,22 @@ const Container = styled.button`
 
   &:disabled {
     cursor: not-allowed;
-    color: #ffffffcc !important;
+    color: #bbb;
     &.btn-link {
       color: #bbbbbb !important;
       background-color: transparent !important;
       border-color: transparent !important;
+    }
+  }
+  &.btn-outline {
+    &:hover {
+        color: ${props => lighten(props.theme.primaryColor, 0.1)};
+        background-color: #fff;
+        border-color: ${props => lighten(props.theme.primaryColor, 0.1)};
+      }
+    &:disabled {
+      color: #bbb;
+      border-color: #bbb;
     }
   }
 
@@ -128,12 +144,14 @@ const Container = styled.button`
   > i.icon + span {
     margin-left: 6px;
   }
+  &.btn-no-border { border-color: transparent !important; }
 `
 export type ButtonSize = 'xsmall' | 'small' | 'default' | 'large' | 'xlarge'
-export type ButtonType = 'primary' | 'default' | 'danger' | 'success' | 'link' | 'info'
+export type ButtonType = 'primary' | 'default' | 'danger' | 'success' | 'link' | 'info' | 'outline'
 
 export interface ButtonProps extends BaseProps {
   htmlType?: 'submit' | 'reset' | 'button'
+  border?: boolean
   type?: ButtonType
   size?: ButtonSize
   disabled?: boolean
@@ -149,6 +167,7 @@ const Button: FC<ButtonProps> = props => {
   const {
     children,
     block,
+    border = true,
     className = '',
     htmlType = 'button',
     type = 'default',
@@ -157,7 +176,6 @@ const Button: FC<ButtonProps> = props => {
     loading,
     loadingText,
     shape = 'round',
-    style = {},
     ...rest
   } = props
 
@@ -165,16 +183,11 @@ const Button: FC<ButtonProps> = props => {
     className,
     type !== 'default' ? `btn-${type}` : '',
     size !== 'default' ? `btn-${size}` : '',
-    block ? 'btn-block' : ''
+    shape !== 'round' ? `btn-${shape}` : '',
+    block ? 'btn-block' : '',
+    !border ? 'btn-no-border' : ''
   ].filter(Boolean).join(' ')
 
-  if (shape === 'circle') {
-    style.borderRadius = '50%'
-  } else if (shape === 'square') {
-    style.borderRadius = 0
-  } else if (shape === 'pill') {
-    style.borderRadius = 500
-  }
   const getIcon = () => {
     if (loading) return <Icon type="loading" spin className="t-muted" />
     if (!icon) return null
@@ -186,7 +199,7 @@ const Button: FC<ButtonProps> = props => {
     return <i className="icon">{icon}</i>
   }
   return (
-    <Container className={classNames} type={htmlType} disabled={loading} style={style} {...rest}>
+    <Container className={classNames} type={htmlType} disabled={loading} {...rest}>
       {getIcon()}<span>{loading ? (loadingText || children) : children}</span>
     </Container>
   )

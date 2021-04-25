@@ -1,8 +1,8 @@
-import React, { FC, ReactElement, ReactNode, useState } from 'react'
+import React, { FC, ReactElement, ReactNode, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import { createBrowserHistory } from 'history'
-import Button from './Button'
+import Button, { ButtonProps } from './Button'
 import { BaseProps } from '../types'
 
 const Wrap = styled.div`
@@ -27,7 +27,7 @@ const ModalContainer = styled.div<{ width?: number | string }>`
   flex-direction: column;
   align-items: stretch;
   width: ${props => props.width || '300px'};
-  min-height: 150px;
+  min-height: 60px;
   background: white;
   border-radius: 5px;
   overflow: hidden;
@@ -35,6 +35,16 @@ const ModalContainer = styled.div<{ width?: number | string }>`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
+  transition: all 200ms;
+  margin-top: 60px;
+  opacity: 0;
+  &.show {
+    margin-top: 0;
+    opacity: 1;
+  }
+  &.shadow {
+    box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+  }
   .close {
     color: #aaa;
     position: absolute;
@@ -80,6 +90,9 @@ const ModalFooter = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  button {
+    background-color: #fff;
+  }
   button:not(:first-child) {
     border-left: 1px solid #f0f0f0;
   }
@@ -94,34 +107,22 @@ const ModalFooter = styled.div`
     outline: none;
     border-radius: 0;
   }
-  .ok {
-    color: ${props => props.theme.primaryColor};
-    background-color: #fff;
-    &:hover, &:active {
-      background-color: #f3f3f3;
-      color: ${props => props.theme.primaryColor};
-    }
-  }
   .cancel {
-    background-color: #fff;
-    color: #aaaaaa;
-    &:hover, &:active {
-      background-color: #f3f3f3;
-      color: #999;
-    }
+    color: #aaa;
   }
 `
 
-interface ModalProps {
+export interface ModalProps {
   title?: string
   width?: number | string
   visible?: boolean
+  shadow?: boolean
+  animation?: boolean
   mask?: boolean
   maskClosable?: boolean
   maskOpacity?: number
   zIndex?: number
   closable?: boolean
-  className?: BaseProps['className']
   style?: BaseProps['style']
   /** modal body 内边距 */
   padding?: number | string
@@ -134,10 +135,12 @@ interface ModalProps {
   okText?: ReactNode
   loadingText?: ReactNode
   showOkBtn?: boolean
-  okBtnProps?: any
+  okBtnProps?: ButtonProps
   cancelText?: ReactNode
   showCancelBtn?: boolean
-  cancelBtnProps?: any
+  cancelBtnProps?: ButtonProps
+  className?: BaseProps['className']
+  modalClassName?: string
   bodyClassName?: string
 }
 
@@ -145,6 +148,7 @@ type ModalComponent = FC<ModalProps> & {
   show: (options: ModalOptions) => Function
   confirm: (options: ModalOptions) => Function
   info: (options: ModalOptions) => Function
+  error: (options: ModalOptions) => Function
 }
 
 const Modal: ModalComponent = props => {
@@ -158,13 +162,25 @@ const Modal: ModalComponent = props => {
     mask = true,
     maskClosable = true,
     maskOpacity = 0.2,
-    showCancelBtn,
-    showOkBtn,
+    animation,
+    showCancelBtn = !!props.cancelBtnProps,
+    showOkBtn = !!props.okBtnProps,
     header,
     footer
   } = props
   const [loading, setLoading] = useState(false)
+  const [up, setUp] = useState(!animation)
+  useEffect(() => {
+    if (!animation) return
+    if (visible) {
+      if (!up) setTimeout(() => setUp(true), 100)
+    } else {
+      if (up) setTimeout(() => setUp(false), 100)
+    }
+  }, [visible, animation])
   if (!visible) return null
+
+
 
   const handleOk = async () => {
     if (onOk) {
@@ -189,19 +205,20 @@ const Modal: ModalComponent = props => {
     if (title) return <ModalTitle className={props.children ? '' : 'm-t-20'}>{title}</ModalTitle>
     return null
   }
+
   const renderFooter = () => {
     if (footer) return footer
     const buttons = []
     if (showCancelBtn) {
       buttons.push(
-        <Button key="cancel" className="cancel" onClick={handleCancel} {...(props.cancelBtnProps || {})}>
+        <Button key="cancel" className="cancel" type="default" onClick={handleCancel} {...(props.cancelBtnProps || {})}>
           {props.cancelText || '取消'}
         </Button>
       )
     }
     if (showOkBtn) {
       buttons.push(
-        <Button key="ok" className="ok" onClick={handleOk} {...(props.okBtnProps || {})}
+        <Button key="ok" className="ok" type="primary" onClick={handleOk} {...(props.okBtnProps || {})}
           loading={loading}
           loadingText={props.loadingText}
         >
@@ -217,15 +234,24 @@ const Modal: ModalComponent = props => {
     if (header || title) return '10px 20px 20px 20px'
     return '20px'
   }
+
+  const classnames = [
+    props.modalClassName,
+    up ? 'show' : '',
+    props.shadow ? 'shadow' : ''
+  ].filter(Boolean).join(' ')
+
   return (
     <Wrap className={props.className} style={{ zIndex: props.zIndex }}>
       {mask && <div className="mask" style={{ opacity: maskOpacity }} onClick={() => maskClosable && handleCancel()} />}
-      <ModalContainer width={props.width} style={props.style}>
+      <ModalContainer width={props.width} style={props.style} className={classnames}>
         {closable && <span className="close" onClick={handleCancel}>&times;</span>}
         {renderTitle()}
-        <ModalBody className={props.bodyClassName} style={{ padding: getPadding() }}>
-          {props.children}
-        </ModalBody>
+        {props.children &&
+          <ModalBody className={props.bodyClassName} style={{ padding: getPadding() }}>
+            {props.children}
+          </ModalBody>
+        }
         <ModalFooter>
           {renderFooter()}
         </ModalFooter>
@@ -235,7 +261,7 @@ const Modal: ModalComponent = props => {
 }
 
 
-interface ModalOptions extends ModalProps {
+export interface ModalOptions extends ModalProps {
   message?: string | ReactElement
 }
 
@@ -269,9 +295,22 @@ const info = (options: ModalOptions) => showModal(
     {options.message}
   </Modal>
 )
+const error = (options: ModalOptions) => showModal(
+  <Modal
+    showOkBtn
+    maskClosable={false}
+    closable={false}
+    okBtnProps={{ type: 'danger' }}
+    {...options}
+    visible
+  >
+    {options.message}
+  </Modal>
+)
 
 Modal.show = show
 Modal.confirm = confirm
 Modal.info = info
+Modal.error = error
 
 export default Modal
