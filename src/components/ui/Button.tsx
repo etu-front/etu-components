@@ -139,9 +139,10 @@ export interface ButtonProps extends BaseProps {
   disabled?: boolean
   block?: boolean
   icon?: string | BaseIconType | ReactNode
+  /** 加载状态 */
   loading?: boolean
   loadingText?: ReactNode
-  shape?: 'round' | 'square' | 'circle'
+  shape?: 'round' | 'square' | 'circle' | 'pill'
 }
 
 const Button: FC<ButtonProps> = props => {
@@ -155,7 +156,8 @@ const Button: FC<ButtonProps> = props => {
     icon,
     loading,
     loadingText,
-    shape,
+    shape = 'round',
+    style = {},
     ...rest
   } = props
 
@@ -163,11 +165,16 @@ const Button: FC<ButtonProps> = props => {
     className,
     type !== 'default' ? `btn-${type}` : '',
     size !== 'default' ? `btn-${size}` : '',
-    block ? 'btn-block' : '',
-    shape === 'circle' ? 'round-circle' : '',
-    shape === 'square' ? 'round-0' : ''
+    block ? 'btn-block' : ''
   ].filter(Boolean).join(' ')
 
+  if (shape === 'circle') {
+    style.borderRadius = '50%'
+  } else if (shape === 'square') {
+    style.borderRadius = 0
+  } else if (shape === 'pill') {
+    style.borderRadius = 500
+  }
   const getIcon = () => {
     if (loading) return <Icon type="loading" spin className="t-muted" />
     if (!icon) return null
@@ -179,7 +186,7 @@ const Button: FC<ButtonProps> = props => {
     return <i className="icon">{icon}</i>
   }
   return (
-    <Container className={classNames} type={htmlType} disabled={loading} {...rest}>
+    <Container className={classNames} type={htmlType} disabled={loading} style={style} {...rest}>
       {getIcon()}<span>{loading ? (loadingText || children) : children}</span>
     </Container>
   )
