@@ -1,8 +1,8 @@
-import { FC, ReactElement, ReactNode } from 'react';
+import React, { FC, ReactElement, ReactNode } from 'react';
 import { ButtonProps } from './Button';
 import { BaseProps } from '../types';
 export interface ModalProps {
-    title?: string;
+    title?: React.ReactNode;
     width?: number | string;
     visible?: boolean;
     shadow?: boolean;
@@ -36,7 +36,7 @@ declare type ModalComponent = FC<ModalProps> & {
     show: (options: ModalOptions) => Function;
     confirm: (options: ModalOptions) => Function;
     info: (options: ModalOptions) => Function;
-    error: (options: ModalOptions) => Function;
+    danger: (options: ModalOptions) => Function;
 };
 declare const Modal: ModalComponent;
 export interface ModalOptions extends ModalProps {
