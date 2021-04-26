@@ -1,11 +1,11 @@
 import React, { MouseEvent, CSSProperties } from 'react'
 
-export type MouseHandler = (e?: MouseEvent<HTMLElement | undefined>) => any
+export type MouseHandler<T = undefined> = T extends HTMLElement ? (evt: MouseEvent<T>) => any : () => any
 
 export interface BaseProps {
   className?: string
   id?: string
   children?: React.ReactNode
   style?: CSSProperties
-  onClick?: MouseHandler
+  onClick?: MouseHandler | MouseHandler<HTMLElement>
 }
