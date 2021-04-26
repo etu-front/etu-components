@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, ReactNode, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
+import classnames from 'classnames'
 import styled from 'styled-components'
 import { createBrowserHistory } from 'history'
 import Button, { ButtonProps } from './Button'
@@ -17,16 +18,18 @@ const Wrap = styled.div`
   .mask {
     width: 100%;
     height: 100%;
-    background: #000;
+    background-color: #000;
+    transition: opacity 200ms;
+    opacity: 0;
   }
 `
 
-const ModalContainer = styled.div<{ width?: number | string }>`
+const ModalContainer = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: ${props => props.width || '300px'};
+  width: 300px;
   min-height: 60px;
   background: white;
   border-radius: 5px;
@@ -70,7 +73,7 @@ const ModalTitle = styled.h4`
   position: relative;
   font-size: 18px;
   height: 42px;
-  line-height: 50px;
+  line-height: 42px;
   text-align: center;
   font-weight:normal;
   padding: 0 36px 10px 36px;
@@ -113,7 +116,7 @@ const ModalFooter = styled.div`
 `
 
 export interface ModalProps {
-  title?: string
+  title?: React.ReactNode
   width?: number | string
   visible?: boolean
   shadow?: boolean
@@ -148,7 +151,7 @@ type ModalComponent = FC<ModalProps> & {
   show: (options: ModalOptions) => Function
   confirm: (options: ModalOptions) => Function
   info: (options: ModalOptions) => Function
-  error: (options: ModalOptions) => Function
+  danger: (options: ModalOptions) => Function
 }
 
 const Modal: ModalComponent = props => {
@@ -217,8 +220,13 @@ const Modal: ModalComponent = props => {
       )
     }
     if (showOkBtn) {
+      console.log(props.okBtnProps)
       buttons.push(
-        <Button key="ok" className="ok" type="primary" onClick={handleOk} {...(props.okBtnProps || {})}
+        <Button key="ok"
+          type="primary"
+          onClick={handleOk}
+          {...props.okBtnProps}
+          className={classnames("ok", props.okBtnProps?.className)}
           loading={loading}
           loadingText={props.loadingText}
         >
@@ -235,7 +243,7 @@ const Modal: ModalComponent = props => {
     return '20px'
   }
 
-  const classnames = [
+  const clses = [
     props.modalClassName,
     up ? 'show' : '',
     props.shadow ? 'shadow' : ''
@@ -243,8 +251,14 @@ const Modal: ModalComponent = props => {
 
   return (
     <Wrap className={props.className} style={{ zIndex: props.zIndex }}>
-      {mask && <div className="mask" style={{ opacity: maskOpacity }} onClick={() => maskClosable && handleCancel()} />}
-      <ModalContainer width={props.width} style={props.style} className={classnames}>
+      {mask &&
+        <div
+          className="mask"
+          style={{ opacity: up ? maskOpacity : 0 }}
+          onClick={() => maskClosable && handleCancel()}
+        />
+      }
+      <ModalContainer style={props.width ? { width: props.width, ...props.style } : props.style} className={clses}>
         {closable && <span className="close" onClick={handleCancel}>&times;</span>}
         {renderTitle()}
         {props.children &&
@@ -295,13 +309,18 @@ const info = (options: ModalOptions) => showModal(
     {options.message}
   </Modal>
 )
-const error = (options: ModalOptions) => showModal(
+const danger = (options: ModalOptions) => showModal(
   <Modal
     showOkBtn
     maskClosable={false}
     closable={false}
-    okBtnProps={{ type: 'danger' }}
+    showCancelBtn
     {...options}
+    okBtnProps={{
+      type: 'danger',
+      ...options.okBtnProps,
+      className: classnames('bg-danger', options.okBtnProps?.className)
+    }}
     visible
   >
     {options.message}
@@ -311,6 +330,6 @@ const error = (options: ModalOptions) => showModal(
 Modal.show = show
 Modal.confirm = confirm
 Modal.info = info
-Modal.error = error
+Modal.danger = danger
 
 export default Modal
