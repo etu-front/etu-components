@@ -17,7 +17,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const styled_components_1 = __importDefault(require("styled-components"));
 const Icon_1 = __importDefault(require("./Icon"));
-const color_1 = require("../../utils/color");
 const Container = styled_components_1.default.button `
   border-radius: 4px;
   font-size: 14px;
@@ -31,7 +30,7 @@ const Container = styled_components_1.default.button `
   user-select: none;
   display: inline-block;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
-  color: ${props => props.theme.primaryColor};
+
   &.btn-circle { border-radius: 50%; }
   &.btn-square { border-radius: 0; }
   &.btn-pill { border-radius: 500px; }
@@ -60,96 +59,58 @@ const Container = styled_components_1.default.button `
     padding: 0 24px;
     font-size: 18px;
   }
-  &.btn-outline, &:focus, &:hover {
-    color: ${props => props.theme.primaryColor};
-    background-color: #fff;
-    border-color: ${props => props.theme.primaryColor};
-  }
 
+  &:focus, &:hover {
+    filter: brightness(1.1);
+  }
   &:disabled {
+    filter: brightness(0.9);
     cursor: not-allowed;
     color: #bbb;
-    &.btn-link {
-      color: #bbbbbb !important;
-      background-color: transparent !important;
-      border-color: transparent !important;
-    }
   }
-  &.btn-outline {
-    &:hover {
-        color: ${props => color_1.lighten(props.theme.primaryColor, 0.1)};
-        background-color: #fff;
-        border-color: ${props => color_1.lighten(props.theme.primaryColor, 0.1)};
-      }
-    &:disabled {
-      color: #bbb;
-      border-color: #bbb;
-    }
+  &, &.btn-default {
+    color: #474747;
   }
-
   &.btn-primary {
     color: #fff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     background-color: ${props => props.theme.primaryColor};
     border-color: ${props => props.theme.primaryColor};
-    &:hover {
-      background-color: ${props => color_1.lighten(props.theme.primaryColor, 0.1)};
-      border-color: ${props => color_1.lighten(props.theme.primaryColor, 0.1)};
-    }
-    &:disabled {
-      background-color: ${props => color_1.lighten(props.theme.primaryColor, 0.2)} !important;
-      border-color: ${props => color_1.lighten(props.theme.primaryColor, 0.2)} !important;
-    }
+  }
+  &.btn-outline {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: ${props => props.theme.primaryColor};
+    border-color: ${props => props.theme.primaryColor};
+    background-color: white;
   }
   &.btn-danger {
     color: #fff;
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
     background-color: ${props => props.theme.dangerColor};
     border-color: ${props => props.theme.dangerColor};
-    &:hover {
-      background-color: ${props => color_1.lighten(props.theme.dangerColor, 0.1)};
-      border-color: ${props => color_1.lighten(props.theme.dangerColor, 0.1)};
-    }
-    &:disabled {
-      background-color: ${props => color_1.lighten(props.theme.dangerColor, 0.2)} !important;
-      border-color: ${props => color_1.lighten(props.theme.dangerColor, 0.2)} !important;
-    }
   }
   &.btn-success {
     color: #fff;
+    background-color: var(--success-color);
+    border-color: var(--success-color);
     background-color: ${props => props.theme.successColor};
     border-color: ${props => props.theme.successColor};
-    &:hover {
-      background-color: ${props => color_1.lighten(props.theme.successColor, 0.1)};
-      border-color: ${props => color_1.lighten(props.theme.successColor, 0.1)};
-    }
-    &:disabled {
-      background-color: ${props => color_1.lighten(props.theme.successColor, 0.2)} !important;
-      border-color: ${props => color_1.lighten(props.theme.successColor, 0.2)} !important;
-    }
   }
   &.btn-info {
     color: #fff;
+    background-color: var(--info-color);
+    border-color: var(--info-color);
     background-color: ${props => props.theme.infoColor};
     border-color: ${props => props.theme.infoColor};
-    &:hover {
-      background-color: ${props => color_1.lighten(props.theme.infoColor, 0.1)};
-      border-color: ${props => color_1.lighten(props.theme.infoColor, 0.1)};
-    }
-    &:disabled {
-      background-color: ${props => color_1.lighten(props.theme.infoColor, 0.2)} !important;
-      border-color: ${props => color_1.lighten(props.theme.infoColor, 0.2)} !important;
-    }
   }
   &.btn-link {
+    color: var(--primary-color);
     color: ${props => props.theme.primaryColor};
     background-color: transparent;
     border-color: transparent;
-    &:hover {
-      color: ${props => color_1.lighten(props.theme.primaryColor, 0.1)};
-    }
-    &:disabled {
-      background-color: transparent;
-      border-color: transparent;
-    }
   }
   > i.icon {
     display: inline-block;
