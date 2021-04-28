@@ -28,3 +28,13 @@ test('NProgress 基本2', () => {
   expect(tree).toBeNull()
   if (!tree) return
 })
+
+test('NProgress 基本3', async () => {
+  const data = { url: "https://bing.com" }
+  const component = renderer.create(
+    <NProgress loading={false} options={{ speed: 300, showSpinner: true }} url={data.url} />
+  )
+  const tree = component.toJSON()
+  expect(tree).toMatchSnapshot()
+  expect(tree).toBeNull()
+})

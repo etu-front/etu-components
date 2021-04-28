@@ -220,7 +220,6 @@ const Modal: ModalComponent = props => {
       )
     }
     if (showOkBtn) {
-      console.log(props.okBtnProps)
       buttons.push(
         <Button key="ok"
           type="primary"

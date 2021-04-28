@@ -76,15 +76,24 @@ describe('View test', () => {
     expect(style).toHaveProperty('margin', '0 -10px')
   })
 
-  it('View.Center 居中', () => {
+  it('View.Center 居中。。', () => {
     const tree = renderer.create(<View.Center height={200}>Hello</View.Center>).toJSON()
     expect(tree).not.toBeNull()
     if (!tree) return
-
     expect(tree).toMatchSnapshot()
     const { style } = tree.props
     expect(style).toHaveProperty('alignItems', 'center')
     expect(style).toHaveProperty('height', 200)
     expect(style).toHaveProperty('justifyContent', 'center')
+  })
+
+  it('View 非 div', () => {
+    const tree = renderer.create(<View as="a" style={{ color: 'red' }} className="sdsd">bing</View>).toJSON()
+    expect(tree).not.toBeNull()
+    if (!tree) return
+    expect(tree).toMatchSnapshot()
+    console.log(tree)
+    expect(tree.type).toEqual('a')
+    expect(tree.props.href).toEqual('https://bing.com')
   })
 })

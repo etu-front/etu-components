@@ -1,7 +1,5 @@
-import React, { FC, CSSProperties } from 'react'
+import React, { FC, CSSProperties, HTMLAttributes } from 'react'
 import styled from 'styled-components'
-import { BaseProps } from './types'
-
 
 const Container = styled.div`
   align-items: stretch;
@@ -14,7 +12,7 @@ const Container = styled.div`
 
 type Align = 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'space-between' | 'space-around'
 
-interface IProps extends BaseProps {
+interface IProps extends HTMLAttributes<HTMLElement> {
   flex?: number | string
   align?: Align
   justify?: Align
@@ -28,9 +26,13 @@ interface IProps extends BaseProps {
   width?: number | string
 }
 
+interface IProps {
+  as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
+}
+
 type ViewComponent = FC<IProps>
 
-const View = React.memo<IProps>(props => {
+const View = React.memo(React.forwardRef<HTMLDivElement, IProps>((props, ref) => {
   const {
     className = '',
     children,
@@ -101,15 +103,20 @@ const View = React.memo<IProps>(props => {
   }
 
   return (
-    <Container className={className} style={Object.keys(customStyle).length ? customStyle : undefined} {...rest}>
+    <Container
+      as={props.as}
+      className={className}
+      ref={ref}
+      style={Object.keys(customStyle).length ? customStyle : undefined}
+      {...rest}
+    >
       {children}
     </Container>
   )
-}) as unknown as ViewComponent & { Center: ViewComponent }
+})) as unknown as ViewComponent & { Center: FC<IProps> }
 
 View.displayName = 'View'
-
-View.Center = ({ children, ...rest }) => <View {...rest} align="center" justify="center">{children}</View>
+View.Center = (({ children, ...rest }) => <View {...rest} align="center" justify="center">{children}</View>)
 View.Center.displayName = 'View.Center'
 
 export default View
