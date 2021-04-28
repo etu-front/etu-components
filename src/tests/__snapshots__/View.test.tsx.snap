@@ -141,7 +141,41 @@ exports[`View test View 样式 1`] = `
 </div>
 `;
 
-exports[`View test View.Center 居中 1`] = `
+exports[`View test View 非 div 1`] = `
+.c0 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<a
+  className="c0 sdsd"
+  href="https://bing.com"
+  style={
+    Object {
+      "color": "red",
+    }
+  }
+>
+  bing
+</a>
+`;
+
+exports[`View test View.Center 居中。。 1`] = `
 .c0 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;

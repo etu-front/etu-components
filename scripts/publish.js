@@ -76,5 +76,21 @@ const publish = () => {
   })
 }
 
+// 运行测试
+const test = (callback) => {
+  console.log('运行测试')
+  exec('npm run test', (error, stdout) => {
+    if (error) {
+      console.log(error)
+      return
+    }
+    console.log(stdout)
+    callback()
+  })
+}
 
-getVersion()
+const start = async () => {
+  test(getVersion)
+}
+
+start()

@@ -27,6 +27,7 @@ module.exports = {
     'jsx-quotes': [1, 'prefer-double'],
     'jsx-a11y/media-has-caption': 0,
     "@typescript-eslint/no-unused-vars": 1,
+    "@typescript-eslint/ban-ts-ignore": 0,
     '@typescript-eslint/interface-name-prefix': 0, // 允许 interface 命名加前缀
     '@typescript-eslint/no-non-null-assertion': 0, // 允许后边增加 ！断言
     '@typescript-eslint/member-delimiter-style': [1, {

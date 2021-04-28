@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NProgress Component 1`] = `
-<GlobalStyleComponent
+<Memo(l)
   primaryColor="red"
 />
 `;
@@ -9,3 +9,5 @@ exports[`NProgress Component 1`] = `
 exports[`NProgress 基本 1`] = `null`;
 
 exports[`NProgress 基本2 1`] = `null`;
+
+exports[`NProgress 基本3 1`] = `null`;

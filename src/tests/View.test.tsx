@@ -88,11 +88,16 @@ describe('View test', () => {
   })
 
   it('View 非 div', () => {
-    const tree = renderer.create(<View as="a" style={{ color: 'red' }} className="sdsd">bing</View>).toJSON()
+    const tree = renderer.create(
+      <View as="a" style={{ color: 'red' }}
+        // @ts-ignore
+        href="https://bing.com"
+        className="sdsd"
+      >bing</View>
+    ).toJSON()
     expect(tree).not.toBeNull()
     if (!tree) return
     expect(tree).toMatchSnapshot()
-    console.log(tree)
     expect(tree.type).toEqual('a')
     expect(tree.props.href).toEqual('https://bing.com')
   })
