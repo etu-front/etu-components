@@ -12,7 +12,7 @@ module.exports = {
     "node"
   ],
   "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-  "testPathIgnorePatterns": ["testHook.tsx", "jest.setup.ts"],
+  "testPathIgnorePatterns": ["testHook.tsx", "jest.setup.ts", "dist"],
   "coveragePathIgnorePatterns": ["node_modules", "testHook.tsx", ".mock.ts"],
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
