@@ -1,7 +1,6 @@
-import React from 'react';
-import { BaseProps } from './types';
+import React, { FC, HTMLAttributes } from 'react';
 declare type Align = 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'space-between' | 'space-around';
-interface IProps extends BaseProps {
+interface IProps extends HTMLAttributes<HTMLElement> {
     flex?: number | string;
     align?: Align;
     justify?: Align;
@@ -14,7 +13,11 @@ interface IProps extends BaseProps {
     color?: string;
     width?: number | string;
 }
-declare const View: React.FC<IProps> & {
-    Center: React.FC<IProps>;
+interface IProps {
+    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+}
+declare type ViewComponent = FC<IProps>;
+declare const View: ViewComponent & {
+    Center: FC<IProps>;
 };
 export default View;

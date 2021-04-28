@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.hideToast = exports.showToast = void 0;
 const react_1 = __importDefault(require("react"));
 const react_dom_1 = __importDefault(require("react-dom"));
 const styled_components_1 = __importDefault(require("styled-components"));
@@ -82,7 +83,7 @@ const DESTROY_POOL = {};
  * @param options Options
  * @returns toast destroy 函数
  */
-exports.showToast = (options) => {
+const showToast = (options) => {
     const { title, duration = 3000 } = options, rest = __rest(options, ["title", "duration"]);
     const domContainer = document.createElement('div');
     document.body.appendChild(domContainer);
@@ -101,12 +102,14 @@ exports.showToast = (options) => {
     }
     return destroy;
 };
-exports.hideToast = () => {
+exports.showToast = showToast;
+const hideToast = () => {
     for (const k in DESTROY_POOL) {
         if (typeof DESTROY_POOL[k] === 'function') {
             DESTROY_POOL[k]();
         }
     }
 };
+exports.hideToast = hideToast;
 exports.default = Toast;
 //# sourceMappingURL=Toast.js.map

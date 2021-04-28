@@ -24,7 +24,7 @@ const Container = styled_components_1.default.div `
   position: relative;
   flex-direction: column;
 `;
-const View = react_1.default.memo(props => {
+const View = react_1.default.memo(react_1.default.forwardRef((props, ref) => {
     const { className = '', children, align, justify, column = false, wrap = false, row = false, radius, height, background, color, flex, width, style } = props, rest = __rest(props, ["className", "children", "align", "justify", "column", "wrap", "row", "radius", "height", "background", "color", "flex", "width", "style"]);
     let customStyle = {};
     if (row) {
@@ -64,13 +64,13 @@ const View = react_1.default.memo(props => {
     if (style) {
         customStyle = Object.assign(Object.assign({}, customStyle), style);
     }
-    return (react_1.default.createElement(Container, Object.assign({ className: className, style: Object.keys(customStyle).length ? customStyle : undefined }, rest), children));
-});
+    return (react_1.default.createElement(Container, Object.assign({ as: props.as, className: className, ref: ref, style: Object.keys(customStyle).length ? customStyle : undefined }, rest), children));
+}));
 View.displayName = 'View';
-View.Center = (_a) => {
+View.Center = ((_a) => {
     var { children } = _a, rest = __rest(_a, ["children"]);
     return react_1.default.createElement(View, Object.assign({}, rest, { align: "center", justify: "center" }), children);
-};
+});
 View.Center.displayName = 'View.Center';
 exports.default = View;
 //# sourceMappingURL=View.js.map

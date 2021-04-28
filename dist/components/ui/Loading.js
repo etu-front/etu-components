@@ -14,13 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.FilterDiv = void 0;
 const react_1 = __importDefault(require("react"));
 const styled_components_1 = __importDefault(require("styled-components"));
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-exports.FilterDiv = (_a) => {
+const FilterDiv = (_a) => {
     var { size, duration, radius, colors } = _a, rest = __rest(_a, ["size", "duration", "radius", "colors"]);
     return react_1.default.createElement("div", Object.assign({}, rest));
 };
+exports.FilterDiv = FilterDiv;
 const Container = styled_components_1.default(exports.FilterDiv) `
   position: relative;
   transform: translate(-50%, -50%);

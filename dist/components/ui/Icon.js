@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createFromIconfont = void 0;
 const react_1 = __importDefault(require("react"));
 const styled_components_1 = require("styled-components");
 // iconfont project url: https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=1546788

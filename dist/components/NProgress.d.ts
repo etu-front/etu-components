@@ -1,6 +1,6 @@
 import React from 'react';
-import N, { NProgressOptions } from 'nprogress';
-export declare const useNProgress: (url: string, loading: boolean, primaryColor?: string, options?: Partial<N.NProgressOptions>) => JSX.Element;
+import { NProgressOptions } from 'nprogress';
+export declare const useNProgress: (url: string, loading: boolean, primaryColor?: string, options?: Partial<NProgressOptions>) => JSX.Element;
 interface NProgressProps {
     url: string;
     loading: boolean;

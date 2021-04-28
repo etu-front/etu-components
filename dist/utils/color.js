@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.invert = exports.darken = exports.lighten = void 0;
 /* eslint-disable no-bitwise */
 function getNumberByColor(color) {
     // hex 类型颜色
@@ -40,13 +41,15 @@ function lightenDarkenColor(color, factor) {
         return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
     return `rgb(${r},${g},${b})`;
 }
-exports.lighten = (color, factor) => lightenDarkenColor(color, Math.abs(factor));
-exports.darken = (color, factor) => lightenDarkenColor(color, -Math.abs(factor));
+const lighten = (color, factor) => lightenDarkenColor(color, Math.abs(factor));
+exports.lighten = lighten;
+const darken = (color, factor) => lightenDarkenColor(color, -Math.abs(factor));
+exports.darken = darken;
 /**
  * 反色
  * @param color #FFFFFF | rgb(255,255,255)
  */
-exports.invert = (color) => {
+const invert = (color) => {
     const num = getNumberByColor(color);
     if (typeof num === 'boolean')
         return color;
@@ -55,4 +58,5 @@ exports.invert = (color) => {
     const g = 255 - Math.min(255, Math.max(0, (num & 0x0000FF)));
     return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
 };
+exports.invert = invert;
 //# sourceMappingURL=color.js.map

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DocumentTitle = void 0;
 const react_1 = require("react");
 /**
  * 设置 document.title
@@ -20,10 +21,11 @@ const useTitle = (title, useReset) => {
         };
     }, [title]);
 };
-exports.DocumentTitle = props => {
+const DocumentTitle = props => {
     useTitle(props.title, props.useReset);
     return props.children || null;
 };
+exports.DocumentTitle = DocumentTitle;
 useTitle.DocumentTitle = exports.DocumentTitle;
 exports.default = useTitle;
 //# sourceMappingURL=useTitle.js.map

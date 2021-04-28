@@ -58,7 +58,7 @@ describe('View test', () => {
         expect(style).toHaveProperty('flexDirection', 'row');
         expect(style).toHaveProperty('margin', '0 -10px');
     });
-    it('View.Center 居中', () => {
+    it('View.Center 居中。。', () => {
         const tree = react_test_renderer_1.default.create(react_1.default.createElement(View_1.default.Center, { height: 200 }, "Hello")).toJSON();
         expect(tree).not.toBeNull();
         if (!tree)
@@ -68,6 +68,17 @@ describe('View test', () => {
         expect(style).toHaveProperty('alignItems', 'center');
         expect(style).toHaveProperty('height', 200);
         expect(style).toHaveProperty('justifyContent', 'center');
+    });
+    it('View 非 div', () => {
+        const tree = react_test_renderer_1.default.create(react_1.default.createElement(View_1.default, { as: "a", style: { color: 'red' }, 
+            // @ts-ignore
+            href: "https://bing.com", className: "sdsd" }, "bing")).toJSON();
+        expect(tree).not.toBeNull();
+        if (!tree)
+            return;
+        expect(tree).toMatchSnapshot();
+        expect(tree.type).toEqual('a');
+        expect(tree.props.href).toEqual('https://bing.com');
     });
 });
 //# sourceMappingURL=View.test.js.map
