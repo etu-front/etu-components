@@ -132,7 +132,6 @@ export interface ModalProps {
   onOk?: Function
   onCancel?: Function
   onDestroy?: Function
-  onClose?: Function
   header?: ReactNode
   footer?: ReactNode
   okText?: ReactNode
@@ -198,9 +197,7 @@ const Modal: ModalComponent = props => {
     if (onDestroy) onDestroy()
   }
   const handleCancel = () => {
-    if (onCancel) {
-      onCancel()
-    }
+    if (onCancel) onCancel()
     if (onDestroy) onDestroy()
   }
   const renderTitle = () => {
@@ -274,7 +271,7 @@ const Modal: ModalComponent = props => {
 }
 
 
-export interface ModalOptions extends ModalProps {
+export interface ModalOptions extends Omit<ModalProps, 'onDestroy'> {
   message?: string | ReactElement
 }
 
