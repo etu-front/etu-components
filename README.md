@@ -12,6 +12,10 @@ $ cd etu-components
 $ npm install
 $ npm run dev
 # visit http://localhost:3000
+
+## 本地开发
+当前包 npm link 
+应用项目 npm link @etu/components
 ```
 ## 发布
 ```bash
