@@ -7,3 +7,4 @@ export { default as ActionSheet, showActionSheet, hideActionSheet } from './Acti
 export { default as Page } from './Page'
 export { default as Loading } from './Loading'
 export { default as Spin } from './Spin'
+export { default as Popconfirm } from './Popconfirm'

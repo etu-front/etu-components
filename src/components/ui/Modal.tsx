@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode, useEffect, useState } from 'react'
+import React, { FC, ReactElement, ReactNode, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import classnames from 'classnames'
 import styled from 'styled-components'
@@ -126,6 +126,7 @@ export interface ModalProps {
   style?: BaseProps['style']
   /** modal body 内边距 */
   padding?: number | string
+  onShow?: (modalBody: HTMLDivElement) => void
   onOk?: Function
   onCancel?: Function
   onDestroy?: Function
@@ -167,8 +168,10 @@ const Modal: ModalComponent = props => {
     header,
     footer
   } = props
+  const bodyRef = useRef<HTMLDivElement>(null)
   const [loading, setLoading] = useState(false)
   const [up, setUp] = useState(!animation)
+
   useEffect(() => {
     if (!animation) return
     if (visible) {
@@ -177,9 +180,13 @@ const Modal: ModalComponent = props => {
       if (up) setTimeout(() => setUp(false), 100)
     }
   }, [visible, animation])
+
+  useEffect(() => {
+    if (!props.onShow || !bodyRef.current) return
+    props.onShow(bodyRef.current)
+  }, [props.onShow, bodyRef])
+
   if (!visible) return null
-
-
 
   const handleOk = async () => {
     if (onOk) {
@@ -236,7 +243,7 @@ const Modal: ModalComponent = props => {
     return '20px'
   }
 
-  const clses = [
+  const classes = [
     props.modalClassName,
     up ? 'show' : '',
     props.shadow ? 'shadow' : ''
@@ -251,7 +258,11 @@ const Modal: ModalComponent = props => {
           onClick={() => maskClosable && handleCancel()}
         />
       }
-      <ModalContainer style={props.width ? { width: props.width, ...props.style } : props.style} className={clses}>
+      <ModalContainer
+        style={props.width ? { width: props.width, ...props.style } : props.style}
+        className={classes}
+        ref={bodyRef}
+      >
         {closable && <span className="close" onClick={handleCancel}>&times;</span>}
         {renderTitle()}
         {props.children &&
