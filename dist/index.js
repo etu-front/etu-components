@@ -13,11 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.showContextMenu = exports.DocumentTitle = exports.useTitle = exports.Result = exports.PageLoading = exports.NProgress = exports.ClampText = exports.View = void 0;
+exports.showContextMenu = exports.DocumentTitle = exports.useTitle = exports.Result = exports.PageLoading = exports.NProgress = exports.HtmlContent = exports.ClampText = exports.View = void 0;
 var View_1 = require("./components/View");
 Object.defineProperty(exports, "View", { enumerable: true, get: function () { return __importDefault(View_1).default; } });
 var ClampText_1 = require("./components/ClampText");
 Object.defineProperty(exports, "ClampText", { enumerable: true, get: function () { return __importDefault(ClampText_1).default; } });
+var HtmlContent_1 = require("./components/HtmlContent");
+Object.defineProperty(exports, "HtmlContent", { enumerable: true, get: function () { return __importDefault(HtmlContent_1).default; } });
 var NProgress_1 = require("./components/NProgress");
 Object.defineProperty(exports, "NProgress", { enumerable: true, get: function () { return __importDefault(NProgress_1).default; } });
 var PageLoading_1 = require("./components/PageLoading");
