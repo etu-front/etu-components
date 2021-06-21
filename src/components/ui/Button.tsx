@@ -33,6 +33,7 @@ const Container = styled.button`
   }
   &.btn-small {
     height: 24px;
+    font-size: 14px;
     padding: 0 10px;
   }
   &.btn-large {

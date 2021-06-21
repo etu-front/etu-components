@@ -101,9 +101,6 @@ const ModalFooter = styled.div`
   }
   .ok, .cancel {
     flex: 1;
-    height: 44px;
-    line-height: 42px;
-    font-size: 16px;
     padding: 0;
     border:none;
     border-top: 1px solid #f0f0f0;
