@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DocumentTitle = exports.useTitle = exports.Result = exports.PageLoading = exports.NProgress = exports.ClampText = exports.View = void 0;
+exports.showContextMenu = exports.DocumentTitle = exports.useTitle = exports.Result = exports.PageLoading = exports.NProgress = exports.ClampText = exports.View = void 0;
 var View_1 = require("./components/View");
 Object.defineProperty(exports, "View", { enumerable: true, get: function () { return __importDefault(View_1).default; } });
 var ClampText_1 = require("./components/ClampText");
@@ -27,5 +27,7 @@ Object.defineProperty(exports, "Result", { enumerable: true, get: function () { 
 var useTitle_1 = require("./utils/useTitle");
 Object.defineProperty(exports, "useTitle", { enumerable: true, get: function () { return __importDefault(useTitle_1).default; } });
 Object.defineProperty(exports, "DocumentTitle", { enumerable: true, get: function () { return useTitle_1.DocumentTitle; } });
+var showContextMenu_1 = require("./utils/showContextMenu");
+Object.defineProperty(exports, "showContextMenu", { enumerable: true, get: function () { return __importDefault(showContextMenu_1).default; } });
 __exportStar(require("./components/ui"), exports);
 //# sourceMappingURL=index.js.map
