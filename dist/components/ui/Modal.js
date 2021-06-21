@@ -129,9 +129,6 @@ const ModalFooter = styled_components_1.default.div `
   }
   .ok, .cancel {
     flex: 1;
-    height: 44px;
-    line-height: 42px;
-    font-size: 16px;
     padding: 0;
     border:none;
     border-top: 1px solid #f0f0f0;
@@ -144,6 +141,7 @@ const ModalFooter = styled_components_1.default.div `
 `;
 const Modal = props => {
     const { title = '', visible = false, onOk, onCancel, onDestroy, closable = true, mask = true, maskClosable = true, maskOpacity = 0.2, animation, showCancelBtn = !!props.cancelBtnProps, showOkBtn = !!props.okBtnProps, header, footer } = props;
+    const bodyRef = react_1.useRef(null);
     const [loading, setLoading] = react_1.useState(false);
     const [up, setUp] = react_1.useState(!animation);
     react_1.useEffect(() => {
@@ -158,6 +156,11 @@ const Modal = props => {
                 setTimeout(() => setUp(false), 100);
         }
     }, [visible, animation]);
+    react_1.useEffect(() => {
+        if (!props.onShow || !bodyRef.current)
+            return;
+        props.onShow(bodyRef.current);
+    }, [props.onShow, bodyRef]);
     if (!visible)
         return null;
     const handleOk = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -176,9 +179,8 @@ const Modal = props => {
             onDestroy();
     });
     const handleCancel = () => {
-        if (onCancel) {
+        if (onCancel)
             onCancel();
-        }
         if (onDestroy)
             onDestroy();
     };
@@ -209,7 +211,7 @@ const Modal = props => {
             return '10px 20px 20px 20px';
         return '20px';
     };
-    const clses = [
+    const classes = [
         props.modalClassName,
         up ? 'show' : '',
         props.shadow ? 'shadow' : ''
@@ -217,7 +219,7 @@ const Modal = props => {
     return (react_1.default.createElement(Wrap, { className: props.className, style: { zIndex: props.zIndex } },
         mask &&
             react_1.default.createElement("div", { className: "mask", style: { opacity: up ? maskOpacity : 0 }, onClick: () => maskClosable && handleCancel() }),
-        react_1.default.createElement(ModalContainer, { style: props.width ? Object.assign({ width: props.width }, props.style) : props.style, className: clses },
+        react_1.default.createElement(ModalContainer, { style: props.width ? Object.assign({ width: props.width }, props.style) : props.style, className: classes, ref: bodyRef },
             closable && react_1.default.createElement("span", { className: "close", onClick: handleCancel }, "\u00D7"),
             renderTitle(),
             props.children &&

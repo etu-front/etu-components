@@ -47,6 +47,7 @@ const Container = styled_components_1.default.button `
   }
   &.btn-small {
     height: 24px;
+    font-size: 14px;
     padding: 0 10px;
   }
   &.btn-large {

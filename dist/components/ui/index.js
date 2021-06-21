@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Spin = exports.Loading = exports.Page = exports.hideActionSheet = exports.showActionSheet = exports.ActionSheet = exports.hideToast = exports.showToast = exports.Toast = exports.Modal = exports.CircleIcon = exports.createFromIconfont = exports.Icon = exports.Button = void 0;
+exports.Drawer = exports.Popconfirm = exports.Spin = exports.Loading = exports.Page = exports.hideActionSheet = exports.showActionSheet = exports.ActionSheet = exports.hideToast = exports.showToast = exports.Toast = exports.Modal = exports.CircleIcon = exports.createFromIconfont = exports.Icon = exports.Button = void 0;
 var Button_1 = require("./Button");
 Object.defineProperty(exports, "Button", { enumerable: true, get: function () { return __importDefault(Button_1).default; } });
 var Icon_1 = require("./Icon");
@@ -27,4 +27,8 @@ var Loading_1 = require("./Loading");
 Object.defineProperty(exports, "Loading", { enumerable: true, get: function () { return __importDefault(Loading_1).default; } });
 var Spin_1 = require("./Spin");
 Object.defineProperty(exports, "Spin", { enumerable: true, get: function () { return __importDefault(Spin_1).default; } });
+var Popconfirm_1 = require("./Popconfirm");
+Object.defineProperty(exports, "Popconfirm", { enumerable: true, get: function () { return __importDefault(Popconfirm_1).default; } });
+var Drawer_1 = require("./Drawer");
+Object.defineProperty(exports, "Drawer", { enumerable: true, get: function () { return __importDefault(Drawer_1).default; } });
 //# sourceMappingURL=index.js.map

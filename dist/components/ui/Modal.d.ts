@@ -15,10 +15,10 @@ export interface ModalProps {
     style?: BaseProps['style'];
     /** modal body 内边距 */
     padding?: number | string;
+    onShow?: (modalBody: HTMLDivElement) => void;
     onOk?: Function;
     onCancel?: Function;
     onDestroy?: Function;
-    onClose?: Function;
     header?: ReactNode;
     footer?: ReactNode;
     okText?: ReactNode;
@@ -39,7 +39,7 @@ declare type ModalComponent = FC<ModalProps> & {
     danger: (options: ModalOptions) => Function;
 };
 declare const Modal: ModalComponent;
-export interface ModalOptions extends ModalProps {
+export interface ModalOptions extends Omit<ModalProps, 'onDestroy'> {
     message?: string | ReactElement;
 }
 export default Modal;
