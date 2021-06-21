@@ -4,7 +4,7 @@ import Modal, { ModalOptions } from './Modal'
 import View from '../View'
 
 type Position = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight'
-interface IProps extends Omit<ModalOptions, 'showOkBtn' | 'showCancelBtn'> {
+interface IProps extends Omit<ModalOptions, 'showOkBtn' | 'showCancelBtn' | 'closable'> {
   position?: Position
   offset?: number
   onOk: () => void
@@ -12,7 +12,6 @@ interface IProps extends Omit<ModalOptions, 'showOkBtn' | 'showCancelBtn'> {
 }
 
 const getPosition = (rect: DOMRect, container: HTMLElement, position: Position = 'topLeft', offset = 5) => {
-  console.log(rect)
   const pos = { left: rect.x, top: rect.y }
   if (position === 'topLeft' || position === 'topRight') {
     pos.top = Math.max(0, rect.y - container.offsetHeight - offset)
@@ -32,29 +31,46 @@ const getPosition = (rect: DOMRect, container: HTMLElement, position: Position =
   return pos
 }
 
+const Message: React.FC<IProps> = props => {
+  const { message, cancelBtnProps, cancelText, okBtnProps, okText, onOk, maskClosable, onCancel } = props
+  const [loading, setLoading] = React.useState(false)
+  const handelOk = async () => {
+    setLoading(true)
+    try {
+      await onOk()
+    } finally {
+      setLoading(false)
+    }
+    onCancel && onCancel()
+  }
+  return (
+    <View>
+      {message || '确认？'}
+      <View row justify="flex-end" className="m-t-10">
+        {!maskClosable && (
+          <Button size="small" type="default" onClick={() => onCancel && onCancel()} className="m-r-15"
+            {...cancelBtnProps}
+          >
+            {cancelText || '取消'}
+          </Button>
+        )}
+        <Button size="small" type="primary" loading={loading} onClick={handelOk} {...okBtnProps}>
+          {okText || '确定'}
+        </Button>
+      </View>
+    </View>
+  )
+}
 const Popconfirm = React.memo<IProps>(props => {
-  const { children, position, offset, message, okBtnProps, cancelBtnProps, ...rest } = props
+  const { children, position, offset, animation = true, ...rest } = props
+
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.children[0].getBoundingClientRect()
     const destory = Modal.show({
+      modalClassName: 'shadow-xl',
       bodyClassName: 'p-a-15',
-      message: (
-        <View>
-          {message || '确认？'}
-          <View row justify="flex-end">
-            {!rest.maskClosable &&
-              <Button size="small" type="default" onClick={() => destory()} className="m-r-15" {...cancelBtnProps}>
-                取消
-              </Button>
-            }
-            <Button size="small" type="primary" onClick={() => { rest.onOk(); destory() }} {...okBtnProps}>
-              确定
-            </Button>
-          </View>
-        </View>
-      ),
-      closable: false,
       maskClosable: false,
+      ...rest,
       onShow: container => {
         const pos = getPosition(rect, container, position, offset)
         // eslint-disable-next-line no-param-reassign
@@ -64,11 +80,12 @@ const Popconfirm = React.memo<IProps>(props => {
         // eslint-disable-next-line no-param-reassign
         container.style.opacity = '1'
       },
-      ...rest,
-      animation: false,
-      showOkBtn: false,
+      closable: false,
       showCancelBtn: false,
-      style: { ...rest.style, opacity: 0, transition: 'opacity 200ms', transform: 'none' }
+      showOkBtn: false,
+      animation: false,
+      message: <Message {...props} onCancel={() => destory()} />,
+      style: { ...rest.style, opacity: 0, transition: animation ? 'opacity 200ms' : 'none', transform: 'none' }
     })
   }
 
