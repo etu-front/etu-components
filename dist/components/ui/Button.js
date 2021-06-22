@@ -82,8 +82,8 @@ const Container = styled_components_1.default.button `
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     &.outline {
-      color: var(--warning-color);
-      border-color: var(--warning-color);
+      color: var(--primary-color);
+      border-color: var(--primary-color);
     }
   }
   &.btn-danger {
