@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const styled_components_1 = __importDefault(require("styled-components"));
 const Icon_1 = __importDefault(require("./Icon"));
+const classnames_1 = __importDefault(require("classnames"));
 const Container = styled_components_1.default.button `
   border-radius: 4px;
   font-size: 14px;
@@ -72,47 +73,61 @@ const Container = styled_components_1.default.button `
   &, &.btn-default {
     color: #474747;
   }
+  &.btn-default {
+    background-color: white;
+    border: 1px solid #d9d9d9;
+  }
   &.btn-primary {
     color: #fff;
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    background-color: ${props => props.theme.primaryColor};
-    border-color: ${props => props.theme.primaryColor};
-  }
-  &.btn-outline {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: ${props => props.theme.primaryColor};
-    border-color: ${props => props.theme.primaryColor};
-    background-color: white;
+    &.outline {
+      color: var(--warning-color);
+      border-color: var(--warning-color);
+    }
   }
   &.btn-danger {
     color: #fff;
     background-color: var(--danger-color);
     border-color: var(--danger-color);
-    background-color: ${props => props.theme.dangerColor};
-    border-color: ${props => props.theme.dangerColor};
+    &.outline {
+      color: var(--danger-color);
+      border-color: var(--danger-color);
+    }
   }
   &.btn-success {
     color: #fff;
     background-color: var(--success-color);
     border-color: var(--success-color);
-    background-color: ${props => props.theme.successColor};
-    border-color: ${props => props.theme.successColor};
+    &.outline {
+      color: var(--success-color);
+      border-color: var(--success-color);
+    }
   }
   &.btn-info {
     color: #fff;
     background-color: var(--info-color);
     border-color: var(--info-color);
-    background-color: ${props => props.theme.infoColor};
-    border-color: ${props => props.theme.infoColor};
+    &.outline {
+      color: var(--info-color);
+      border-color: var(--info-color);
+    }
+  }
+  &.btn-warning {
+    color: #fff;
+    background-color: var(--warning-color);
+    border-color: var(--warning-color);
+    &.outline {
+      color: var(--warning-color);
+      border-color: var(--warning-color);
+    }
   }
   &.btn-link {
     color: var(--primary-color);
-    color: ${props => props.theme.primaryColor};
     background-color: transparent;
     border-color: transparent;
   }
+
   > i.icon {
     display: inline-block;
     line-height: 1;
@@ -120,18 +135,20 @@ const Container = styled_components_1.default.button `
   > i.icon + span {
     margin-left: 6px;
   }
-  &.btn-no-border { border-color: transparent !important; }
+  &.dashed {border-style: dashed;}
+  &.outline { background-color: transparent;}
+  &.btn-no-border { border-width: 0; }
 `;
 const Button = props => {
-    const { children, block, border = true, className = '', htmlType = 'button', type = 'default', size = 'default', icon, loading, loadingText, shape = 'round' } = props, rest = __rest(props, ["children", "block", "border", "className", "htmlType", "type", "size", "icon", "loading", "loadingText", "shape"]);
-    const classNames = [
-        className,
-        type !== 'default' ? `btn-${type}` : '',
-        size !== 'default' ? `btn-${size}` : '',
-        shape !== 'round' ? `btn-${shape}` : '',
-        block ? 'btn-block' : '',
-        !border ? 'btn-no-border' : ''
-    ].filter(Boolean).join(' ');
+    const { children, block, dashed, outline, border = true, className = '', htmlType = 'button', type = 'default', size = 'default', shape = 'round', icon, loading, loadingText } = props, rest = __rest(props, ["children", "block", "dashed", "outline", "border", "className", "htmlType", "type", "size", "shape", "icon", "loading", "loadingText"]);
+    const classNames = classnames_1.default(className, [`btn-${type}`], {
+        [`btn-${size}`]: size !== 'default',
+        [`btn-${shape}`]: shape !== 'round',
+        outline: outline || dashed,
+        ['btn-block']: block,
+        dashed,
+        'btn-no-border': !border
+    });
     const getIcon = () => {
         if (loading)
             return react_1.default.createElement(Icon_1.default, { type: "loading", spin: true, className: "t-muted" });
