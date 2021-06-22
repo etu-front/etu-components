@@ -1,4 +1,4 @@
-import { BaseProps } from '@/components/types'
+import { BaseProps } from '../components/types'
 import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
 // import { action } from '@storybook/addon-actions'
@@ -21,12 +21,15 @@ export const Default: Component = Template.bind({})
 Default.args = {
   title: 'Title',
   children: 'sss',
-  mask: false,
+  mask: true,
   maskClosable: true,
   closable: true,
-  visible: false,
+  visible: true,
   showOkBtn: true,
-  showCancelBtn: true
+  showCancelBtn: true,
+  maskOpacity: 0.2,
+  modalClassName: 'shadow-lg',
+  style: { width: 300 }
 }
 
 storiesOf('Modal', module).add('m', () => {
@@ -45,8 +48,10 @@ storiesOf('Modal', module).add('m', () => {
         朱撒东东阿东
       </Modal>
       <Button onClick={() => setVisible(true)}>show</Button>
-      <Button type="info" onClick={() => Modal.show({ title: 'title', animation: true, message: <Button type="primary">ss</Button> })}>show</Button>
-      <Button type="danger" onClick={() => Modal.error({ title: 'ok' })}>show</Button>
+      <Button type="info" onClick={() => Modal.show({
+        title: 'title', animation: true, message: <Button type="primary">ss</Button>
+      })}>show</Button>
+      <Button type="danger" onClick={() => Modal.danger({ title: 'ok' })}>show</Button>
     </>
   )
 })

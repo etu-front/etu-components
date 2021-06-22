@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import styled from 'styled-components'
 import Icon, { BaseIconType } from './Icon'
 import { BaseProps } from '../types'
+import classnames from 'classnames'
 
 const Container = styled.button`
   border-radius: 4px;
@@ -58,47 +59,61 @@ const Container = styled.button`
   &, &.btn-default {
     color: #474747;
   }
+  &.btn-default {
+    background-color: white;
+    border: 1px solid #d9d9d9;
+  }
   &.btn-primary {
     color: #fff;
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    background-color: ${props => props.theme.primaryColor};
-    border-color: ${props => props.theme.primaryColor};
-  }
-  &.btn-outline {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: ${props => props.theme.primaryColor};
-    border-color: ${props => props.theme.primaryColor};
-    background-color: white;
+    &.outline {
+      color: var(--warning-color);
+      border-color: var(--warning-color);
+    }
   }
   &.btn-danger {
     color: #fff;
     background-color: var(--danger-color);
     border-color: var(--danger-color);
-    background-color: ${props => props.theme.dangerColor};
-    border-color: ${props => props.theme.dangerColor};
+    &.outline {
+      color: var(--danger-color);
+      border-color: var(--danger-color);
+    }
   }
   &.btn-success {
     color: #fff;
     background-color: var(--success-color);
     border-color: var(--success-color);
-    background-color: ${props => props.theme.successColor};
-    border-color: ${props => props.theme.successColor};
+    &.outline {
+      color: var(--success-color);
+      border-color: var(--success-color);
+    }
   }
   &.btn-info {
     color: #fff;
     background-color: var(--info-color);
     border-color: var(--info-color);
-    background-color: ${props => props.theme.infoColor};
-    border-color: ${props => props.theme.infoColor};
+    &.outline {
+      color: var(--info-color);
+      border-color: var(--info-color);
+    }
+  }
+  &.btn-warning {
+    color: #fff;
+    background-color: var(--warning-color);
+    border-color: var(--warning-color);
+    &.outline {
+      color: var(--warning-color);
+      border-color: var(--warning-color);
+    }
   }
   &.btn-link {
     color: var(--primary-color);
-    color: ${props => props.theme.primaryColor};
     background-color: transparent;
     border-color: transparent;
   }
+
   > i.icon {
     display: inline-block;
     line-height: 1;
@@ -106,10 +121,13 @@ const Container = styled.button`
   > i.icon + span {
     margin-left: 6px;
   }
-  &.btn-no-border { border-color: transparent !important; }
+  &.dashed {border-style: dashed;}
+  &.outline { background-color: transparent;}
+  &.btn-no-border { border-width: 0; }
 `
+
 export type ButtonSize = 'xsmall' | 'small' | 'default' | 'large' | 'xlarge'
-export type ButtonType = 'primary' | 'default' | 'danger' | 'success' | 'link' | 'info' | 'outline'
+export type ButtonType = 'primary' | 'default' | 'warning' | 'danger' | 'success' | 'link' | 'info'
 
 export interface ButtonProps extends BaseProps {
   htmlType?: 'submit' | 'reset' | 'button'
@@ -118,6 +136,8 @@ export interface ButtonProps extends BaseProps {
   size?: ButtonSize
   disabled?: boolean
   block?: boolean
+  dashed?: boolean
+  outline?: boolean
   icon?: string | BaseIconType | ReactNode
   /** 加载状态 */
   loading?: boolean
@@ -129,26 +149,28 @@ const Button: FC<ButtonProps> = props => {
   const {
     children,
     block,
+    dashed,
+    outline,
     border = true,
     className = '',
     htmlType = 'button',
     type = 'default',
     size = 'default',
+    shape = 'round',
     icon,
     loading,
     loadingText,
-    shape = 'round',
     ...rest
   } = props
 
-  const classNames = [
-    className,
-    type !== 'default' ? `btn-${type}` : '',
-    size !== 'default' ? `btn-${size}` : '',
-    shape !== 'round' ? `btn-${shape}` : '',
-    block ? 'btn-block' : '',
-    !border ? 'btn-no-border' : ''
-  ].filter(Boolean).join(' ')
+  const classNames = classnames(className, [`btn-${type}`], {
+    [`btn-${size}`]: size !== 'default',
+    [`btn-${shape}`]: shape !== 'round',
+    outline: outline || dashed,
+    ['btn-block']: block,
+    dashed,
+    'btn-no-border': !border
+  })
 
   const getIcon = () => {
     if (loading) return <Icon type="loading" spin className="t-muted" />

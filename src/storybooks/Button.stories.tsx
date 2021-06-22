@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions'
 
 import Button, { ButtonProps } from '../components/ui/Button'
 import View from '../components/View'
+import './theme.css'
 
 const actions = { onClick: action('onClick Button') }
 
@@ -27,25 +28,25 @@ Default.args = {
 }
 
 const DashboardTemplate = (props: ButtonProps) => {
-  const args = { ...props, disabled: props.loading || props.disabled }
-  console.log(args)
+  const args = { ...props, disabled: props.loading || props.disabled, loadingText: '加载中' }
   return (
     <View>
-      <View row justify="space-between" width={550}>
-        <Button >按钮</Button>
-        <Button {...args} type="primary">按钮</Button>
-        <Button {...args} type="success" >按钮</Button>
-        <Button {...args} type="info" >按钮</Button>
-        <Button {...args} type="danger" >按钮</Button>
-        <Button {...args} type="outline" >按钮</Button>
-        <Button {...args} type="link" >按钮</Button>
+      <View row justify="space-between" wrap>
+        <Button  {...args}>按钮</Button>
+        <Button  {...args} type="default">default</Button>
+        <Button {...args} type="primary">primary</Button>
+        <Button {...args} type="success" >success</Button>
+        <Button {...args} type="info" >info</Button>
+        <Button {...args} type="warning" >warning</Button>
+        <Button {...args} type="danger" >danger</Button>
+        <Button {...args} type="link" >link</Button>
       </View>
     </View>
   )
 }
 export const Dashboard = DashboardTemplate.bind({})
 Dashboard.args = {
-  disabled: true
+  disabled: false
 }
 // storiesOf('Button', module)
 //   .add('empty', () => <Button>Button</Button>)
