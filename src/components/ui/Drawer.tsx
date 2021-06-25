@@ -16,7 +16,7 @@ const Main = styled.div`
 const Mask = styled.div<{ opacity?: number }>`
   position: fixed;
   background: #00000073;
-  transition: opacity 300ms;
+  transition: opacity 200ms;
   transition-timing-function: cubic-bezier(.7,.3,.1,1);
   opacity: 0;
   left: 0;
@@ -34,7 +34,7 @@ const Container = styled(View)`
   background-color: white;
   color: #474747;
   transition-timing-function: cubic-bezier(.7,.3,.1,1);
-  transition-duration: 300ms;
+  transition-duration: 200ms;
   &.left, &.right {
     top: 0;
     bottom: 0;
