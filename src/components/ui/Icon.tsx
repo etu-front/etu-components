@@ -12,7 +12,7 @@ document.querySelectorAll('.block-icon-list .icon-code-show').forEach(v => icons
 copy(icons.map(v => JSON.stringify(v.innerText.slice(5))).join(" | "))
 
 */
-const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_83j6eefrxys.js'
+const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_elfpb26y53u.js'
 
 export type BaseIconType =
   "appstore" | "rocket" | "heart" | "star" | "unorderedlist" | "pause" | "heart-fill" | "lock-fill" | "star-fill" |
