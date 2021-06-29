@@ -17,10 +17,10 @@ const showContextMenu = (options) => {
     let y = options.y + offset;
     const rect = target.getBoundingClientRect();
     if (options.x + offset + dom.offsetWidth > rect.left + rect.width) {
-        x = options.x - dom.offsetWidth - offset;
+        x = Math.max(0, options.x - dom.offsetWidth - offset);
     }
     if (options.y + offset + dom.offsetHeight > rect.top + rect.height) {
-        y = options.y - dom.offsetHeight - offset;
+        y = Math.max(0, options.y - dom.offsetHeight - offset);
     }
     dom.style.left = `${x}px`;
     dom.style.top = `${y}px`;
