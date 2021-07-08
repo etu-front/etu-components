@@ -78,13 +78,17 @@ interface IProps extends BaseProps {
   scriptClassName?: string
   /** 图片点击预览 */
   imagePreview?: boolean
+  /** 是否执行script */
   evalScript?: boolean
+  /** 是否执行style */
+  useStyle?: boolean
 }
 const HtmlContent: FC<IProps> = props => {
   const {
     className,
     style,
     html = '',
+    useStyle = true,
     evalScript = true,
     scriptClassName = 'MagnetScript',
     imagePreview = true
@@ -126,6 +130,7 @@ const HtmlContent: FC<IProps> = props => {
       return { url: image.src, image }
     })
   }, [])
-  return <Container ref={contentRef} className={className} style={style} dangerouslySetInnerHTML={{ __html: html }} />
+  const Comp = useStyle ? Container : 'div'
+  return <Comp ref={contentRef} className={className} style={style} dangerouslySetInnerHTML={{ __html: html }} />
 }
 export default HtmlContent
