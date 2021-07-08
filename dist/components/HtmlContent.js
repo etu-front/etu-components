@@ -95,7 +95,7 @@ const Container = styled_components_1.default.div `
   }
 `;
 const HtmlContent = props => {
-    const { className, style, html = '', evalScript = true, scriptClassName = 'MagnetScript', imagePreview = true } = props;
+    const { className, style, html = '', useStyle = true, evalScript = true, scriptClassName = 'MagnetScript', imagePreview = true } = props;
     const contentRef = react_1.useRef(null);
     react_1.default.useEffect(() => {
         var _a;
@@ -139,7 +139,8 @@ const HtmlContent = props => {
             return { url: image.src, image };
         });
     }, []);
-    return react_1.default.createElement(Container, { ref: contentRef, className: className, style: style, dangerouslySetInnerHTML: { __html: html } });
+    const Comp = useStyle ? Container : 'div';
+    return react_1.default.createElement(Comp, { ref: contentRef, className: className, style: style, dangerouslySetInnerHTML: { __html: html } });
 };
 exports.default = HtmlContent;
 //# sourceMappingURL=HtmlContent.js.map
