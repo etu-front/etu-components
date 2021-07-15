@@ -15,6 +15,7 @@ interface IProps extends HTMLAttributes<HTMLElement> {
 }
 interface IProps {
     as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+    hide?: boolean;
 }
 declare type ViewComponent = FC<IProps>;
 declare const View: ViewComponent & {

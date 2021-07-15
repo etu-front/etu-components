@@ -16,6 +16,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const styled_components_1 = __importDefault(require("styled-components"));
+const classnames_1 = __importDefault(require("classnames"));
 const Container = styled_components_1.default.div `
   align-items: stretch;
   justify-content: flex-start;
@@ -25,7 +26,7 @@ const Container = styled_components_1.default.div `
   flex-direction: column;
 `;
 const View = react_1.default.memo(react_1.default.forwardRef((props, ref) => {
-    const { className = '', children, align, justify, column = false, wrap = false, row = false, radius, height, background, color, flex, width, style } = props, rest = __rest(props, ["className", "children", "align", "justify", "column", "wrap", "row", "radius", "height", "background", "color", "flex", "width", "style"]);
+    const { className = '', children, align, justify, column = false, wrap = false, row = false, radius, height, background, color, flex, width, style, hide } = props, rest = __rest(props, ["className", "children", "align", "justify", "column", "wrap", "row", "radius", "height", "background", "color", "flex", "width", "style", "hide"]);
     let customStyle = {};
     if (row) {
         customStyle.flexDirection = 'row';
@@ -64,7 +65,7 @@ const View = react_1.default.memo(react_1.default.forwardRef((props, ref) => {
     if (style) {
         customStyle = Object.assign(Object.assign({}, customStyle), style);
     }
-    return (react_1.default.createElement(Container, Object.assign({ as: props.as, className: className, ref: ref, style: Object.keys(customStyle).length ? customStyle : undefined }, rest), children));
+    return (react_1.default.createElement(Container, Object.assign({ as: props.as, className: classnames_1.default(className, { hide }), ref: ref, style: Object.keys(customStyle).length ? customStyle : undefined }, rest), children));
 }));
 View.displayName = 'View';
 View.Center = ((_a) => {

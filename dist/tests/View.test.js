@@ -13,7 +13,7 @@ describe('View test', () => {
         expect(View_1.default.Center.displayName).toEqual('View.Center');
     });
     it('View 基本', () => {
-        const component = react_test_renderer_1.default.create(react_1.default.createElement(View_1.default, { column: true }, "hello"));
+        const component = react_test_renderer_1.default.create(react_1.default.createElement(View_1.default, { column: true, hide: true }, "hello"));
         const tree = component.toJSON();
         expect(tree).not.toBeNull();
         if (!tree)
@@ -21,7 +21,7 @@ describe('View test', () => {
         expect(tree).toHaveStyleRule('align-items', 'stretch');
         expect(tree).toHaveStyleRule('flex-direction', 'column');
         expect(tree.props.style).toEqual({ "flexDirection": "column" });
-        expect(tree.props.className).toContain(' ');
+        expect(tree.props.className).toContain('hide');
         expect(tree.children).toEqual(['hello']);
         expect(tree).toMatchSnapshot();
     });
