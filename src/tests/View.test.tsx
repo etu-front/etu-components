@@ -11,14 +11,14 @@ describe('View test', () => {
   })
 
   it('View 基本', () => {
-    const component = renderer.create(<View column>hello</View>)
+    const component = renderer.create(<View column hide>hello</View>)
     const tree = component.toJSON()
     expect(tree).not.toBeNull()
     if (!tree) return
     expect(tree).toHaveStyleRule('align-items', 'stretch')
     expect(tree).toHaveStyleRule('flex-direction', 'column')
     expect(tree.props.style).toEqual({ "flexDirection": "column" })
-    expect(tree.props.className).toContain(' ')
+    expect(tree.props.className).toContain('hide')
     expect(tree.children).toEqual(['hello'])
     expect(tree).toMatchSnapshot()
   })

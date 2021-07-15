@@ -1,5 +1,6 @@
 import React, { FC, CSSProperties, HTMLAttributes } from 'react'
 import styled from 'styled-components'
+import classnames from 'classnames'
 
 const Container = styled.div`
   align-items: stretch;
@@ -28,6 +29,7 @@ interface IProps extends HTMLAttributes<HTMLElement> {
 
 interface IProps {
   as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
+  hide?: boolean
 }
 
 type ViewComponent = FC<IProps>
@@ -48,6 +50,7 @@ const View = React.memo(React.forwardRef<HTMLDivElement, IProps>((props, ref) =>
     flex,
     width,
     style,
+    hide,
     ...rest
   } = props
 
@@ -105,7 +108,7 @@ const View = React.memo(React.forwardRef<HTMLDivElement, IProps>((props, ref) =>
   return (
     <Container
       as={props.as}
-      className={className}
+      className={classnames(className, { hide })}
       ref={ref}
       style={Object.keys(customStyle).length ? customStyle : undefined}
       {...rest}
