@@ -17,10 +17,14 @@ interface IProps extends BaseProps {
 }
 interface DrawerOption extends Omit<IProps, 'onDestroy' | 'visible'> {
     body: string | React.ReactElement;
+    /** 关闭其他 drawer 仅打开自身*/
+    singleton?: boolean;
 }
 declare type DrawerComponent = React.FC<IProps> & {
     /** 函数方式显示组件 */
     show: (options: DrawerOption) => () => void;
+    /** 关闭所有 drawer */
+    destory: () => void;
     /** iframe 内嵌方式打开 url */
     openUrl: (url: string, options?: Omit<DrawerOption, 'body'>) => () => void;
 };
