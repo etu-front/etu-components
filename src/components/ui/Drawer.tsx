@@ -108,6 +108,8 @@ const Container = styled(View)`
   }
 `
 
+const _DESTROY_POOL = {}
+
 interface IProps extends BaseProps {
   title?: JSX.Element | string
   extra?: JSX.Element | string
@@ -126,11 +128,15 @@ interface IProps extends BaseProps {
 
 interface DrawerOption extends Omit<IProps, 'onDestroy' | 'visible'> {
   body: string | React.ReactElement
+  /** 关闭其他 drawer 仅打开自身*/
+  singleton?: boolean
 }
 
 type DrawerComponent = React.FC<IProps> & {
   /** 函数方式显示组件 */
   show: (options: DrawerOption) => () => void
+  /** 关闭所有 drawer */
+  destory: () => void
   /** iframe 内嵌方式打开 url */
   openUrl: (url: string, options?: Omit<DrawerOption, 'body'>) => () => void
 }
@@ -175,7 +181,7 @@ const Drawer: DrawerComponent = props => {
   if (position === 'top' || position === 'bottom') delete size.width
 
   return (
-    <Main onTransitionEnd={unmount}>
+    <Main onTransitionEnd={unmount} className="Magnet-Drawer">
       {mask &&
         <Mask opacity={maskOpacity} className={classNames({ opened })}
           onClick={maskClosable ? handleClose : undefined}
@@ -195,22 +201,34 @@ const Drawer: DrawerComponent = props => {
 }
 
 Drawer.show = options => {
-  const { body, ...rest } = options
+  const { body, singleton, ...rest } = options
+  if (singleton) Drawer.destory()
   const dom = document.createElement('div')
   document.body.appendChild(dom)
   // eslint-disable-next-line prefer-const
   let unListen: Function
   const history = createBrowserHistory()
+  const key = Date.now() + '_' + Math.floor(Math.random() * 1000000)
   const destroy = () => {
+    delete _DESTROY_POOL[key]
     if (typeof unListen === 'function') unListen()
     if (!dom) return
     ReactDOM.unmountComponentAtNode(dom)
     dom.remove()
   }
+  _DESTROY_POOL[key] = destroy
   unListen = history.listen(destroy)
   // const node = <
   ReactDOM.render(<Drawer {...rest} visible onDestroy={destroy}>{body}</Drawer>, dom)
   return destroy
+}
+
+Drawer.destory = () => {
+  for (const k in _DESTROY_POOL) {
+    if (typeof _DESTROY_POOL[k] === 'function') {
+      _DESTROY_POOL[k]()
+    }
+  }
 }
 
 Drawer.openUrl = (url: string, options) =>
