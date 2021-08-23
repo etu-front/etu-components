@@ -163,8 +163,11 @@ const Drawer: DrawerComponent = props => {
 
   const unmount = () => {
     if (opened) return
-    if (onClose) onClose()
-    if (onDestroy) onDestroy()
+    if (onDestroy) {
+      onDestroy()
+    } else if (onClose) {
+      onClose()
+    }
   }
 
   React.useEffect(() => {
@@ -213,6 +216,7 @@ Drawer.show = options => {
     delete _DESTROY_POOL[key]
     if (typeof unListen === 'function') unListen()
     if (!dom) return
+    if (rest.onClose) rest.onClose()
     ReactDOM.unmountComponentAtNode(dom)
     dom.remove()
   }
