@@ -126,10 +126,12 @@ const Drawer = props => {
     const unmount = () => {
         if (opened)
             return;
-        if (onClose)
-            onClose();
-        if (onDestroy)
+        if (onDestroy) {
             onDestroy();
+        }
+        else if (onClose) {
+            onClose();
+        }
     };
     react_1.default.useEffect(() => {
         if (!animation)
@@ -175,6 +177,8 @@ Drawer.show = options => {
             unListen();
         if (!dom)
             return;
+        if (rest.onClose)
+            rest.onClose();
         react_dom_1.default.unmountComponentAtNode(dom);
         dom.remove();
     };
