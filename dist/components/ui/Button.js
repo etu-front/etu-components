@@ -140,7 +140,7 @@ const Container = styled_components_1.default.button `
   &.btn-no-border { border-width: 0; }
 `;
 const Button = props => {
-    const { children, block, dashed, outline, border = true, className = '', htmlType = 'button', type = 'default', size = 'default', shape = 'round', icon, loading, loadingText } = props, rest = __rest(props, ["children", "block", "dashed", "outline", "border", "className", "htmlType", "type", "size", "shape", "icon", "loading", "loadingText"]);
+    const { children, block, dashed, outline, border = true, className = '', htmlType = 'button', type = 'default', size = 'default', shape = 'round', icon, loading, loadingText, disabled } = props, rest = __rest(props, ["children", "block", "dashed", "outline", "border", "className", "htmlType", "type", "size", "shape", "icon", "loading", "loadingText", "disabled"]);
     const classNames = classnames_1.default(className, [`btn-${type}`], {
         [`btn-${size}`]: size !== 'default',
         [`btn-${shape}`]: shape !== 'round',
@@ -161,7 +161,7 @@ const Button = props => {
         }
         return react_1.default.createElement("i", { className: "icon" }, icon);
     };
-    return (react_1.default.createElement(Container, Object.assign({ className: classNames, type: htmlType, disabled: loading }, rest),
+    return (react_1.default.createElement(Container, Object.assign({ className: classNames, type: htmlType, disabled: loading || disabled }, rest),
         getIcon(),
         react_1.default.createElement("span", null, loading ? (loadingText || children) : children)));
 };
