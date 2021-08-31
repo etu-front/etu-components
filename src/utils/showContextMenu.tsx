@@ -15,6 +15,7 @@ const showContextMenu = (options: {
   dom.style.position = 'fixed'
   dom.className = className
   dom.style.visibility = 'hidden'
+  dom.style['z-index'] = 999
   document.body.append(dom)
   ReactDOM.render(<span>{options.component}</span>, dom)
 

@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import styled from 'styled-components'
 import Icon, { BaseIconType } from './Icon'
-import { BaseProps } from '../types'
 import classnames from 'classnames'
 
 const Container = styled.button`
@@ -129,7 +128,7 @@ const Container = styled.button`
 export type ButtonSize = 'xsmall' | 'small' | 'default' | 'large' | 'xlarge'
 export type ButtonType = 'primary' | 'default' | 'warning' | 'danger' | 'success' | 'link' | 'info'
 
-export interface ButtonProps extends BaseProps {
+export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   htmlType?: 'submit' | 'reset' | 'button'
   border?: boolean
   type?: ButtonType
@@ -160,6 +159,7 @@ const Button: FC<ButtonProps> = props => {
     icon,
     loading,
     loadingText,
+    disabled,
     ...rest
   } = props
 
@@ -183,7 +183,7 @@ const Button: FC<ButtonProps> = props => {
     return <i className="icon">{icon}</i>
   }
   return (
-    <Container className={classNames} type={htmlType} disabled={loading} {...rest}>
+    <Container className={classNames} type={htmlType} disabled={loading || disabled} {...rest}>
       {getIcon()}<span>{loading ? (loadingText || children) : children}</span>
     </Container>
   )
