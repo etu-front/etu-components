@@ -11,7 +11,7 @@ const Container = styled_components_1.default.div `
   min-height: 200px;
 `;
 const Inner = styled_components_1.default.div `
-  color: ${props => props.theme.primaryColor};
+  color: var(--primary-color);
   font-size: 16px;
   position: absolute;
   left: 0;
