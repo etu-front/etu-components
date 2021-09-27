@@ -8,7 +8,7 @@ const Container = styled.div`
 `
 
 const Inner = styled.div`
-  color: ${props => props.theme.primaryColor};
+  color: var(--primary-color);
   font-size: 16px;
   position: absolute;
   left: 0;
