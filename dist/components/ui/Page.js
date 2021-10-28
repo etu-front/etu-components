@@ -29,7 +29,7 @@ const Container = styled_components_1.default.div `
   min-height: 100vh;
   padding-bottom: env(safe-area-inset-bottom);
 `;
-const Page = ({ backgroundColor = 'white', paddingBottom, resetScroll, style, className, children, title }) => {
+const Page = ({ backgroundColor, paddingBottom, resetScroll, style, className, children, title }) => {
     react_1.useEffect(() => {
         if (!resetScroll)
             return;
