@@ -14,7 +14,7 @@ export interface PageProps {
   resetScroll?: boolean
 }
 const Page: FC<PageProps & BaseProps> = ({
-  backgroundColor = 'white', paddingBottom, resetScroll, style, className, children, title
+  backgroundColor, paddingBottom, resetScroll, style, className, children, title
 }) => {
   useEffect(() => {
     if (!resetScroll) return
