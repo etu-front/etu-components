@@ -11,6 +11,8 @@ const LineText = styled.div<IProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  position: relative;
   width: ${({ width }) => width ? (typeof width === 'number' ? `${width}px` : width) : '100%'};
   &::before,
   &::after {
