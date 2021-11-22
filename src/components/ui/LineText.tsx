@@ -1,11 +1,17 @@
 import styled from 'styled-components'
 
-const LineText = styled.div<{ lineWidth?: number, lineColor?: string }>`
+interface IProps {
+  width?: string | number
+  lineWidth?: number
+  lineColor?: string
+}
+const LineText = styled.div<IProps>`
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: ${({ width }) => width ? (typeof width === 'number' ? `${width}px` : width) : '100%'};
   &::before,
   &::after {
     content: '';
