@@ -1,5 +1,7 @@
-declare const LineText: import("styled-components").StyledComponent<"div", any, {
-    lineWidth?: number | undefined;
-    lineColor?: string | undefined;
-}, never>;
+interface IProps {
+    width?: string | number;
+    lineWidth?: number;
+    lineColor?: string;
+}
+declare const LineText: import("styled-components").StyledComponent<"div", any, IProps, never>;
 export default LineText;

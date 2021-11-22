@@ -10,6 +10,7 @@ const LineText = styled_components_1.default.div `
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: ${({ width }) => width ? (typeof width === 'number' ? `${width}px` : width) : '100%'};
   &::before,
   &::after {
     content: '';
