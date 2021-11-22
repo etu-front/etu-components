@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseProps } from '@/components/types';
+import { BaseProps } from '../types';
 declare const Line: React.FC<{
     height?: number;
     color?: string;
