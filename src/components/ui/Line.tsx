@@ -1,6 +1,6 @@
 import React from 'react'
-import View from '@/components/View'
-import { BaseProps } from '@/components/types'
+import View from '../View'
+import { BaseProps } from '../types'
 
 const Line: React.FC<{ height?: number, color?: string } & BaseProps> = ({
   height = 10,
