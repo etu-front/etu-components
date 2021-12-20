@@ -7,6 +7,7 @@ export interface ModalProps {
     visible?: boolean;
     shadow?: boolean;
     animation?: boolean;
+    animationType?: 'scale' | 'default';
     mask?: boolean;
     maskClosable?: boolean;
     maskOpacity?: number;

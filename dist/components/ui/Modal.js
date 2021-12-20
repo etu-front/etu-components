@@ -71,9 +71,13 @@ const ModalContainer = styled_components_1.default.div `
   transition: all 200ms;
   margin-top: 60px;
   opacity: 0;
+  &.scale {
+    transform: translate(-50%,-50%) scale(0.5);
+  }
   &.show {
     margin-top: 0;
     opacity: 1;
+    transform: translate(-50%,-50%) scale(1) !important;
   }
   &.shadow {
     box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
@@ -113,7 +117,6 @@ const ModalBody = styled_components_1.default.div `
   /* padding: 10px 20px; */
   flex: 1;
   font-size: 16px;
-  max-height: calc(100vh - 44px - 44px);
   overflow: auto;
 `;
 const ModalFooter = styled_components_1.default.div `
@@ -140,7 +143,7 @@ const ModalFooter = styled_components_1.default.div `
   }
 `;
 const Modal = props => {
-    const { title = '', visible = false, onOk, onCancel, onDestroy, closable = true, mask = true, maskClosable = true, maskOpacity = 0.2, animation, showCancelBtn = !!props.cancelBtnProps, showOkBtn = !!props.okBtnProps, header, footer } = props;
+    const { title = '', visible = false, onOk, onCancel, onDestroy, closable = true, mask = true, maskClosable = true, maskOpacity = 0.2, animation, animationType = 'default', showCancelBtn = !!props.cancelBtnProps, showOkBtn = !!props.okBtnProps, header, footer } = props;
     const bodyRef = react_1.useRef(null);
     const [loading, setLoading] = react_1.useState(false);
     const [up, setUp] = react_1.useState(!animation);
@@ -213,6 +216,7 @@ const Modal = props => {
     };
     const classes = [
         props.modalClassName,
+        animationType,
         up ? 'show' : '',
         props.shadow ? 'shadow' : ''
     ].filter(Boolean).join(' ');
