@@ -41,9 +41,13 @@ const ModalContainer = styled.div`
   transition: all 200ms;
   margin-top: 60px;
   opacity: 0;
+  &.scale {
+    transform: translate(-50%,-50%) scale(0.5);
+  }
   &.show {
     margin-top: 0;
     opacity: 1;
+    transform: translate(-50%,-50%) scale(1) !important;
   }
   &.shadow {
     box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
@@ -85,7 +89,6 @@ const ModalBody = styled.div`
   /* padding: 10px 20px; */
   flex: 1;
   font-size: 16px;
-  max-height: calc(100vh - 44px - 44px);
   overflow: auto;
 `
 const ModalFooter = styled.div`
@@ -118,6 +121,7 @@ export interface ModalProps {
   visible?: boolean
   shadow?: boolean
   animation?: boolean
+  animationType?: 'scale' | 'default'
   mask?: boolean
   maskClosable?: boolean
   maskOpacity?: number
@@ -163,6 +167,7 @@ const Modal: ModalComponent = props => {
     maskClosable = true,
     maskOpacity = 0.2,
     animation,
+    animationType = 'default',
     showCancelBtn = !!props.cancelBtnProps,
     showOkBtn = !!props.okBtnProps,
     header,
@@ -245,6 +250,7 @@ const Modal: ModalComponent = props => {
 
   const classes = [
     props.modalClassName,
+    animationType,
     up ? 'show' : '',
     props.shadow ? 'shadow' : ''
   ].filter(Boolean).join(' ')
