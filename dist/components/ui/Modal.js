@@ -68,7 +68,7 @@ const ModalContainer = styled_components_1.default.div `
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
-  transition: all 200ms;
+  transition: all 200ms cubic-bezier(.5, .75, .75, 1.25);
   margin-top: 60px;
   opacity: 0;
   &.scale {
