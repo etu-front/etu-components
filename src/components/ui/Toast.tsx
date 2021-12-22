@@ -64,8 +64,23 @@ interface ToastProps extends BaseProps {
   /** 遮罩 默认为true */
   mask?: boolean
 }
+/** showToast 选项 */
+interface Options extends ToastProps {
+  /** 显示毫秒数，默认 3000 毫秒，当为 0 或 负数时， 持久存在 */
+  duration?: number
+}
+type ToastFunction = (title: string, opts?: Options) => void
 
-const Toast: FC<ToastProps> = ({ icon, position, mask = true, style, children }) => {
+type ToastComponent = FC<ToastProps> & {
+  show: ToastFunction
+  hide: () => void
+  loading: ToastFunction
+  fail: ToastFunction
+  info: ToastFunction
+  success: ToastFunction
+}
+
+const Toast: ToastComponent = ({ icon, position, mask = true, style, children }) => {
   let iconElement
   if (icon) {
     if (icon === 'loading') {
@@ -84,11 +99,6 @@ const Toast: FC<ToastProps> = ({ icon, position, mask = true, style, children })
       </Container>
     </Background>
   )
-}
-/** showToast 选项 */
-interface Options extends ToastProps {
-  /** 显示毫秒数，默认 3000 毫秒，当为 0 或 负数时， 持久存在 */
-  duration?: number
 }
 
 const DESTROY_POOL = {}
@@ -133,4 +143,17 @@ export const hideToast = () => {
   }
 }
 
+// Toast Helper functions
+Toast.show = (title: string, opts?: ToastProps) => showToast({ title, ...opts })
+Toast.hide = hideToast
+Toast.loading = (title: string, opts?: ToastProps) =>
+  showToast({ title, icon: 'loading', duration: 0, mask: true, ...opts })
+Toast.fail = (title: string, opts?: ToastProps) =>
+  showToast({ title, icon: 'close', mask: false, ...opts })
+Toast.info = (title: string, opts?: ToastProps) =>
+  showToast({ title, icon: 'info', mask: false, ...opts })
+Toast.info = (title: string, opts?: ToastProps) =>
+  showToast({ title, icon: 'info', mask: false, ...opts })
+Toast.success = (title: string, opts?: ToastProps) =>
+  showToast({ title, icon: 'check', mask: false, ...opts })
 export default Toast
