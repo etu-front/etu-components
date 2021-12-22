@@ -73,11 +73,13 @@ const ModalContainer = styled_components_1.default.div `
   opacity: 0;
   &.scale {
     transform: translate(-50%,-50%) scale(0.5);
+    &.show {
+      transform: translate(-50%,-50%) scale(1);
+    }
   }
   &.show {
     margin-top: 0;
     opacity: 1;
-    transform: translate(-50%,-50%) scale(1) !important;
   }
   &.shadow {
     box-shadow: 0 2px 5px rgb(0 0 0 / 20%);

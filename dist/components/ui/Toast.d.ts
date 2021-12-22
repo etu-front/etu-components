@@ -12,12 +12,21 @@ interface ToastProps extends BaseProps {
     /** 遮罩 默认为true */
     mask?: boolean;
 }
-declare const Toast: FC<ToastProps>;
 /** showToast 选项 */
 interface Options extends ToastProps {
     /** 显示毫秒数，默认 3000 毫秒，当为 0 或 负数时， 持久存在 */
     duration?: number;
 }
+declare type ToastFunction = (title: string, opts?: Options) => void;
+declare type ToastComponent = FC<ToastProps> & {
+    show: ToastFunction;
+    hide: () => void;
+    loading: ToastFunction;
+    fail: ToastFunction;
+    info: ToastFunction;
+    success: ToastFunction;
+};
+declare const Toast: ToastComponent;
 /**
  * 显示 Toast
  * @param options Options

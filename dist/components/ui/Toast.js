@@ -111,5 +111,13 @@ const hideToast = () => {
     }
 };
 exports.hideToast = hideToast;
+// Toast Helper functions
+Toast.show = (title, opts) => exports.showToast(Object.assign({ title }, opts));
+Toast.hide = exports.hideToast;
+Toast.loading = (title, opts) => exports.showToast(Object.assign({ title, icon: 'loading', duration: 0, mask: true }, opts));
+Toast.fail = (title, opts) => exports.showToast(Object.assign({ title, icon: 'close', mask: false }, opts));
+Toast.info = (title, opts) => exports.showToast(Object.assign({ title, icon: 'info', mask: false }, opts));
+Toast.info = (title, opts) => exports.showToast(Object.assign({ title, icon: 'info', mask: false }, opts));
+Toast.success = (title, opts) => exports.showToast(Object.assign({ title, icon: 'check', mask: false }, opts));
 exports.default = Toast;
 //# sourceMappingURL=Toast.js.map
