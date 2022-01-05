@@ -33,6 +33,7 @@ const Container = styled_components_1.default.div `
   position: fixed;
   left: 50%;
   top: 50%;
+  will-change: transform;
   transform: translate(-50%,-50%);
   color: #fff;
   border-radius: 4px;
@@ -43,8 +44,7 @@ const Container = styled_components_1.default.div `
   text-align: center;
   word-wrap: break-word;
   word-break: break-word;
-  background-color: rgba(0,0,0,.6);
-  -webkit-transform: translate(-50%,-50%);
+  background-color: rgba(0,0,0,.75);
   z-index: 1000;
   .toastIcon {
     display: block;
