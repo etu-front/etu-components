@@ -30,6 +30,7 @@ const Mask = styled.div<{ opacity?: number }>`
 
 const Container = styled(View)`
   --boxshaow-color: rgb(0 0 0 / 15%);
+  max-width: 100vw;
   position: fixed;
   background-color: white;
   color: #474747;
@@ -190,7 +191,7 @@ const Drawer: DrawerComponent = props => {
           onClick={maskClosable ? handleClose : undefined}
         />
       }
-      <Container className={classNames(position, 'bg-lightest', { opened })} {...size}>
+      <Container className={classNames(position, 'bg-lightest', { opened })} style={props.style} {...size}>
         {props.title &&
           <View className={classNames('drawer-title', { 'p-r-35': closable && position !== 'left' })}
             row align="center" justify={props.extra ? 'space-between' : 'flex-start'}
