@@ -1,10 +1,11 @@
 import React from 'react'
-import Button from './Button'
+import Button, { ButtonProps } from './Button'
 import Modal, { ModalOptions } from './Modal'
 import View from '../View'
 
 type Position = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight'
-interface IProps extends Omit<ModalOptions, 'showOkBtn' | 'showCancelBtn' | 'closable'> {
+interface IProps extends Omit<ModalOptions, 'showOkBtn' | 'closable'> {
+  btnProps?: ButtonProps
   position?: Position
   offset?: number
   onOk: () => void
@@ -32,7 +33,13 @@ const getPosition = (rect: DOMRect, container: HTMLElement, position: Position =
 }
 
 const Message: React.FC<IProps> = props => {
-  const { message, cancelBtnProps, cancelText, okBtnProps, okText, onOk, maskClosable, onCancel } = props
+  const {
+    message,
+    btnProps,
+    cancelBtnProps, cancelText = '取消', okBtnProps, okText = '确定',
+    onOk, showCancelBtn = true,
+    onCancel
+  } = props
   const [loading, setLoading] = React.useState(false)
   const handelOk = async () => {
     setLoading(true)
@@ -47,15 +54,15 @@ const Message: React.FC<IProps> = props => {
     <View>
       {message || '确认？'}
       <View row justify="flex-end" className="m-t-10">
-        {!maskClosable && (
+        {showCancelBtn && (
           <Button size="small" type="default" onClick={() => onCancel && onCancel()} className="m-r-15"
-            {...cancelBtnProps}
+            {...btnProps} {...cancelBtnProps}
           >
-            {cancelText || '取消'}
+            {cancelText}
           </Button>
         )}
-        <Button size="small" type="primary" loading={loading} onClick={handelOk} {...okBtnProps}>
-          {okText || '确定'}
+        <Button size="small" type="primary" loading={loading} onClick={handelOk} {...btnProps} {...okBtnProps}>
+          {okText}
         </Button>
       </View>
     </View>
