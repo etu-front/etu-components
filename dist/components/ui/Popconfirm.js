@@ -44,7 +44,7 @@ const getPosition = (rect, container, position = 'topLeft', offset = 5) => {
     return pos;
 };
 const Message = props => {
-    const { message, cancelBtnProps, cancelText, okBtnProps, okText, onOk, maskClosable, onCancel } = props;
+    const { message, btnProps, cancelBtnProps, cancelText = '取消', okBtnProps, okText = '确定', onOk, showCancelBtn = true, onCancel } = props;
     const [loading, setLoading] = react_1.default.useState(false);
     const handelOk = () => __awaiter(void 0, void 0, void 0, function* () {
         setLoading(true);
@@ -59,8 +59,8 @@ const Message = props => {
     return (react_1.default.createElement(View_1.default, null,
         message || '确认？',
         react_1.default.createElement(View_1.default, { row: true, justify: "flex-end", className: "m-t-10" },
-            !maskClosable && (react_1.default.createElement(Button_1.default, Object.assign({ size: "small", type: "default", onClick: () => onCancel && onCancel(), className: "m-r-15" }, cancelBtnProps), cancelText || '取消')),
-            react_1.default.createElement(Button_1.default, Object.assign({ size: "small", type: "primary", loading: loading, onClick: handelOk }, okBtnProps), okText || '确定'))));
+            showCancelBtn && (react_1.default.createElement(Button_1.default, Object.assign({ size: "small", type: "default", onClick: () => onCancel && onCancel(), className: "m-r-15" }, btnProps, cancelBtnProps), cancelText)),
+            react_1.default.createElement(Button_1.default, Object.assign({ size: "small", type: "primary", loading: loading, onClick: handelOk }, btnProps, okBtnProps), okText))));
 };
 const Popconfirm = react_1.default.memo(props => {
     const { children, position, offset, animation = true } = props, rest = __rest(props, ["children", "position", "offset", "animation"]);
