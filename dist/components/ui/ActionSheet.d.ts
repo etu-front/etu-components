@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, CSSProperties } from 'react';
 import { MouseHandler } from '../types';
 interface IAction {
-    onClick: Function;
+    onClick: MouseHandler;
 }
 interface ITextAction extends IAction {
     text?: string;
@@ -16,7 +16,10 @@ interface IProps {
     maskClosable?: boolean;
     actions: (ITextAction | IChildAction)[];
     onCancel?: MouseHandler;
+    className?: string;
+    bodyClassName?: string;
     itemClassName?: string;
+    itemStyle?: CSSProperties;
     cancelText?: string;
 }
 declare const ActionSheet: FC<IProps>;

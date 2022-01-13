@@ -28,6 +28,7 @@ const react_dom_1 = __importDefault(require("react-dom"));
 const styled_components_1 = __importDefault(require("styled-components"));
 const View_1 = __importDefault(require("../View"));
 const history_1 = require("history");
+const classnames_1 = __importDefault(require("classnames"));
 const Container = styled_components_1.default(View_1.default) `
   position: fixed;
   height: 100vh;
@@ -92,11 +93,11 @@ const ActionSheet = props => {
     }, [visible]);
     if (!visible)
         return null;
-    return (react_1.default.createElement(Container, null,
+    return (react_1.default.createElement(Container, { className: props.className },
         mask && react_1.default.createElement(Mask, { onClick: maskClosable ? handleClose : () => false }),
-        react_1.default.createElement(Body, { className: up ? 'up' : '' },
+        react_1.default.createElement(Body, { className: classnames_1.default({ up }, props.bodyClassName) },
             title,
-            actions.map((act, index) => (react_1.default.createElement("div", { key: 'action-' + index, className: `item ${props.itemClassName || ''}`, onClick: () => act.onClick() }, act.child || act.text))),
+            actions.map((act, index) => (react_1.default.createElement("div", { key: 'action-' + index, className: `item ${props.itemClassName || ''}`, onClick: act.onClick, style: props.itemStyle }, act.child || act.text))),
             cancelText && react_1.default.createElement("div", { className: "item m-t-5", onClick: handleClose }, cancelText))));
 };
 const showActionSheet = (options) => {
