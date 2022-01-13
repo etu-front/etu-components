@@ -107,7 +107,12 @@ const ActionSheet: FC<IProps> = props => {
             {(act as IChildAction).child || (act as ITextAction).text}
           </div>
         ))}
-        {cancelText && <div className="item m-t-5" onClick={handleClose}>{cancelText}</div>}
+        {cancelText &&
+          <div
+            className={`item ${props.itemClassName || ''}`} style={props.itemStyle}
+            onClick={handleClose}
+          >{cancelText}</div>
+        }
       </Body>
     </Container>
   )
