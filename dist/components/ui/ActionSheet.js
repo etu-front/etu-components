@@ -98,7 +98,8 @@ const ActionSheet = props => {
         react_1.default.createElement(Body, { className: classnames_1.default({ up }, props.bodyClassName) },
             title,
             actions.map((act, index) => (react_1.default.createElement("div", { key: 'action-' + index, className: `item ${props.itemClassName || ''}`, onClick: act.onClick, style: props.itemStyle }, act.child || act.text))),
-            cancelText && react_1.default.createElement("div", { className: "item m-t-5", onClick: handleClose }, cancelText))));
+            cancelText &&
+                react_1.default.createElement("div", { className: `item ${props.itemClassName || ''}`, style: props.itemStyle, onClick: handleClose }, cancelText))));
 };
 const showActionSheet = (options) => {
     const dom = document.createElement('div');
