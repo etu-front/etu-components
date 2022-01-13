@@ -1,9 +1,10 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect, CSSProperties } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import View from '../View'
 import { createBrowserHistory } from 'history'
 import { MouseHandler } from '../types'
+import classNames from 'classnames'
 
 const Container = styled(View)`
   position: fixed;
@@ -52,7 +53,7 @@ const Body = styled(View)`
 `
 
 interface IAction {
-  onClick: Function
+  onClick: MouseHandler
 }
 interface ITextAction extends IAction {
   text?: string
@@ -68,7 +69,10 @@ interface IProps {
   maskClosable?: boolean
   actions: (ITextAction | IChildAction)[]
   onCancel?: MouseHandler
+  className?: string
+  bodyClassName?: string
   itemClassName?: string
+  itemStyle?: CSSProperties
   cancelText?: string
 }
 const DESTROY_POOL = {}
@@ -90,12 +94,16 @@ const ActionSheet: FC<IProps> = props => {
   }, [visible])
   if (!visible) return null
   return (
-    <Container>
+    <Container className={props.className}>
       {mask && <Mask onClick={maskClosable ? handleClose : () => false} />}
-      <Body className={up ? 'up' : ''}>
+      <Body className={classNames({ up }, props.bodyClassName)}>
         {title}
         {actions.map((act, index) => (
-          <div key={'action-' + index} className={`item ${props.itemClassName || ''}`} onClick={() => act.onClick()}>
+          <div key={'action-' + index}
+            className={`item ${props.itemClassName || ''}`}
+            onClick={act.onClick}
+            style={props.itemStyle}
+          >
             {(act as IChildAction).child || (act as ITextAction).text}
           </div>
         ))}
