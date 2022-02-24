@@ -31,10 +31,7 @@ const Background = styled_components_1.default.div `
 `;
 const Container = styled_components_1.default.div `
   position: fixed;
-  left: 50%;
-  top: 50%;
   will-change: transform;
-  transform: translate(-50%,-50%);
   color: #fff;
   border-radius: 4px;
   padding: 10px 20px;
@@ -52,17 +49,32 @@ const Container = styled_components_1.default.div `
     text-align: center;
     color: #ffffffbb;
   }
+  &.toast-center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
   &.toast-top {
-    transform: translate(-50%, 0);
+    left: 50%;
     top: 72px;
+    transform: translate(-50%, 0);
   }
   &.toast-bottom {
     top: auto;
-    transform: translate(-50%, 0);
     bottom: 72px;
+    transform: translate(-50%, 0);
+  }
+  &.toast-top_right {
+    top: 72px;
+    right: 1em;
+  }
+  &.toast-top_bottom {
+    right: 1em;
+    bottom: 72px;
+    transform: translate(0, 0);
   }
 `;
-const Toast = ({ icon, position, mask = true, style, children }) => {
+const Toast = ({ icon, position = 'center', mask = true, onClick, style, children }) => {
     let iconElement;
     if (icon) {
         if (icon === 'loading') {
@@ -73,7 +85,7 @@ const Toast = ({ icon, position, mask = true, style, children }) => {
         }
     }
     return (react_1.default.createElement(Background, { className: mask ? 'mask' : '' },
-        react_1.default.createElement(Container, { className: typeof position === 'string' ? `toast-${position}` : '', style: typeof position === 'number' ? Object.assign({ transform: 'translate(-50%, 0)', top: position }, style) : style },
+        react_1.default.createElement(Container, { className: typeof position === 'string' ? `toast-${position}` : '', onClick: onClick, style: typeof position === 'number' ? Object.assign({ transform: 'translate(-50%, 0)', top: position }, style) : style },
             iconElement || icon,
             children)));
 };

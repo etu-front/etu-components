@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { BaseProps } from '../types';
-declare type Position = 'top' | 'center' | 'bottom' | number;
+declare type Position = 'top' | 'center' | 'bottom' | 'top_right' | 'bottom_right' | number;
 declare type ToastIcon = 'warning' | 'info' | 'check' | 'close' | 'loading';
 interface ToastProps extends BaseProps {
     /** 字符串 或 ReactNode */
