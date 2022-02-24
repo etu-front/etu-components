@@ -52,13 +52,12 @@ const Container = styled.div`
     transform: translate(-50%, 0);
   }
   &.toast-top_right {
-    top: 72px;
+    top: 1em;
     right: 1em;
   }
   &.toast-top_bottom {
     right: 1em;
-    bottom: 72px;
-    transform: translate(0, 0);
+    bottom: 1em;
   }
 `
 
