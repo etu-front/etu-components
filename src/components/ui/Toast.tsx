@@ -18,10 +18,7 @@ const Background = styled.div`
 
 const Container = styled.div`
   position: fixed;
-  left: 50%;
-  top: 50%;
   will-change: transform;
-  transform: translate(-50%,-50%);
   color: #fff;
   border-radius: 4px;
   padding: 10px 20px;
@@ -39,18 +36,33 @@ const Container = styled.div`
     text-align: center;
     color: #ffffffbb;
   }
+  &.toast-center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
   &.toast-top {
-    transform: translate(-50%, 0);
+    left: 50%;
     top: 72px;
+    transform: translate(-50%, 0);
   }
   &.toast-bottom {
     top: auto;
-    transform: translate(-50%, 0);
     bottom: 72px;
+    transform: translate(-50%, 0);
+  }
+  &.toast-top_right {
+    top: 72px;
+    right: 1em;
+  }
+  &.toast-top_bottom {
+    right: 1em;
+    bottom: 72px;
+    transform: translate(0, 0);
   }
 `
 
-type Position = 'top' | 'center' | 'bottom' | number
+type Position = 'top' | 'center' | 'bottom' | 'top_right' | 'bottom_right' | number
 
 type ToastIcon = 'warning' | 'info' | 'check' | 'close' | 'loading'
 
@@ -80,7 +92,7 @@ type ToastComponent = FC<ToastProps> & {
   success: ToastFunction
 }
 
-const Toast: ToastComponent = ({ icon, position, mask = true, style, children }) => {
+const Toast: ToastComponent = ({ icon, position = 'center', mask = true, onClick, style, children }) => {
   let iconElement
   if (icon) {
     if (icon === 'loading') {
@@ -91,7 +103,9 @@ const Toast: ToastComponent = ({ icon, position, mask = true, style, children })
   }
   return (
     <Background className={mask ? 'mask' : ''}>
-      <Container className={typeof position === 'string' ? `toast-${position}` : ''}
+      <Container
+        className={typeof position === 'string' ? `toast-${position}` : ''}
+        onClick={onClick}
         style={typeof position === 'number' ? { transform: 'translate(-50%, 0)', top: position, ...style } : style}
       >
         {iconElement || icon}
