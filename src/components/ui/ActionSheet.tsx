@@ -28,8 +28,10 @@ const Body = styled(View)`
   z-index: 3;
   position: fixed;
   bottom: -200px;
-  left: 0;
+  left: 50%;
   right: 0;
+  transform: translate(-50%, 0);
+  width: 100vw;
   transition: bottom 200ms;
   &.up {
     bottom: 0;
@@ -68,6 +70,7 @@ interface IProps {
   mask?: boolean
   maskClosable?: boolean
   actions: (ITextAction | IChildAction)[]
+  maxWidth?: number
   onCancel?: MouseHandler
   className?: string
   bodyClassName?: string
@@ -77,7 +80,10 @@ interface IProps {
 }
 const DESTROY_POOL = {}
 const ActionSheet: FC<IProps> = props => {
-  const { title, actions, visible, onCancel, cancelText = '取消', mask = true, maskClosable = true } = props
+  const {
+    title, actions, visible, onCancel, maxWidth = 680, cancelText = '取消', mask = true, maskClosable = true
+  } = props
+
   const [up, setUp] = useState(false)
   const handleClose = () => {
     setUp(false)
@@ -96,7 +102,7 @@ const ActionSheet: FC<IProps> = props => {
   return (
     <Container className={props.className}>
       {mask && <Mask onClick={maskClosable ? handleClose : () => false} />}
-      <Body className={classNames({ up }, props.bodyClassName)}>
+      <Body className={classNames({ up }, props.bodyClassName)} style={{ maxWidth }}>
         {title}
         {actions.map((act, index) => (
           <div key={'action-' + index}

@@ -48,6 +48,7 @@ const Container = styled.div`
   }
   &.toast-bottom {
     top: auto;
+    left: 50%;
     bottom: 72px;
     transform: translate(-50%, 0);
   }
