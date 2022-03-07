@@ -50,8 +50,10 @@ const Body = styled_components_1.default(View_1.default) `
   z-index: 3;
   position: fixed;
   bottom: -200px;
-  left: 0;
+  left: 50%;
   right: 0;
+  transform: translate(-50%, 0);
+  width: 100vw;
   transition: bottom 200ms;
   &.up {
     bottom: 0;
@@ -75,7 +77,7 @@ const Body = styled_components_1.default(View_1.default) `
 `;
 const DESTROY_POOL = {};
 const ActionSheet = props => {
-    const { title, actions, visible, onCancel, cancelText = '取消', mask = true, maskClosable = true } = props;
+    const { title, actions, visible, onCancel, maxWidth = 680, cancelText = '取消', mask = true, maskClosable = true } = props;
     const [up, setUp] = react_1.useState(false);
     const handleClose = () => {
         setUp(false);
@@ -95,7 +97,7 @@ const ActionSheet = props => {
         return null;
     return (react_1.default.createElement(Container, { className: props.className },
         mask && react_1.default.createElement(Mask, { onClick: maskClosable ? handleClose : () => false }),
-        react_1.default.createElement(Body, { className: classnames_1.default({ up }, props.bodyClassName) },
+        react_1.default.createElement(Body, { className: classnames_1.default({ up }, props.bodyClassName), style: { maxWidth } },
             title,
             actions.map((act, index) => (react_1.default.createElement("div", { key: 'action-' + index, className: `item ${props.itemClassName || ''}`, onClick: act.onClick, style: props.itemStyle }, act.child || act.text))),
             cancelText &&

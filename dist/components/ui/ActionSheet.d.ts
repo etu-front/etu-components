@@ -15,6 +15,7 @@ interface IProps {
     mask?: boolean;
     maskClosable?: boolean;
     actions: (ITextAction | IChildAction)[];
+    maxWidth?: number;
     onCancel?: MouseHandler;
     className?: string;
     bodyClassName?: string;
