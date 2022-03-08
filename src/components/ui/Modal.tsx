@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode, useEffect, useRef, useState } from 'react'
+import React, { FC, ReactElement, CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import classnames from 'classnames'
 import styled from 'styled-components'
@@ -148,6 +148,8 @@ export interface ModalProps {
   className?: BaseProps['className']
   modalClassName?: string
   bodyClassName?: string
+  closeClassName?: string
+  closeStyle?: CSSProperties
 }
 
 type ModalComponent = FC<ModalProps> & {
@@ -271,7 +273,11 @@ const Modal: ModalComponent = props => {
         className={classes}
         ref={bodyRef}
       >
-        {closable && <span className="close" onClick={handleCancel}>&times;</span>}
+        {closable && (
+          <span className={"close " + (props.closeClassName || '')} style={props.closeStyle}
+            onClick={handleCancel}
+          >&times;</span>
+        )}
         {renderTitle()}
         {props.children &&
           <ModalBody className={props.bodyClassName} style={{ padding: getPadding() }}>
