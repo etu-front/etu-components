@@ -226,7 +226,7 @@ const Modal = props => {
         mask &&
             react_1.default.createElement("div", { className: "mask", style: { opacity: up ? maskOpacity : 0 }, onClick: () => maskClosable && handleCancel() }),
         react_1.default.createElement(ModalContainer, { style: props.width ? Object.assign({ width: props.width }, props.style) : props.style, className: classes, ref: bodyRef },
-            closable && react_1.default.createElement("span", { className: "close", onClick: handleCancel }, "\u00D7"),
+            closable && (react_1.default.createElement("span", { className: "close " + (props.closeClassName || ''), style: props.closeStyle, onClick: handleCancel }, "\u00D7")),
             renderTitle(),
             props.children &&
                 react_1.default.createElement(ModalBody, { className: props.bodyClassName, style: { padding: getPadding() } }, props.children),
