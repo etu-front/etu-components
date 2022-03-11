@@ -194,7 +194,7 @@ const Drawer: DrawerComponent = props => {
         />
       }
       <Container
-        className={classNames(props.drawerClassName, position, 'bg-lightest', { opened })}
+        className={classNames(position, 'bg-lightest', { opened }, props.drawerClassName)}
         style={props.style} {...size}
       >
         {props.title &&
