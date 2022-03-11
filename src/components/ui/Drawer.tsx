@@ -118,6 +118,8 @@ interface IProps extends BaseProps {
   maskClosable?: boolean
   closable?: boolean
   maskOpacity?: number
+  drawerClassName?: string
+  closeClassName?: string
   animation?: boolean
   visible?: boolean
   position?: 'left' | 'right' | 'top' | 'bottom'
@@ -191,13 +193,18 @@ const Drawer: DrawerComponent = props => {
           onClick={maskClosable ? handleClose : undefined}
         />
       }
-      <Container className={classNames(position, 'bg-lightest', { opened })} style={props.style} {...size}>
+      <Container
+        className={classNames(props.drawerClassName, position, 'bg-lightest', { opened })}
+        style={props.style} {...size}
+      >
         {props.title &&
           <View className={classNames('drawer-title', { 'p-r-35': closable && position !== 'left' })}
             row align="center" justify={props.extra ? 'space-between' : 'flex-start'}
           >{props.title}{props.extra}</View>
         }
-        {closable && <Icon type="close" className="drawer-close" onClick={handleClose} />}
+        {closable &&
+          <Icon type="close" className={classNames("drawer-close", props.closeClassName)} onClick={handleClose} />
+        }
         <View className={classNames('drawer-body', props.className)}>{children}</View>
       </Container>
     </Main>
