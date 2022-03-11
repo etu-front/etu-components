@@ -154,12 +154,13 @@ const Drawer = props => {
     return (react_1.default.createElement(Main, { onTransitionEnd: unmount, className: "Magnet-Drawer" },
         mask &&
             react_1.default.createElement(Mask, { opacity: maskOpacity, className: classnames_1.default({ opened }), onClick: maskClosable ? handleClose : undefined }),
-        react_1.default.createElement(Container, Object.assign({ className: classnames_1.default(position, 'bg-lightest', { opened }), style: props.style }, size),
+        react_1.default.createElement(Container, Object.assign({ className: classnames_1.default(props.drawerClassName, position, 'bg-lightest', { opened }), style: props.style }, size),
             props.title &&
                 react_1.default.createElement(View_1.default, { className: classnames_1.default('drawer-title', { 'p-r-35': closable && position !== 'left' }), row: true, align: "center", justify: props.extra ? 'space-between' : 'flex-start' },
                     props.title,
                     props.extra),
-            closable && react_1.default.createElement(Icon_1.default, { type: "close", className: "drawer-close", onClick: handleClose }),
+            closable &&
+                react_1.default.createElement(Icon_1.default, { type: "close", className: classnames_1.default("drawer-close", props.closeClassName), onClick: handleClose }),
             react_1.default.createElement(View_1.default, { className: classnames_1.default('drawer-body', props.className) }, children))));
 };
 Drawer.show = options => {

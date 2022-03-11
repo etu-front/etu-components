@@ -7,6 +7,8 @@ interface IProps extends BaseProps {
     maskClosable?: boolean;
     closable?: boolean;
     maskOpacity?: number;
+    drawerClassName?: string;
+    closeClassName?: string;
     animation?: boolean;
     visible?: boolean;
     position?: 'left' | 'right' | 'top' | 'bottom';
