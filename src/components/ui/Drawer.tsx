@@ -115,6 +115,7 @@ interface IProps extends BaseProps {
   title?: JSX.Element | string
   extra?: JSX.Element | string
   mask?: boolean
+  drawerStyle?: React.CSSProperties
   maskClosable?: boolean
   closable?: boolean
   maskOpacity?: number
@@ -150,6 +151,7 @@ const Drawer: DrawerComponent = props => {
     mask = true,
     closable = true,
     maskClosable = true,
+    drawerStyle,
     maskOpacity,
     onClose,
     onDestroy,
@@ -187,7 +189,7 @@ const Drawer: DrawerComponent = props => {
   if (position === 'top' || position === 'bottom') delete size.width
 
   return (
-    <Main onTransitionEnd={unmount} className="Magnet-Drawer">
+    <Main onTransitionEnd={unmount} className="Magnet-Drawer" style={drawerStyle}>
       {mask &&
         <Mask opacity={maskOpacity} className={classNames({ opened })}
           onClick={maskClosable ? handleClose : undefined}
