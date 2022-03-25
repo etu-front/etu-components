@@ -4,6 +4,7 @@ interface IProps extends BaseProps {
     title?: JSX.Element | string;
     extra?: JSX.Element | string;
     mask?: boolean;
+    drawerStyle?: React.CSSProperties;
     maskClosable?: boolean;
     closable?: boolean;
     maskOpacity?: number;

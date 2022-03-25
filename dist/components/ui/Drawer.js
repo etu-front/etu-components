@@ -121,7 +121,7 @@ const Container = styled_components_1.default(View_1.default) `
 `;
 const _DESTROY_POOL = {};
 const Drawer = props => {
-    const { visible, mask = true, closable = true, maskClosable = true, maskOpacity, onClose, onDestroy, animation = true, width = 375, height = 400, position = 'right', children } = props;
+    const { visible, mask = true, closable = true, maskClosable = true, drawerStyle, maskOpacity, onClose, onDestroy, animation = true, width = 375, height = 400, position = 'right', children } = props;
     const [opened, setOpened] = react_1.default.useState(!animation);
     const handleClose = () => setOpened(false);
     const unmount = () => {
@@ -151,7 +151,7 @@ const Drawer = props => {
         delete size.height;
     if (position === 'top' || position === 'bottom')
         delete size.width;
-    return (react_1.default.createElement(Main, { onTransitionEnd: unmount, className: "Magnet-Drawer" },
+    return (react_1.default.createElement(Main, { onTransitionEnd: unmount, className: "Magnet-Drawer", style: drawerStyle },
         mask &&
             react_1.default.createElement(Mask, { opacity: maskOpacity, className: classnames_1.default({ opened }), onClick: maskClosable ? handleClose : undefined }),
         react_1.default.createElement(Container, Object.assign({ className: classnames_1.default(position, 'bg-lightest', { opened }, props.drawerClassName), style: props.style }, size),
