@@ -33,7 +33,7 @@ const Container = styled(View)`
   max-width: 100vw;
   position: fixed;
   background-color: white;
-  color: #474747;
+  color: var(--text-color);
   transition-timing-function: cubic-bezier(.7,.3,.1,1);
   transition-duration: 200ms;
   &.left, &.right {
