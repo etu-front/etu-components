@@ -22,10 +22,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Container = void 0;
 const react_1 = __importStar(require("react"));
 const styled_components_1 = __importDefault(require("styled-components"));
 const lodash_1 = __importDefault(require("lodash"));
-const Container = styled_components_1.default.div `
+exports.Container = styled_components_1.default.div `
   h1 { font-size: 1.5em; }
   h2 { font-size: 1.3em; }
   h3 { font-size: 1.2em; }
@@ -139,7 +140,7 @@ const HtmlContent = props => {
             return { url: image.src, image };
         });
     }, []);
-    const Comp = useStyle ? Container : 'div';
+    const Comp = useStyle ? exports.Container : 'div';
     return react_1.default.createElement(Comp, { ref: contentRef, className: className, style: style, dangerouslySetInnerHTML: { __html: html } });
 };
 exports.default = HtmlContent;
