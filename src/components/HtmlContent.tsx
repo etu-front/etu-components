@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { BaseProps } from './types'
 import _ from 'lodash'
 
-const Container = styled.div`
+export const Container = styled.div`
   h1 { font-size: 1.5em; }
   h2 { font-size: 1.3em; }
   h3 { font-size: 1.2em; }

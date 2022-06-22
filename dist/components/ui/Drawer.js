@@ -44,7 +44,7 @@ const Container = styled_components_1.default(View_1.default) `
   max-width: 100vw;
   position: fixed;
   background-color: white;
-  color: #474747;
+  color: var(--text-color);
   transition-timing-function: cubic-bezier(.7,.3,.1,1);
   transition-duration: 200ms;
   &.left, &.right {
