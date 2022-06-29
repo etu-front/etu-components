@@ -245,11 +245,16 @@ Drawer.destory = () => {
   }
 }
 
-Drawer.openUrl = (url: string, options) =>
-  Drawer.show({
+Drawer.openUrl = (url: string, options) => {
+  document.body.classList.add('noScroll')
+  return Drawer.show({
     width: 375,
     className: 'p-a-0',
     ...options,
+    onClose: () => {
+      if (options?.onClose) options.onClose()
+      document.body.classList.remove('noScroll')
+    },
     body: (
       <iframe
         title={typeof options?.title === 'string' ? options.title : 'iframe'}
@@ -261,6 +266,7 @@ Drawer.openUrl = (url: string, options) =>
       />
     )
   })
+}
 
 Drawer.displayName = 'Drawer'
 export default Drawer
