@@ -197,7 +197,14 @@ Drawer.destory = () => {
         }
     }
 };
-Drawer.openUrl = (url, options) => Drawer.show(Object.assign(Object.assign({ width: 375, className: 'p-a-0' }, options), { body: (react_1.default.createElement("iframe", { title: typeof (options === null || options === void 0 ? void 0 : options.title) === 'string' ? options.title : 'iframe', src: url, height: "100%", width: "100%", frameBorder: "none", scrolling: "auto" })) }));
+Drawer.openUrl = (url, options) => {
+    document.body.classList.add('noScroll');
+    return Drawer.show(Object.assign(Object.assign({ width: 375, className: 'p-a-0' }, options), { onClose: () => {
+            if (options === null || options === void 0 ? void 0 : options.onClose)
+                options.onClose();
+            document.body.classList.remove('noScroll');
+        }, body: (react_1.default.createElement("iframe", { title: typeof (options === null || options === void 0 ? void 0 : options.title) === 'string' ? options.title : 'iframe', src: url, height: "100%", width: "100%", frameBorder: "none", scrolling: "auto" })) }));
+};
 Drawer.displayName = 'Drawer';
 exports.default = Drawer;
 //# sourceMappingURL=Drawer.js.map
