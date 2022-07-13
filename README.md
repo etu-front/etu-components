@@ -19,7 +19,7 @@ $ npm run dev
 ```
 ## 发布
 ```bash
-$ npm run pub
+$ npm run pub --otp=二步认证码
 ```
 ## Git 提交 emoji
 
