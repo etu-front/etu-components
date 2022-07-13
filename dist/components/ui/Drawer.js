@@ -40,7 +40,7 @@ const Mask = styled_components_1.default.div `
   }
 `;
 const Container = styled_components_1.default(View_1.default) `
-  --boxshaow-color: rgb(0 0 0 / 15%);
+  --box-shadow-color: rgb(0 0 0 / 15%);
   max-width: 100vw;
   position: fixed;
   background-color: white;
@@ -58,37 +58,37 @@ const Container = styled_components_1.default(View_1.default) `
   &.right {
     transition-property: right;
     right: -100%;
-    box-shadow: -2px 0 8px var(--boxshaow-color);
+    box-shadow: -2px 0 8px var(--box-shadow-color);
     &.opened {right: 0;}
   }
   &.left {
     transition-property: left;
     left: -100%;
-    box-shadow: 2px 0 8px var(--boxshaow-color);
+    box-shadow: 2px 0 8px var(--box-shadow-color);
     &.opened {left: 0;}
   }
   &.top {
     transition-property: top;
     top: -100%;
-    box-shadow: 0 2px 8px var(--boxshaow-color);
+    box-shadow: 0 2px 8px var(--box-shadow-color);
     &.opened {top: 0;}
   }
   &.bottom {
     transition-property: bottom;
     bottom: -100%;
-    box-shadow: 0 -2px 8px var(--boxshaow-color);
+    box-shadow: 0 -2px 8px var(--box-shadow-color);
     &.opened {bottom: 0;}
   }
   .drawer-title {
     padding: 8px 16px;
     font-size: 16px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--normal-color,#ccc);
+    color: var(--text-color);
   }
   .drawer-close {
     position: absolute;
     right: 12px;
     top: 10px;
-    color: #666;
     font-size: 18px;
     cursor: pointer;
     z-index: 1;
@@ -106,17 +106,6 @@ const Container = styled_components_1.default(View_1.default) `
     padding: 10px 16px;
     flex: 1;
     overflow: auto;
-  }
-  @media (prefers-color-scheme: dark) {
-    --boxshaow-color: #000d;
-    .drawer-title {
-      color: white;
-      border-bottom: 1px solid #555;
-    }
-    .drawer-body {
-      color: white;
-    }
-    .drawer-close {color: white;}
   }
 `;
 const _DESTROY_POOL = {};
