@@ -13,7 +13,11 @@ const LineText = styled.div<IProps>`
   align-items: center;
   justify-content: center;
   position: relative;
-  width: ${({ width }) => width ? (typeof width === 'number' ? `${width}px` : width) : '100%'};
+  width: ${({ width }) => {
+    if (typeof width === 'undefined') return '100%'
+    if (typeof width === 'number') return `${width}px`
+    return width
+  }};
   &::before,
   &::after {
     content: '';

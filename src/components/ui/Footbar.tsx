@@ -22,7 +22,7 @@ export default Footbar
 export const FootButton = styled.a<{ shadow?: string, width?: number | string, color1?: string, color2?: string }>`
   display: block;
   margin: 10px auto;
-  width: ${({ width = 160 }) => (typeof width === 'number' ? `${width}px` : width)};
+  width: ${({ width = 160 }) => { if (typeof width !== 'number') return width; return `${width}px` }};
   height: 44px;
   border-radius: 22px;
   box-shadow: 0 3px 5px ${props => props.shadow || "var(--primary-lighter-color)"};

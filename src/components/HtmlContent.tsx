@@ -1,7 +1,7 @@
 import React, { FC, useRef } from 'react'
 import styled from 'styled-components'
 import { BaseProps } from './types'
-import _ from 'lodash'
+import { get, filter } from 'lodash'
 
 export const Container = styled.div`
   h1 { font-size: 1.5em; }
@@ -72,6 +72,38 @@ export const Container = styled.div`
     line-height: 200%;
   }
 `
+// 绑定图片点击事件
+const bindImageView = (container: HTMLDivElement) => {
+  const imageTags = container.getElementsByTagName('img')
+  if (!imageTags?.length) return
+  filter(imageTags, image => {
+    if (!image.src ||
+      image.src.endsWith('.svg') ||
+      get(image.parentNode, 'tagName') === 'A' ||
+      get(image.parentNode, 'parentNode.tagName') === 'A'
+    ) return false
+    return true
+  }).map((image, index) => {
+    image.setAttribute('data-index', index.toString())
+    image.classList.add('has-preview')
+    return { url: image.src, image }
+  })
+}
+// 绑定脚本
+const bindScript = (container: HTMLDivElement, scriptClassName: string) => {
+  const doms = container.querySelectorAll(`.${scriptClassName}`)
+  if (!doms?.length) return
+  doms.forEach(dom => {
+    const script = dom.innerHTML
+    if (!script) return
+    try {
+      // eslint-disable-next-line no-eval
+      window.eval(script)
+    } catch {
+      //
+    }
+  })
+}
 
 interface IProps extends BaseProps {
   html?: string
@@ -83,6 +115,7 @@ interface IProps extends BaseProps {
   /** 是否执行style */
   useStyle?: boolean
 }
+
 const HtmlContent: FC<IProps> = props => {
   const {
     className,
@@ -96,40 +129,13 @@ const HtmlContent: FC<IProps> = props => {
   const contentRef = useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
-    if (!html) return
-
+    if (!html || !contentRef.current) return
     // 执行脚本
-    if (evalScript) {
-      const doms = document.querySelectorAll(`.${scriptClassName}`)
-      if (doms.length > 0) {
-        doms.forEach(dom => {
-          const script = dom.innerHTML
-          if (!script) return
-          try {
-            // eslint-disable-next-line no-eval
-            window.eval(script)
-          } catch {
-            //
-          }
-        })
-      }
-    }
-
-    if (!imagePreview) return
+    if (evalScript) bindScript(contentRef.current, scriptClassName)
     // 绑定图片点击事件
-    const imageTags = contentRef.current?.getElementsByTagName('img')
-    if (!imageTags?.length) return
-    _.filter(imageTags, image => {
-      if (!image.src || image.src.endsWith('.svg')) return false
-      if (_.get(image.parentNode, 'tagName') === 'A') return false
-      if (_.get(image.parentNode, 'parentNode.tagName') === 'A') return false
-      return true
-    }).map((image, index) => {
-      image.setAttribute('data-index', index.toString())
-      image.classList.add('has-preview')
-      return { url: image.src, image }
-    })
+    if (imagePreview) bindImageView(contentRef.current)
   }, [])
+
   const Comp = useStyle ? Container : 'div'
   return <Comp ref={contentRef} className={className} style={style} dangerouslySetInnerHTML={{ __html: html }} />
 }

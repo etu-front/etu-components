@@ -69,8 +69,10 @@ describe('View test', () => {
         <View height={100} flex={1} background="blue" />
       </View>
     ).toJSON()
+    expect(tree).not.toBeNull()
+    if (!tree) return
     expect(tree).toMatchSnapshot()
-    const { style } = tree!.props
+    const { style } = tree.props
     expect(style).toHaveProperty('flexWrap', 'wrap')
     expect(style).toHaveProperty('flexDirection', 'row')
     expect(style).toHaveProperty('margin', '0 -10px')
