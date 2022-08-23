@@ -1,6 +1,6 @@
 {
   "name": "@etu/components",
-  "version": "2.8.2",
+  "version": "2.8.3",
   "license": "ISC",
   "description": "components of etu",
   "main": "./dist/index.js",
