@@ -18,6 +18,7 @@ const getVersion = () => {
   })
 
   r.question(`版本号(${packageJSON.version}): `, version => {
+    r.close()
     if (version) {
       if (version.split('.').find(v => isNaN(Number(v)))) {
         console.log('版本号输入错误')
@@ -32,7 +33,6 @@ const getVersion = () => {
         return pushCommit(version)
       }
     }
-    r.close()
     publish()
   })
 
@@ -44,6 +44,7 @@ const pushCommit = version => {
     output: process.stdout
   })
   r.question(`是否推送分支 Y/N: `, push => {
+    r.close()
     if (push && push.toLowerCase() === 'y') {
       exec('git add ./dist ' + packagePath + ' ' + packageLockPath, () => {
         exec(`git commit -m "📦 bump version ${version}"`, () => {
@@ -57,22 +58,28 @@ const pushCommit = version => {
     } else {
       publish()
     }
-    r.close()
   })
 }
 
 // 发布
 const publish = () => {
   console.log('开始发布')
-  exec('npm publish --access=public', (error, stdout) => {
-    if (error) {
-      console.log(error)
-      console.log('发布失败！')
-      return process.exit(0)
-    }
-    console.log(stdout)
-    console.log('发布成功！')
-    process.exit(0)
+  const r = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
+  r.question(`输入二步认证码: --otp `, code => {
+    r.close()
+    exec('npm publish --access=public --otp=' + code, (error, stdout) => {
+      if (error) {
+        console.log(error)
+        console.log('发布失败！')
+        return process.exit(0)
+      }
+      console.log(stdout)
+      console.log('发布成功！')
+      process.exit(0)
+    })
   })
 }
 
