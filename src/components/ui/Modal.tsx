@@ -299,11 +299,13 @@ export interface ModalOptions extends Omit<ModalProps, 'onDestroy'> {
 
 const showModal = (node: ReactElement) => {
   const dom = document.createElement('div')
+  document.body.classList.add('noScroll')
   document.body.appendChild(dom)
   // eslint-disable-next-line prefer-const
   let unListen: Function
   const history = createBrowserHistory()
   const destroy = () => {
+    document.body.classList.remove('noScroll')
     if (typeof unListen === 'function') unListen()
     if (!dom) return
     ReactDOM.unmountComponentAtNode(dom)
