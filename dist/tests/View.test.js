@@ -52,6 +52,9 @@ describe('View test', () => {
             react_1.default.createElement(View_1.default, { height: 100, flex: 1, background: "red" }),
             react_1.default.createElement(View_1.default, { height: 100, flex: 1, background: "green" }),
             react_1.default.createElement(View_1.default, { height: 100, flex: 1, background: "blue" }))).toJSON();
+        expect(tree).not.toBeNull();
+        if (!tree)
+            return;
         expect(tree).toMatchSnapshot();
         const { style } = tree.props;
         expect(style).toHaveProperty('flexWrap', 'wrap');

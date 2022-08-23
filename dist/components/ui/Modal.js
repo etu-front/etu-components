@@ -234,11 +234,13 @@ const Modal = props => {
 };
 const showModal = (node) => {
     const dom = document.createElement('div');
+    document.body.classList.add('noScroll');
     document.body.appendChild(dom);
     // eslint-disable-next-line prefer-const
     let unListen;
     const history = history_1.createBrowserHistory();
     const destroy = () => {
+        document.body.classList.remove('noScroll');
         if (typeof unListen === 'function')
             unListen();
         if (!dom)

@@ -25,7 +25,8 @@ exports.default = Footbar;
 exports.FootButton = styled_components_1.default.a `
   display: block;
   margin: 10px auto;
-  width: ${({ width = 160 }) => (typeof width === 'number' ? `${width}px` : width)};
+  width: ${({ width = 160 }) => { if (typeof width !== 'number')
+    return width; return `${width}px`; }};
   height: 44px;
   border-radius: 22px;
   box-shadow: 0 3px 5px ${props => props.shadow || "var(--primary-lighter-color)"};

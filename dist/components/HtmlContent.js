@@ -25,7 +25,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Container = void 0;
 const react_1 = __importStar(require("react"));
 const styled_components_1 = __importDefault(require("styled-components"));
-const lodash_1 = __importDefault(require("lodash"));
+const lodash_1 = require("lodash");
 exports.Container = styled_components_1.default.div `
   h1 { font-size: 1.5em; }
   h2 { font-size: 1.3em; }
@@ -95,50 +95,54 @@ exports.Container = styled_components_1.default.div `
     line-height: 200%;
   }
 `;
+// 绑定图片点击事件
+const bindImageView = (container) => {
+    const imageTags = container.getElementsByTagName('img');
+    if (!(imageTags === null || imageTags === void 0 ? void 0 : imageTags.length))
+        return;
+    lodash_1.filter(imageTags, image => {
+        if (!image.src ||
+            image.src.endsWith('.svg') ||
+            lodash_1.get(image.parentNode, 'tagName') === 'A' ||
+            lodash_1.get(image.parentNode, 'parentNode.tagName') === 'A')
+            return false;
+        return true;
+    }).map((image, index) => {
+        image.setAttribute('data-index', index.toString());
+        image.classList.add('has-preview');
+        return { url: image.src, image };
+    });
+};
+// 绑定脚本
+const bindScript = (container, scriptClassName) => {
+    const doms = container.querySelectorAll(`.${scriptClassName}`);
+    if (!(doms === null || doms === void 0 ? void 0 : doms.length))
+        return;
+    doms.forEach(dom => {
+        const script = dom.innerHTML;
+        if (!script)
+            return;
+        try {
+            // eslint-disable-next-line no-eval
+            window.eval(script);
+        }
+        catch (_a) {
+            //
+        }
+    });
+};
 const HtmlContent = props => {
     const { className, style, html = '', useStyle = true, evalScript = true, scriptClassName = 'MagnetScript', imagePreview = true } = props;
     const contentRef = react_1.useRef(null);
     react_1.default.useEffect(() => {
-        var _a;
-        if (!html)
+        if (!html || !contentRef.current)
             return;
         // 执行脚本
-        if (evalScript) {
-            const doms = document.querySelectorAll(`.${scriptClassName}`);
-            if (doms.length > 0) {
-                doms.forEach(dom => {
-                    const script = dom.innerHTML;
-                    if (!script)
-                        return;
-                    try {
-                        // eslint-disable-next-line no-eval
-                        window.eval(script);
-                    }
-                    catch (_a) {
-                        //
-                    }
-                });
-            }
-        }
-        if (!imagePreview)
-            return;
+        if (evalScript)
+            bindScript(contentRef.current, scriptClassName);
         // 绑定图片点击事件
-        const imageTags = (_a = contentRef.current) === null || _a === void 0 ? void 0 : _a.getElementsByTagName('img');
-        if (!(imageTags === null || imageTags === void 0 ? void 0 : imageTags.length))
-            return;
-        lodash_1.default.filter(imageTags, image => {
-            if (!image.src || image.src.endsWith('.svg'))
-                return false;
-            if (lodash_1.default.get(image.parentNode, 'tagName') === 'A')
-                return false;
-            if (lodash_1.default.get(image.parentNode, 'parentNode.tagName') === 'A')
-                return false;
-            return true;
-        }).map((image, index) => {
-            image.setAttribute('data-index', index.toString());
-            image.classList.add('has-preview');
-            return { url: image.src, image };
-        });
+        if (imagePreview)
+            bindImageView(contentRef.current);
     }, []);
     const Comp = useStyle ? exports.Container : 'div';
     return react_1.default.createElement(Comp, { ref: contentRef, className: className, style: style, dangerouslySetInnerHTML: { __html: html } });
