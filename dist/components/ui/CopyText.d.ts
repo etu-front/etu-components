@@ -5,7 +5,7 @@ interface IProps extends BaseProps {
     /** 毫秒 */
     delay?: number;
     copyChildren?: React.ReactNode;
-    copiedText?: string;
+    copiedText?: React.ReactNode;
     onCopy?: Function;
 }
 declare const CopyText: FC<IProps>;
