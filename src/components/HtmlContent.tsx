@@ -20,20 +20,14 @@ export const Container = styled.div`
     line-height: 200%;
     text-align: justify;
   }
-  p:empty {
-    height: 1em;
-  }
+  p:empty { height: 1em;}
   p > img + br:last-child {
     display: none;
   }
   p > img:only-child {
-    margin: 0.5em 0;
     display: block;
   }
-  p > img {
-    margin: 0.5em 0;
-  }
-  img {
+  img, video {
     max-width: 100%;
   }
   table.table-bordered {
