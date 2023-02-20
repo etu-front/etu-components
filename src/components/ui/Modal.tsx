@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from "react-dom/client"
 import classnames from 'classnames'
 import styled from 'styled-components'
 import { createBrowserHistory } from 'history'
@@ -304,15 +304,17 @@ const showModal = (node: ReactElement) => {
   // eslint-disable-next-line prefer-const
   let unListen: Function
   const history = createBrowserHistory()
+
+  const root = createRoot(dom)
   const destroy = () => {
     document.body.classList.remove('noScroll')
     if (typeof unListen === 'function') unListen()
     if (!dom) return
-    ReactDOM.unmountComponentAtNode(dom)
+    root.unmount()
     dom.remove()
   }
   unListen = history.listen(destroy)
-  ReactDOM.render(React.cloneElement(node, { onDestroy: destroy }), dom)
+  root.render(React.cloneElement(node, { onDestroy: destroy }))
   return destroy
 }
 

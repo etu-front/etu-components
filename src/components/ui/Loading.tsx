@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import React, { FC, Fragment } from "react"
+
 import styled from 'styled-components'
 
 export type Colors = [string, string] | undefined
@@ -12,6 +13,7 @@ interface LoadingStyles {
   duration: number
   /** 颜色设置，[primaryColor, secondaryColor] */
   colors: Colors
+  children?: any
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -82,9 +84,11 @@ const Loading: FC<Partial<LoadingStyles>> = props => {
   } = props
   return (
     <Container size={size} duration={duration} radius={radius} colors={colors || ['#3f3dd0', '#55a388']}>
-      <div />
-      <div />
-      <div />
+      <Fragment>
+        <div />
+        <div />
+        <div />
+      </Fragment>
     </Container>
   )
 }

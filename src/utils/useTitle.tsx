@@ -22,10 +22,11 @@ const useTitle = (title: string, useReset?: boolean) => {
 interface IProps {
   title: string
   useReset?: boolean
+  children?: ReactElement
 }
 export const DocumentTitle: FC<IProps> = props => {
   useTitle(props.title, props.useReset)
-  return props.children as ReactElement || null
+  return props.children || null
 }
 
 useTitle.DocumentTitle = DocumentTitle

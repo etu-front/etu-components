@@ -1,8 +1,8 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import renderer, { ReactTestRendererJSON } from 'react-test-renderer'
 import 'jest-styled-components'
 import { configure, mount } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import Adapter from '@cfaester/enzyme-adapter-react-18'
 
 configure({ adapter: new Adapter() })
 
@@ -25,7 +25,7 @@ test('ClampText Component', () => {
 
 test('ClampText 基本', () => {
   const component = renderer.create(<ClampText>hello</ClampText>)
-  const tree = component.toJSON()
+  const tree = component.toJSON() as ReactTestRendererJSON
   expect(tree).not.toBeNull()
   expect(tree).toMatchSnapshot()
   if (!tree) return
@@ -40,7 +40,7 @@ test('ClampText 复杂', () => {
   const component = renderer.create(
     <ClampText max={2} text="title" className="cls" style={{ lineHeight: 2 }}>hello</ClampText>
   )
-  const tree = component.toJSON()
+  const tree = component.toJSON() as ReactTestRendererJSON
   expect(tree).not.toBeNull()
   expect(tree).toMatchSnapshot()
   if (!tree) return
@@ -55,7 +55,7 @@ test('ClampText 复杂', () => {
 
 test('ClampText 标题', () => {
   const component = renderer.create(<ClampText max={3} text="title and children text" />)
-  const tree = component.toJSON()
+  const tree = component.toJSON() as ReactTestRendererJSON
   expect(tree).not.toBeNull()
   expect(tree).toMatchSnapshot()
   if (!tree) return

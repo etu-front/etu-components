@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import styled from 'styled-components'
 import { Icon } from '.'
 import { BaseProps } from '../types'
@@ -127,21 +127,20 @@ export const showToast = (options: Options) => {
   const domContainer = document.createElement('div')
   document.body.appendChild(domContainer)
 
+  const root = createRoot(domContainer)
+
   const key = Date.now() + '_' + Math.floor(Math.random() * 100000)
 
   const destroy = () => {
     delete DESTROY_POOL[key]
-    ReactDOM.unmountComponentAtNode(domContainer)
+    root.unmount()
     if (domContainer.parentNode) {
       domContainer.parentNode.removeChild(domContainer)
     }
   }
   DESTROY_POOL[key] = destroy
 
-  ReactDOM.render(
-    <Toast {...rest}>{title}</Toast>,
-    domContainer
-  )
+  root.render(<Toast {...rest}>{title}</Toast>)
 
   if (duration > 0) {
     setTimeout(destroy, Math.max(500, duration))
@@ -170,4 +169,5 @@ Toast.info = (title: string, opts?: ToastProps) =>
   showToast({ title, icon: 'info', mask: false, ...opts })
 Toast.success = (title: string, opts?: ToastProps) =>
   showToast({ title, icon: 'check', mask: false, ...opts })
+
 export default Toast

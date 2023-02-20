@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 const showContextMenu = (options: {
   target: HTMLElement
@@ -17,7 +17,8 @@ const showContextMenu = (options: {
   dom.style.visibility = 'hidden'
   dom.style['z-index'] = 999
   document.body.append(dom)
-  ReactDOM.render(<span>{options.component}</span>, dom)
+  const root = createRoot(dom)
+  root.render(<span>{options.component}</span>)
 
   let x = options.x + offset
   let y = options.y + offset
@@ -43,7 +44,7 @@ const showContextMenu = (options: {
     clearTimeout(timer)
     dom.removeEventListener('mouseenter', clearTimer)
     dom.removeEventListener('mouseleave', destory)
-    ReactDOM.unmountComponentAtNode(dom)
+    root.unmount()
     dom.remove()
   }
 

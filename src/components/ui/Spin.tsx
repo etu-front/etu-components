@@ -29,6 +29,7 @@ interface ISpin {
   style?: CSSProperties
   tip?: string
   colors?: Colors
+  children?: any
 }
 
 const Spin: FC<ISpin> = props => {

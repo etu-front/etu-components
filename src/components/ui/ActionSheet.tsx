@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, CSSProperties } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import styled from 'styled-components'
 import View from '../View'
 import { createBrowserHistory } from 'history'
@@ -131,18 +131,19 @@ export const showActionSheet = (options: Omit<IProps, 'visible'>) => {
   let unListen: Function
   const key = Date.now() + '_' + Math.floor(Math.random() * 100000)
   const history = createBrowserHistory()
+  const root = createRoot(dom)
   const destroy = () => {
     if (typeof unListen === 'function') unListen()
     if (options.onCancel) {
       options.onCancel()
     }
     if (!dom) return
-    ReactDOM.unmountComponentAtNode(dom)
+    root.unmount()
     dom.remove()
   }
   DESTROY_POOL[key] = destroy
   unListen = history.listen(destroy)
-  ReactDOM.render(<ActionSheet visible onCancel={destroy} {...options} />, dom)
+  root.render(<ActionSheet visible onCancel={destroy} {...options} />)
   return destroy
 }
 

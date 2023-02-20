@@ -12,6 +12,7 @@ interface Props {
   size?: number
   className?: string
   colors?: Colors
+  children?: any
 }
 const PageLoading: React.FC<Props> = ({ children, size = 10, className, colors }) => (
   <Container className={className}>

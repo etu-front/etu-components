@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import classNames from 'classnames'
 import { createBrowserHistory } from 'history'
 import styled from 'styled-components'
@@ -207,6 +207,7 @@ Drawer.show = options => {
   if (singleton) Drawer.destory()
   const dom = document.createElement('div')
   document.body.appendChild(dom)
+  const root = createRoot(dom)
   // eslint-disable-next-line prefer-const
   let unListen: Function
   const history = createBrowserHistory()
@@ -216,13 +217,13 @@ Drawer.show = options => {
     if (typeof unListen === 'function') unListen()
     if (!dom) return
     if (rest.onClose) rest.onClose()
-    ReactDOM.unmountComponentAtNode(dom)
+    root.unmount()
     dom.remove()
   }
   _DESTROY_POOL[key] = destroy
   unListen = history.listen(destroy)
   // const node = <
-  ReactDOM.render(<Drawer {...rest} visible onDestroy={destroy}>{body}</Drawer>, dom)
+  root.render(<Drawer {...rest} visible onDestroy={destroy}>{body}</Drawer>)
   return destroy
 }
 

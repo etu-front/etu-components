@@ -1,5 +1,5 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import renderer, { ReactTestRendererJSON } from 'react-test-renderer'
 import 'jest-styled-components'
 
 import View from '../components/View'
@@ -12,7 +12,7 @@ describe('View test', () => {
 
   it('View 基本', () => {
     const component = renderer.create(<View column hide>hello</View>)
-    const tree = component.toJSON()
+    const tree = component.toJSON() as ReactTestRendererJSON
     expect(tree).not.toBeNull()
     if (!tree) return
     expect(tree).toHaveStyleRule('align-items', 'stretch')
@@ -42,7 +42,7 @@ describe('View test', () => {
       </View>
     )
     const component = renderer.create(jsx)
-    const tree = component.toJSON()
+    const tree = component.toJSON() as ReactTestRendererJSON
     expect(tree).not.toBeNull()
     if (!tree) return
     expect(tree.children).toEqual(['good'])
@@ -68,7 +68,7 @@ describe('View test', () => {
         <View height={100} flex={1} background="green" />
         <View height={100} flex={1} background="blue" />
       </View>
-    ).toJSON()
+    ).toJSON() as ReactTestRendererJSON
     expect(tree).not.toBeNull()
     if (!tree) return
     expect(tree).toMatchSnapshot()
@@ -79,7 +79,7 @@ describe('View test', () => {
   })
 
   it('View.Center 居中。。', () => {
-    const tree = renderer.create(<View.Center height={200}>Hello</View.Center>).toJSON()
+    const tree = renderer.create(<View.Center height={200}>Hello</View.Center>).toJSON() as ReactTestRendererJSON
     expect(tree).not.toBeNull()
     if (!tree) return
     expect(tree).toMatchSnapshot()
@@ -96,7 +96,7 @@ describe('View test', () => {
         href="https://bing.com"
         className="sdsd"
       >bing</View>
-    ).toJSON()
+    ).toJSON() as ReactTestRendererJSON
     expect(tree).not.toBeNull()
     if (!tree) return
     expect(tree).toMatchSnapshot()
