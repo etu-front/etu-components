@@ -16,7 +16,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hideToast = exports.showToast = void 0;
 const react_1 = __importDefault(require("react"));
-const react_dom_1 = __importDefault(require("react-dom"));
+const client_1 = require("react-dom/client");
 const styled_components_1 = __importDefault(require("styled-components"));
 const _1 = require(".");
 const Background = styled_components_1.default.div `
@@ -99,16 +99,17 @@ const showToast = (options) => {
     const { title, duration = 3000 } = options, rest = __rest(options, ["title", "duration"]);
     const domContainer = document.createElement('div');
     document.body.appendChild(domContainer);
+    const root = client_1.createRoot(domContainer);
     const key = Date.now() + '_' + Math.floor(Math.random() * 100000);
     const destroy = () => {
         delete DESTROY_POOL[key];
-        react_dom_1.default.unmountComponentAtNode(domContainer);
+        root.unmount();
         if (domContainer.parentNode) {
             domContainer.parentNode.removeChild(domContainer);
         }
     };
     DESTROY_POOL[key] = destroy;
-    react_dom_1.default.render(react_1.default.createElement(Toast, Object.assign({}, rest), title), domContainer);
+    root.render(react_1.default.createElement(Toast, Object.assign({}, rest), title));
     if (duration > 0) {
         setTimeout(destroy, Math.max(500, duration));
     }

@@ -15,7 +15,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
-const react_dom_1 = __importDefault(require("react-dom"));
+const client_1 = require("react-dom/client");
 const classnames_1 = __importDefault(require("classnames"));
 const history_1 = require("history");
 const styled_components_1 = __importDefault(require("styled-components"));
@@ -158,6 +158,7 @@ Drawer.show = options => {
         Drawer.destory();
     const dom = document.createElement('div');
     document.body.appendChild(dom);
+    const root = client_1.createRoot(dom);
     // eslint-disable-next-line prefer-const
     let unListen;
     const history = history_1.createBrowserHistory();
@@ -170,13 +171,13 @@ Drawer.show = options => {
             return;
         if (rest.onClose)
             rest.onClose();
-        react_dom_1.default.unmountComponentAtNode(dom);
+        root.unmount();
         dom.remove();
     };
     _DESTROY_POOL[key] = destroy;
     unListen = history.listen(destroy);
     // const node = <
-    react_dom_1.default.render(react_1.default.createElement(Drawer, Object.assign({}, rest, { visible: true, onDestroy: destroy }), body), dom);
+    root.render(react_1.default.createElement(Drawer, Object.assign({}, rest, { visible: true, onDestroy: destroy }), body));
     return destroy;
 };
 Drawer.destory = () => {

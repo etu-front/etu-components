@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
-const react_dom_1 = __importDefault(require("react-dom"));
+const client_1 = require("react-dom/client");
 const showContextMenu = (options) => {
     const { target, className = '', offset = 1 } = options;
     const dom = document.createElement('div');
@@ -13,7 +13,8 @@ const showContextMenu = (options) => {
     dom.style.visibility = 'hidden';
     dom.style['z-index'] = 999;
     document.body.append(dom);
-    react_dom_1.default.render(react_1.default.createElement("span", null, options.component), dom);
+    const root = client_1.createRoot(dom);
+    root.render(react_1.default.createElement("span", null, options.component));
     let x = options.x + offset;
     let y = options.y + offset;
     const rect = target.getBoundingClientRect();
@@ -32,7 +33,7 @@ const showContextMenu = (options) => {
         clearTimeout(timer);
         dom.removeEventListener('mouseenter', clearTimer);
         dom.removeEventListener('mouseleave', destory);
-        react_dom_1.default.unmountComponentAtNode(dom);
+        root.unmount();
         dom.remove();
     };
     const startTimer = () => window.setTimeout(destory, 1000);

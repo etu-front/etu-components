@@ -24,7 +24,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hideActionSheet = exports.showActionSheet = void 0;
 const react_1 = __importStar(require("react"));
-const react_dom_1 = __importDefault(require("react-dom"));
+const client_1 = require("react-dom/client");
 const styled_components_1 = __importDefault(require("styled-components"));
 const View_1 = __importDefault(require("../View"));
 const history_1 = require("history");
@@ -110,6 +110,7 @@ const showActionSheet = (options) => {
     let unListen;
     const key = Date.now() + '_' + Math.floor(Math.random() * 100000);
     const history = history_1.createBrowserHistory();
+    const root = client_1.createRoot(dom);
     const destroy = () => {
         if (typeof unListen === 'function')
             unListen();
@@ -118,12 +119,12 @@ const showActionSheet = (options) => {
         }
         if (!dom)
             return;
-        react_dom_1.default.unmountComponentAtNode(dom);
+        root.unmount();
         dom.remove();
     };
     DESTROY_POOL[key] = destroy;
     unListen = history.listen(destroy);
-    react_dom_1.default.render(react_1.default.createElement(ActionSheet, Object.assign({ visible: true, onCancel: destroy }, options)), dom);
+    root.render(react_1.default.createElement(ActionSheet, Object.assign({ visible: true, onCancel: destroy }, options)));
     return destroy;
 };
 exports.showActionSheet = showActionSheet;

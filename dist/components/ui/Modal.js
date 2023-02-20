@@ -32,7 +32,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
-const react_dom_1 = __importDefault(require("react-dom"));
+const client_1 = require("react-dom/client");
 const classnames_1 = __importDefault(require("classnames"));
 const styled_components_1 = __importDefault(require("styled-components"));
 const history_1 = require("history");
@@ -239,17 +239,18 @@ const showModal = (node) => {
     // eslint-disable-next-line prefer-const
     let unListen;
     const history = history_1.createBrowserHistory();
+    const root = client_1.createRoot(dom);
     const destroy = () => {
         document.body.classList.remove('noScroll');
         if (typeof unListen === 'function')
             unListen();
         if (!dom)
             return;
-        react_dom_1.default.unmountComponentAtNode(dom);
+        root.unmount();
         dom.remove();
     };
     unListen = history.listen(destroy);
-    react_dom_1.default.render(react_1.default.cloneElement(node, { onDestroy: destroy }), dom);
+    root.render(react_1.default.cloneElement(node, { onDestroy: destroy }));
     return destroy;
 };
 const show = (options) => showModal(react_1.default.createElement(Modal, Object.assign({}, options, { visible: true }), options.message));

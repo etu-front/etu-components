@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 /**
  * 设置 document.title
  * @param title
@@ -11,6 +11,7 @@ declare const useTitle: {
 interface IProps {
     title: string;
     useReset?: boolean;
+    children?: ReactElement;
 }
 export declare const DocumentTitle: FC<IProps>;
 export default useTitle;

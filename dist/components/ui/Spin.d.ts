@@ -6,6 +6,7 @@ interface ISpin {
     style?: CSSProperties;
     tip?: string;
     colors?: Colors;
+    children?: any;
 }
 declare const Spin: FC<ISpin>;
 export default Spin;
