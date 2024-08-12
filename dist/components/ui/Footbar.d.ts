@@ -1,11 +1,11 @@
-declare const Footbar: import("styled-components").StyledComponent<"div", any, {
-    background?: string | undefined;
-    maxWidth?: string | undefined;
-}, never>;
+declare const Footbar: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
+    background?: string;
+    maxWidth?: string;
+}>> & string;
 export default Footbar;
-export declare const FootButton: import("styled-components").StyledComponent<"a", any, {
-    shadow?: string | undefined;
-    width?: string | number | undefined;
-    color1?: string | undefined;
-    color2?: string | undefined;
-}, never>;
+export declare const FootButton: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, {
+    shadow?: string;
+    width?: number | string;
+    color1?: string;
+    color2?: string;
+}>> & string;

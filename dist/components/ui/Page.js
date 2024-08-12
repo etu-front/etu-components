@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -30,7 +34,7 @@ const Container = styled_components_1.default.div `
   padding-bottom: env(safe-area-inset-bottom);
 `;
 const Page = ({ backgroundColor, paddingBottom, resetScroll, style, className, children, title }) => {
-    react_1.useEffect(() => {
+    (0, react_1.useEffect)(() => {
         if (!resetScroll)
             return;
         window.scrollTo(0, 0);

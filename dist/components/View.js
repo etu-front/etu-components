@@ -65,7 +65,7 @@ const View = react_1.default.memo(react_1.default.forwardRef((props, ref) => {
     if (style) {
         customStyle = Object.assign(Object.assign({}, customStyle), style);
     }
-    return (react_1.default.createElement(Container, Object.assign({ as: props.as, className: classnames_1.default(className, { hide }), ref: ref, style: Object.keys(customStyle).length ? customStyle : undefined }, rest), children));
+    return (react_1.default.createElement(Container, Object.assign({ as: props.as, className: (0, classnames_1.default)(className, { hide }), ref: ref, style: Object.keys(customStyle).length ? customStyle : undefined }, rest), children));
 }));
 View.displayName = 'View';
 View.Center = ((_a) => {

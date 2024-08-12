@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -29,7 +33,7 @@ const styled_components_1 = __importDefault(require("styled-components"));
 const View_1 = __importDefault(require("../View"));
 const history_1 = require("history");
 const classnames_1 = __importDefault(require("classnames"));
-const Container = styled_components_1.default(View_1.default) `
+const Container = (0, styled_components_1.default)(View_1.default) `
   position: fixed;
   height: 100vh;
   width: 100vw;
@@ -45,7 +49,7 @@ const Mask = styled_components_1.default.div `
   z-index: 1;
   background: rgba(0,0,0,0.3);
 `;
-const Body = styled_components_1.default(View_1.default) `
+const Body = (0, styled_components_1.default)(View_1.default) `
   background: #ddd;
   z-index: 3;
   position: fixed;
@@ -78,14 +82,14 @@ const Body = styled_components_1.default(View_1.default) `
 const DESTROY_POOL = {};
 const ActionSheet = props => {
     const { title, actions, visible, onCancel, maxWidth = 680, cancelText = '取消', mask = true, maskClosable = true } = props;
-    const [up, setUp] = react_1.useState(false);
+    const [up, setUp] = (0, react_1.useState)(false);
     const handleClose = () => {
         setUp(false);
         if (onCancel) {
             setTimeout(onCancel, 100);
         }
     };
-    react_1.useEffect(() => {
+    (0, react_1.useEffect)(() => {
         if (visible) {
             setTimeout(() => setUp(true), 100);
         }
@@ -97,7 +101,7 @@ const ActionSheet = props => {
         return null;
     return (react_1.default.createElement(Container, { className: props.className },
         mask && react_1.default.createElement(Mask, { onClick: maskClosable ? handleClose : () => false }),
-        react_1.default.createElement(Body, { className: classnames_1.default({ up }, props.bodyClassName), style: { maxWidth } },
+        react_1.default.createElement(Body, { className: (0, classnames_1.default)({ up }, props.bodyClassName), style: { maxWidth } },
             title,
             actions.map((act, index) => (react_1.default.createElement("div", { key: 'action-' + index, className: `item ${props.itemClassName || ''}`, onClick: act.onClick, style: props.itemStyle }, act.child || act.text))),
             cancelText &&
@@ -109,8 +113,8 @@ const showActionSheet = (options) => {
     // eslint-disable-next-line prefer-const
     let unListen;
     const key = Date.now() + '_' + Math.floor(Math.random() * 100000);
-    const history = history_1.createBrowserHistory();
-    const root = client_1.createRoot(dom);
+    const history = (0, history_1.createBrowserHistory)();
+    const root = (0, client_1.createRoot)(dom);
     const destroy = () => {
         if (typeof unListen === 'function')
             unListen();

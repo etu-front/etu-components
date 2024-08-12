@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -26,7 +30,7 @@ exports.useNProgress = void 0;
 const react_1 = __importStar(require("react"));
 const styled_components_1 = require("styled-components");
 const nprogress_1 = __importDefault(require("nprogress"));
-const GlobalStyle = styled_components_1.createGlobalStyle `
+const GlobalStyle = (0, styled_components_1.createGlobalStyle) `
   #nprogress {
     pointer-events: none;
     .bar {
@@ -92,11 +96,11 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
   }
 `;
 const useNProgress = (url, loading, primaryColor = '', options = {}) => {
-    const [last, setHref] = react_1.useState(url);
-    react_1.useEffect(() => {
+    const [last, setHref] = (0, react_1.useState)(url);
+    (0, react_1.useEffect)(() => {
         nprogress_1.default.configure({ showSpinner: options.showSpinner, speed: options.speed || 200 });
     }, []);
-    react_1.useEffect(() => {
+    (0, react_1.useEffect)(() => {
         if (last === url)
             return;
         nprogress_1.default.start();
@@ -108,7 +112,7 @@ const useNProgress = (url, loading, primaryColor = '', options = {}) => {
     return react_1.default.createElement(GlobalStyle, { primaryColor: primaryColor });
 };
 exports.useNProgress = useNProgress;
-const NProgress = ({ url, loading, primaryColor, options = { showSpinner: false, speed: 200 } }) => exports.useNProgress(url, loading, primaryColor, options);
+const NProgress = ({ url, loading, primaryColor, options = { showSpinner: false, speed: 200 } }) => (0, exports.useNProgress)(url, loading, primaryColor, options);
 NProgress.displayName = 'NProgress';
 exports.default = NProgress;
 //# sourceMappingURL=NProgress.js.map

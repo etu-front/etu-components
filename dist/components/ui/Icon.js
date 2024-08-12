@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createFromIconfont = void 0;
+exports.createFromIconfont = createFromIconfont;
 const react_1 = __importDefault(require("react"));
 const styled_components_1 = require("styled-components");
 // iconfont project url: https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=1546788
@@ -28,7 +28,7 @@ copy(icons.map(v => JSON.stringify(v.innerText.slice(5))).join(" | "))
 
 */
 const ICON_FONT_URL = '//at.alicdn.com/t/font_1546788_elfpb26y53u.js';
-const GloablStyle = styled_components_1.createGlobalStyle `
+const GloablStyle = (0, styled_components_1.createGlobalStyle) `
   .icon {
     display: inline-block;
     color: inherit;
@@ -99,7 +99,6 @@ function createFromIconfont(options) {
     IconFont.displayName = 'Iconfont';
     return IconFont;
 }
-exports.createFromIconfont = createFromIconfont;
 const Icon = react_1.default.memo(createFromIconfont({ scriptUrl: ICON_FONT_URL, prefix: 'icon' }));
 exports.default = Icon;
 //# sourceMappingURL=Icon.js.map

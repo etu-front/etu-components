@@ -1,5 +1,5 @@
 import { FC } from "react";
-export declare type Colors = [string, string] | undefined;
+export type Colors = [string, string] | undefined;
 interface LoadingStyles {
     /** 方块尺寸 */
     size: number;

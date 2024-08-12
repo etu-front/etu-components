@@ -115,7 +115,7 @@ const Toast: ToastComponent = ({ icon, position = 'center', mask = true, onClick
   )
 }
 
-const DESTROY_POOL = {}
+const DESTROY_POOL: Record<string, () => void> = {}
 /**
  * 显示 Toast
  * @param options Options

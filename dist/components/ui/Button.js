@@ -141,7 +141,7 @@ const Container = styled_components_1.default.button `
 `;
 const Button = props => {
     const { children, block, dashed, outline, border = true, className = '', htmlType = 'button', type = 'default', size = 'default', shape = 'round', icon, loading, loadingText, disabled } = props, rest = __rest(props, ["children", "block", "dashed", "outline", "border", "className", "htmlType", "type", "size", "shape", "icon", "loading", "loadingText", "disabled"]);
-    const classNames = classnames_1.default(className, [`btn-${type}`], {
+    const classNames = (0, classnames_1.default)(className, [`btn-${type}`], {
         [`btn-${size}`]: size !== 'default',
         [`btn-${shape}`]: shape !== 'round',
         outline: outline || dashed,

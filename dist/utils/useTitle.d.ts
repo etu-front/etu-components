@@ -5,7 +5,7 @@ import { FC, ReactElement } from 'react';
  * @param useReset 组件在 unmount 后 document.title 是否重置为上一次 title
  */
 declare const useTitle: {
-    (title: string, useReset?: boolean | undefined): void;
+    (title: string, useReset?: boolean): void;
     DocumentTitle: FC<IProps>;
 };
 interface IProps {

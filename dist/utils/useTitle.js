@@ -8,7 +8,7 @@ const react_1 = require("react");
  * @param useReset 组件在 unmount 后 document.title 是否重置为上一次 title
  */
 const useTitle = (title, useReset) => {
-    react_1.useEffect(() => {
+    (0, react_1.useEffect)(() => {
         let lastTitle = '';
         if (document.title !== title) {
             lastTitle = document.title;

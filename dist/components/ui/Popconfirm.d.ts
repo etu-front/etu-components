@@ -1,7 +1,7 @@
 import React from 'react';
 import { ButtonProps } from './Button';
 import { ModalOptions } from './Modal';
-declare type Position = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight';
+type Position = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight';
 interface IProps extends Omit<ModalOptions, 'showOkBtn' | 'closable'> {
     btnProps?: ButtonProps;
     position?: Position;

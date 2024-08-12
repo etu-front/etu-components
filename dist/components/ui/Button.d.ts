@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { BaseIconType } from './Icon';
-export declare type ButtonSize = 'xsmall' | 'small' | 'default' | 'large' | 'xlarge';
-export declare type ButtonType = 'primary' | 'default' | 'warning' | 'danger' | 'success' | 'link' | 'info';
+export type ButtonSize = 'xsmall' | 'small' | 'default' | 'large' | 'xlarge';
+export type ButtonType = 'primary' | 'default' | 'warning' | 'danger' | 'success' | 'link' | 'info';
 export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
     htmlType?: 'submit' | 'reset' | 'button';
     border?: boolean;

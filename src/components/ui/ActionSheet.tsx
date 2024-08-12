@@ -78,7 +78,7 @@ interface IProps {
   itemStyle?: CSSProperties
   cancelText?: string
 }
-const DESTROY_POOL = {}
+const DESTROY_POOL:Record<string, () => void> = {}
 const ActionSheet: FC<IProps> = props => {
   const {
     title, actions, visible, onCancel, maxWidth = 680, cancelText = '取消', mask = true, maskClosable = true

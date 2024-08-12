@@ -35,7 +35,7 @@ export interface ModalProps {
     closeClassName?: string;
     closeStyle?: CSSProperties;
 }
-declare type ModalComponent = FC<ModalProps & {
+type ModalComponent = FC<ModalProps & {
     children?: any;
 }> & {
     show: (options: ModalOptions) => Function;

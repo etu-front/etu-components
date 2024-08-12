@@ -8,11 +8,11 @@ const react_test_renderer_1 = __importDefault(require("react-test-renderer"));
 require("jest-styled-components");
 const enzyme_1 = require("enzyme");
 const enzyme_adapter_react_18_1 = __importDefault(require("@cfaester/enzyme-adapter-react-18"));
-enzyme_1.configure({ adapter: new enzyme_adapter_react_18_1.default() });
+(0, enzyme_1.configure)({ adapter: new enzyme_adapter_react_18_1.default() });
 const ClampText_1 = __importDefault(require("../components/ClampText"));
 test('ClampText Renders and Click', () => {
     const mMock = jest.fn().mockImplementationOnce(() => 'first').mockImplementationOnce(() => 'two');
-    const w = enzyme_1.mount(react_1.default.createElement(ClampText_1.default, { max: 2, onClick: mMock }));
+    const w = (0, enzyme_1.mount)(react_1.default.createElement(ClampText_1.default, { max: 2, onClick: mMock }));
     expect(w.find('div')).not.toBeNull();
     w.simulate('click');
     expect(mMock.mock.calls[0][0]).toBeTruthy();

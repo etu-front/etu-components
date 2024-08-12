@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { BaseProps } from '../types';
-declare type Position = 'top' | 'center' | 'bottom' | 'top_right' | 'bottom_right' | number;
-declare type ToastIcon = 'warning' | 'info' | 'check' | 'close' | 'loading';
+type Position = 'top' | 'center' | 'bottom' | 'top_right' | 'bottom_right' | number;
+type ToastIcon = 'warning' | 'info' | 'check' | 'close' | 'loading';
 interface ToastProps extends BaseProps {
     /** 字符串 或 ReactNode */
     title?: string | ReactNode;
@@ -17,8 +17,8 @@ interface Options extends ToastProps {
     /** 显示毫秒数，默认 3000 毫秒，当为 0 或 负数时， 持久存在 */
     duration?: number;
 }
-declare type ToastFunction = (title: string, opts?: Options) => void;
-declare type ToastComponent = FC<ToastProps> & {
+type ToastFunction = (title: string, opts?: Options) => void;
+type ToastComponent = FC<ToastProps> & {
     show: ToastFunction;
     hide: () => void;
     loading: ToastFunction;

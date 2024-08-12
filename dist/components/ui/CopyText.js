@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -26,7 +30,7 @@ const react_1 = __importStar(require("react"));
 const react_copy_to_clipboard_1 = __importDefault(require("react-copy-to-clipboard"));
 const Button_1 = __importDefault(require("./Button"));
 const CopyText = ({ text, delay = 2000, className, children, copiedText = 'copied', onCopy, copyChildren }) => {
-    const [copied, setCopied] = react_1.useState(false);
+    const [copied, setCopied] = (0, react_1.useState)(false);
     const handleCopy = () => {
         setCopied(true);
         if (onCopy)

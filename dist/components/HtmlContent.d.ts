@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { BaseProps } from './types';
-export declare const Container: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const Container: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
 interface IProps extends BaseProps {
     html?: string;
     scriptClassName?: string;

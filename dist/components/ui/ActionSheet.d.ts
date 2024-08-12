@@ -24,6 +24,6 @@ interface IProps {
     cancelText?: string;
 }
 declare const ActionSheet: FC<IProps>;
-export declare const showActionSheet: (options: Omit<IProps, 'visible'>) => () => void;
+export declare const showActionSheet: (options: Omit<IProps, "visible">) => () => void;
 export declare const hideActionSheet: () => void;
 export default ActionSheet;

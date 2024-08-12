@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -94,11 +98,11 @@ const bindImageView = (container) => {
     const imageTags = container.getElementsByTagName('img');
     if (!(imageTags === null || imageTags === void 0 ? void 0 : imageTags.length))
         return;
-    lodash_1.filter(imageTags, image => {
+    (0, lodash_1.filter)(imageTags, image => {
         if (!image.src ||
             image.src.endsWith('.svg') ||
-            lodash_1.get(image.parentNode, 'tagName') === 'A' ||
-            lodash_1.get(image.parentNode, 'parentNode.tagName') === 'A')
+            (0, lodash_1.get)(image.parentNode, 'tagName') === 'A' ||
+            (0, lodash_1.get)(image.parentNode, 'parentNode.tagName') === 'A')
             return false;
         return true;
     }).map((image, index) => {
@@ -127,7 +131,7 @@ const bindScript = (container, scriptClassName) => {
 };
 const HtmlContent = props => {
     const { className, style, html = '', useStyle = true, evalScript = true, scriptClassName = 'MagnetScript', imagePreview = true } = props;
-    const contentRef = react_1.useRef(null);
+    const contentRef = (0, react_1.useRef)(null);
     react_1.default.useEffect(() => {
         if (!html || !contentRef.current)
             return;

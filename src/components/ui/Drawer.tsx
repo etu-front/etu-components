@@ -98,7 +98,7 @@ const Container = styled(View)`
   }
 `
 
-const _DESTROY_POOL = {}
+const _DESTROY_POOL: Record<string, ()=>void> = {}
 
 interface IProps extends BaseProps {
   title?: JSX.Element | string

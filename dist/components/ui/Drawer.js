@@ -39,7 +39,7 @@ const Mask = styled_components_1.default.div `
     opacity: ${props => props.opacity || 0.3};
   }
 `;
-const Container = styled_components_1.default(View_1.default) `
+const Container = (0, styled_components_1.default)(View_1.default) `
   --box-shadow-color: rgb(0 0 0 / 15%);
   max-width: 100vw;
   position: fixed;
@@ -142,15 +142,15 @@ const Drawer = props => {
         delete size.width;
     return (react_1.default.createElement(Main, { onTransitionEnd: unmount, className: "Magnet-Drawer", style: drawerStyle },
         mask &&
-            react_1.default.createElement(Mask, { opacity: maskOpacity, className: classnames_1.default({ opened }), onClick: maskClosable ? handleClose : undefined }),
-        react_1.default.createElement(Container, Object.assign({ className: classnames_1.default(position, 'bg-lightest', { opened }, props.drawerClassName), style: props.style }, size),
+            react_1.default.createElement(Mask, { opacity: maskOpacity, className: (0, classnames_1.default)({ opened }), onClick: maskClosable ? handleClose : undefined }),
+        react_1.default.createElement(Container, Object.assign({ className: (0, classnames_1.default)(position, 'bg-lightest', { opened }, props.drawerClassName), style: props.style }, size),
             props.title &&
-                react_1.default.createElement(View_1.default, { className: classnames_1.default('drawer-title', { 'p-r-35': closable && position !== 'left' }), row: true, align: "center", justify: props.extra ? 'space-between' : 'flex-start' },
+                react_1.default.createElement(View_1.default, { className: (0, classnames_1.default)('drawer-title', { 'p-r-35': closable && position !== 'left' }), row: true, align: "center", justify: props.extra ? 'space-between' : 'flex-start' },
                     props.title,
                     props.extra),
             closable &&
-                react_1.default.createElement(Icon_1.default, { type: "close", className: classnames_1.default("drawer-close", props.closeClassName), onClick: handleClose }),
-            react_1.default.createElement(View_1.default, { className: classnames_1.default('drawer-body', props.className) }, children))));
+                react_1.default.createElement(Icon_1.default, { type: "close", className: (0, classnames_1.default)("drawer-close", props.closeClassName), onClick: handleClose }),
+            react_1.default.createElement(View_1.default, { className: (0, classnames_1.default)('drawer-body', props.className) }, children))));
 };
 Drawer.show = options => {
     const { body, singleton } = options, rest = __rest(options, ["body", "singleton"]);
@@ -158,10 +158,10 @@ Drawer.show = options => {
         Drawer.destory();
     const dom = document.createElement('div');
     document.body.appendChild(dom);
-    const root = client_1.createRoot(dom);
+    const root = (0, client_1.createRoot)(dom);
     // eslint-disable-next-line prefer-const
     let unListen;
-    const history = history_1.createBrowserHistory();
+    const history = (0, history_1.createBrowserHistory)();
     const key = Date.now() + '_' + Math.floor(Math.random() * 1000000);
     const destroy = () => {
         delete _DESTROY_POOL[key];

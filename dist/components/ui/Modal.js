@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -146,10 +150,10 @@ const ModalFooter = styled_components_1.default.div `
 `;
 const Modal = props => {
     const { title = '', visible = false, onOk, onCancel, onDestroy, closable = true, mask = true, maskClosable = true, maskOpacity = 0.2, animation, animationType = 'default', showCancelBtn = !!props.cancelBtnProps, showOkBtn = !!props.okBtnProps, header, footer } = props;
-    const bodyRef = react_1.useRef(null);
-    const [loading, setLoading] = react_1.useState(false);
-    const [up, setUp] = react_1.useState(!animation);
-    react_1.useEffect(() => {
+    const bodyRef = (0, react_1.useRef)(null);
+    const [loading, setLoading] = (0, react_1.useState)(false);
+    const [up, setUp] = (0, react_1.useState)(!animation);
+    (0, react_1.useEffect)(() => {
         if (!animation)
             return;
         if (visible) {
@@ -161,7 +165,7 @@ const Modal = props => {
                 setTimeout(() => setUp(false), 100);
         }
     }, [visible, animation]);
-    react_1.useEffect(() => {
+    (0, react_1.useEffect)(() => {
         if (!props.onShow || !bodyRef.current)
             return;
         props.onShow(bodyRef.current);
@@ -205,7 +209,7 @@ const Modal = props => {
             buttons.push(react_1.default.createElement(Button_1.default, Object.assign({ key: "cancel", className: "cancel", type: "default", onClick: handleCancel }, (props.cancelBtnProps || {})), props.cancelText || '取消'));
         }
         if (showOkBtn) {
-            buttons.push(react_1.default.createElement(Button_1.default, Object.assign({ key: "ok", type: "primary", onClick: handleOk }, props.okBtnProps, { className: classnames_1.default("ok", (_a = props.okBtnProps) === null || _a === void 0 ? void 0 : _a.className), loading: loading, loadingText: props.loadingText }), props.okText || '确定'));
+            buttons.push(react_1.default.createElement(Button_1.default, Object.assign({ key: "ok", type: "primary", onClick: handleOk }, props.okBtnProps, { className: (0, classnames_1.default)("ok", (_a = props.okBtnProps) === null || _a === void 0 ? void 0 : _a.className), loading: loading, loadingText: props.loadingText }), props.okText || '确定'));
         }
         return buttons;
     };
@@ -238,8 +242,8 @@ const showModal = (node) => {
     document.body.appendChild(dom);
     // eslint-disable-next-line prefer-const
     let unListen;
-    const history = history_1.createBrowserHistory();
-    const root = client_1.createRoot(dom);
+    const history = (0, history_1.createBrowserHistory)();
+    const root = (0, client_1.createRoot)(dom);
     const destroy = () => {
         document.body.classList.remove('noScroll');
         if (typeof unListen === 'function')
@@ -258,7 +262,7 @@ const confirm = (options) => showModal(react_1.default.createElement(Modal, Obje
 const info = (options) => showModal(react_1.default.createElement(Modal, Object.assign({ showOkBtn: true, okText: "\u77E5\u9053\u4E86", maskClosable: false, closable: false }, options, { visible: true }), options.message));
 const danger = (options) => {
     var _a;
-    return showModal(react_1.default.createElement(Modal, Object.assign({ showOkBtn: true, maskClosable: false, closable: false, showCancelBtn: true }, options, { okBtnProps: Object.assign(Object.assign({ type: 'danger' }, options.okBtnProps), { className: classnames_1.default('bg-danger', (_a = options.okBtnProps) === null || _a === void 0 ? void 0 : _a.className) }), visible: true }), options.message));
+    return showModal(react_1.default.createElement(Modal, Object.assign({ showOkBtn: true, maskClosable: false, closable: false, showCancelBtn: true }, options, { okBtnProps: Object.assign(Object.assign({ type: 'danger' }, options.okBtnProps), { className: (0, classnames_1.default)('bg-danger', (_a = options.okBtnProps) === null || _a === void 0 ? void 0 : _a.className) }), visible: true }), options.message));
 };
 Modal.show = show;
 Modal.confirm = confirm;

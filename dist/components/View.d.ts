@@ -1,5 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react';
-declare type Align = 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'space-between' | 'space-around';
+type Align = 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'space-between' | 'space-around';
 interface IProps extends HTMLAttributes<HTMLElement> {
     flex?: number | string;
     align?: Align;
@@ -17,7 +17,7 @@ interface IProps {
     as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
     hide?: boolean;
 }
-declare type ViewComponent = FC<IProps>;
+type ViewComponent = FC<IProps>;
 declare const View: ViewComponent & {
     Center: FC<IProps>;
 };
